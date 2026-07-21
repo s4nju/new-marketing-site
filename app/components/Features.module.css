@@ -1,0 +1,129 @@
+.section {
+  background: var(--features-bg);
+  padding: 96px 0 110px;
+}
+
+.head {
+  max-width: 1200px;
+  margin: 0 auto 56px;
+  padding: 0 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title {
+  color: #fff;
+}
+.sub {
+  margin-top: 20px;
+  max-width: 620px;
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: #cbbfa8;
+}
+
+.grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.card {
+  position: relative;
+  background: var(--cream);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  min-height: 376px;
+  display: flex;
+  flex-direction: column;
+}
+.cardText {
+  padding: 36px 36px 0;
+}
+.cardIcon {
+  display: inline-flex;
+  margin-bottom: 12px;
+}
+.cardIcon svg {
+  width: 30px;
+  height: 30px;
+}
+.cardTitle {
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+.cardDesc {
+  margin-top: 12px;
+  max-width: 400px;
+  font-size: 16px;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+}
+
+.cardPhone {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+}
+.cardPhone :global(img) {
+  width: 250px;
+  height: auto;
+  border-radius: 28px 28px 0 0;
+  box-shadow: 0 -4px 40px rgba(44, 39, 34, 0.1);
+  border: 5px solid rgba(255, 255, 255, 0.6);
+  border-bottom: none;
+  align-self: flex-end;
+}
+
+/* additional features row */
+.additional {
+  max-width: 1200px;
+  margin: 24px auto 0;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 24px;
+}
+.additional .card {
+  min-height: 300px;
+}
+.wide .cardText,
+.narrow .cardText {
+  padding: 36px 36px 0;
+}
+.appRow {
+  display: flex;
+  gap: 16px;
+  padding: 24px 36px 40px;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+.appIcon :global(img) {
+  width: 62px;
+  height: 62px;
+  border-radius: 16px;
+}
+.orgIcon {
+  margin-top: auto;
+  padding: 0 36px 40px;
+}
+.orgIcon :global(img) {
+  width: 120px;
+  height: 120px;
+}
+
+@media (max-width: 860px) {
+  .grid,
+  .additional {
+    grid-template-columns: 1fr;
+  }
+}

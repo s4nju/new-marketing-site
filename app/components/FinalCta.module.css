@@ -1,0 +1,138 @@
+.section {
+  background: var(--cream);
+  padding: 30px 24px 0;
+}
+.panel {
+  position: relative;
+  max-width: 1320px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--cream);
+}
+.gradient {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.inner {
+  position: relative;
+  z-index: 2;
+  padding: 88px 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.title {
+  font-weight: 500;
+  font-size: clamp(32px, 3.4vw, 49px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  max-width: 560px;
+}
+.sub {
+  margin-top: 20px;
+  max-width: 460px;
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: #5c5147;
+}
+.buttons {
+  margin-top: 28px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--ink);
+  color: var(--cream);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  padding: 14px 24px;
+  border-radius: 999px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.btn svg {
+  width: 20px;
+  height: 20px;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.94;
+}
+.btnLight {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.phone {
+  margin-top: 56px;
+  width: 320px;
+  max-width: 100%;
+}
+.phone :global(img) {
+  width: 100%;
+  height: auto;
+  border-radius: 40px 40px 0 0;
+  border: 6px solid rgba(255, 255, 255, 0.5);
+  border-bottom: none;
+  box-shadow: 0 -6px 60px rgba(44, 39, 34, 0.15);
+}
+
+/* footer */
+.footer {
+  background: var(--cream);
+  padding: 40px 0 48px;
+}
+.footInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.logo {
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.footLinks {
+  display: flex;
+  gap: 26px;
+}
+.footLinks a {
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+.footLinks a:hover {
+  color: var(--ink);
+}
+.copy {
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .footInner {
+    flex-direction: column;
+    text-align: center;
+  }
+}

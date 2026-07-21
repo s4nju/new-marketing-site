@@ -1,0 +1,131 @@
+:root {
+  /* palette (sampled from Framer site) */
+  --cream: #faf2df;
+  --cream-card: #f3ecdf;
+  --cream-soft: #eae0cf;
+  --ink: #2c2722;
+  --features-bg: #2a2622;
+  --dark-bg: #2c2722;
+  --muted: #7a6f5e;
+  --berry: #8a3b43;
+  --green: #5e8c5a;
+  --white: #ffffff;
+
+  --font: var(--font-poppins), "Poppins", sans-serif;
+
+  --maxw: 1200px;
+  --radius-lg: 32px;
+  --radius-md: 24px;
+  --radius-sm: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--cream);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ---- shared typography ---- */
+.h1 {
+  font-weight: 500;
+  font-size: clamp(40px, 4.24vw, 61px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.h2 {
+  font-weight: 500;
+  font-size: clamp(34px, 3.4vw, 49px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.eyebrow {
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+}
+.body {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* section vertical rhythm */
+.section {
+  position: relative;
+}
+
+/* pill button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  border-radius: 999px;
+  padding: 12px 22px;
+  transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn-berry {
+  background: var(--berry);
+  color: #fff;
+}
+.btn-dark {
+  background: var(--ink);
+  color: var(--cream);
+}
+.btn-cream {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
