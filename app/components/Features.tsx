@@ -1,36 +1,36 @@
 import Image from "next/image";
 import {
-  FlowerLotus,
-  MoonStars,
-  Plant,
-  Lightning,
-} from "@phosphor-icons/react/dist/ssr";
+  FlowerLotusIcon,
+  MoonStarsIcon,
+  PlantIcon,
+  RabbitIcon,
+} from "@/app/ui/ph-icon";
 import styles from "./Features.module.css";
 
 const cards = [
   {
-    icon: FlowerLotus,
+    icon: FlowerLotusIcon,
     title: "add anything",
     tone: "berry" as const,
     desc: "videos, links, pdfs, photos of notes. tap add and walk away.",
   },
   {
-    icon: MoonStars,
+    icon: MoonStarsIcon,
     title: "flashcards",
     tone: "green" as const,
     desc: "every item you add generates flashcards tailored to how you learn, automatically.",
   },
   {
-    icon: Plant,
+    icon: PlantIcon,
     title: "daily quiz",
     tone: "green" as const,
     desc: "spaced repetition shows each card right before you'd forget. pick your ambition: spark, learn, practice, mastery.",
   },
   {
-    icon: Lightning,
-    title: "streaks",
+    icon: RabbitIcon,
+    title: "assistant",
     tone: "berry" as const,
-    desc: "track your progress day by day. each review adds momentum - the longer you go, the higher you climb.",
+    desc: "ask anything from your assistant, it will organize all your random thoughts and give you the perfect answers.",
   },
 ];
 
@@ -41,24 +41,21 @@ export default function Features() {
         <h2 className={`h2 ${styles.title}`}>
           everything you need
           <br />
-          to make it stick forever
+          to remember forever
         </h2>
         <p className={styles.sub}>
-          add a video, link, pdf, or photo of your notes. biu writes the
-          summary, builds the flashcards, and runs your daily quiz. you just
+          add a video, link, pdf, or photo of your notes. biu breaks it down at
+          fundamental level, and runs super optimized daily quiz. you just
           remember.
         </p>
       </div>
 
       <div className={styles.grid}>
         {cards.map(({ icon: Icon, title, tone, desc }) => (
-          <article
-            key={title}
-            className={`${styles.card} ${styles[tone]}`}
-          >
+          <article key={title} className={`${styles.card} ${styles[tone]}`}>
             <div className={styles.cardText}>
               <span className={styles.cardIcon}>
-                <Icon size={40} weight="regular" />
+                <Icon size={48} weight="light" />
               </span>
               <h3 className={styles.cardTitle}>{title}</h3>
               <p className={styles.cardDesc}>{desc}</p>

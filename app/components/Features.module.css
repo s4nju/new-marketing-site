@@ -64,7 +64,7 @@
 .cardIcon {
   display: inline-flex;
   color: var(--tone);
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 .cardTitle {
   color: var(--tone);

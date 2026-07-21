@@ -1,5 +1,10 @@
-import Image from "next/image";
-import { Plus, Sparkle, Cards, Repeat, Tutor } from "./icons";
+import {
+  CardsIcon,
+  PlusIcon,
+  RabbitIcon,
+  RepeatIcon,
+  SparkleIcon,
+} from "@/app/ui/ph-icon";
 import styles from "./HowItWorks.module.css";
 
 const steps = [
@@ -33,11 +38,11 @@ const steps = [
 ];
 
 const tags = [
-  { icon: <Plus />, label: "add anything" },
-  { icon: <Sparkle />, label: "auto summaries" },
-  { icon: <Cards />, label: "smart flashcards" },
-  { icon: <Repeat />, label: "spaced repetition" },
-  { icon: <Tutor />, label: "ai tutor" },
+  { icon: <PlusIcon />, label: "add anything" },
+  { icon: <SparkleIcon />, label: "auto summaries" },
+  { icon: <CardsIcon />, label: "smart flashcards" },
+  { icon: <RepeatIcon />, label: "spaced repetition" },
+  { icon: <RabbitIcon />, label: "ai assistant" },
 ];
 
 export default function HowItWorks() {
@@ -69,7 +74,6 @@ export default function HowItWorks() {
               ))}
             </div>
             <div className={styles.meta}>
-              <span className={styles.num}>{s.num}</span>
               <h3 className={styles.stepTitle}>{s.title}</h3>
             </div>
             <p className={styles.desc}>{s.desc}</p>
@@ -83,7 +87,7 @@ export default function HowItWorks() {
           {tags.map((t) => (
             <span key={t.label} className={styles.tag}>
               <span className={styles.tagIcon}>{t.icon}</span>
-              {t.label}
+              <span>{t.label}</span>
             </span>
           ))}
         </div>

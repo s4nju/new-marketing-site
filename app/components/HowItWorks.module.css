@@ -144,10 +144,6 @@
   display: inline-flex;
   color: var(--berry);
 }
-.tagIcon svg {
-  width: 20px;
-  height: 20px;
-}
 
 @media (max-width: 860px) {
   .steps {
