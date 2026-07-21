@@ -1,40 +1,37 @@
 import Image from "next/image";
-import { Plus, Cards, Quiz, Flame } from "./icons";
+import {
+  FlowerLotus,
+  MoonStars,
+  Plant,
+  Lightning,
+} from "@phosphor-icons/react/dist/ssr";
 import styles from "./Features.module.css";
 
 const cards = [
   {
-    icon: <Plus />,
+    icon: FlowerLotus,
     title: "add anything",
-    tint: "var(--berry)",
+    tone: "berry" as const,
     desc: "videos, links, pdfs, photos of notes. tap add and walk away.",
   },
   {
-    icon: <Cards />,
+    icon: MoonStars,
     title: "flashcards",
-    tint: "var(--green)",
+    tone: "green" as const,
     desc: "every item you add generates flashcards tailored to how you learn, automatically.",
   },
   {
-    icon: <Quiz />,
+    icon: Plant,
     title: "daily quiz",
-    tint: "var(--green)",
+    tone: "green" as const,
     desc: "spaced repetition shows each card right before you'd forget. pick your ambition: spark, learn, practice, mastery.",
   },
   {
-    icon: <Flame />,
+    icon: Lightning,
     title: "streaks",
-    tint: "var(--berry)",
+    tone: "berry" as const,
     desc: "track your progress day by day. each review adds momentum - the longer you go, the higher you climb.",
   },
-];
-
-const appIcons = [
-  "icon-summaries.png",
-  "icon-b.png",
-  "icon-c.png",
-  "icon-d.png",
-  "icon-e.png",
 ];
 
 export default function Features() {
@@ -54,16 +51,17 @@ export default function Features() {
       </div>
 
       <div className={styles.grid}>
-        {cards.map((c) => (
-          <article key={c.title} className={styles.card}>
+        {cards.map(({ icon: Icon, title, tone, desc }) => (
+          <article
+            key={title}
+            className={`${styles.card} ${styles[tone]}`}
+          >
             <div className={styles.cardText}>
-              <span className={styles.cardIcon} style={{ color: c.tint }}>
-                {c.icon}
+              <span className={styles.cardIcon}>
+                <Icon size={40} weight="regular" />
               </span>
-              <h3 className={styles.cardTitle} style={{ color: c.tint }}>
-                {c.title}
-              </h3>
-              <p className={styles.cardDesc}>{c.desc}</p>
+              <h3 className={styles.cardTitle}>{title}</h3>
+              <p className={styles.cardDesc}>{desc}</p>
             </div>
             <div className={styles.cardPhone}>
               <Image
@@ -71,51 +69,11 @@ export default function Features() {
                 alt=""
                 width={470}
                 height={1024}
+                priority={false}
               />
             </div>
           </article>
         ))}
-      </div>
-
-      <div className={styles.additional}>
-        <article className={`${styles.card} ${styles.wide}`}>
-          <div className={styles.cardText}>
-            <h3 className={styles.cardTitle} style={{ color: "var(--berry)" }}>
-              add from anywhere
-            </h3>
-            <p className={styles.cardDesc}>
-              youtube, the web, pdfs, slides, or your camera roll - if you can
-              open it, biu can learn from it.
-            </p>
-          </div>
-          <div className={styles.appRow}>
-            {appIcons.map((s) => (
-              <span key={s} className={styles.appIcon}>
-                <Image src={`/images/${s}`} alt="" width={64} height={64} />
-              </span>
-            ))}
-          </div>
-        </article>
-
-        <article className={`${styles.card} ${styles.narrow}`}>
-          <div className={styles.cardText}>
-            <h3 className={styles.cardTitle} style={{ color: "var(--green)" }}>
-              organise, then explore
-            </h3>
-            <p className={styles.cardDesc}>
-              library, favourites, and collections. explore surfaces new
-              material too.
-            </p>
-          </div>
-          <div className={styles.orgIcon}>
-            <Image
-              src="/images/icon-f.png"
-              alt=""
-              width={130}
-              height={130}
-            />
-          </div>
-        </article>
       </div>
     </section>
   );

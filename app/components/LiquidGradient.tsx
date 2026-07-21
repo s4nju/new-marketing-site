@@ -69,7 +69,7 @@ void main() {
   vec2 p = uv;
   p.x *= aspect;
 
-  float t = u_time * 0.18;
+  float t = u_time * 0.09;
 
   // domain warp for the liquid feel - the warp field translates in time so
   // the colour bands visibly drift instead of morphing in place
@@ -79,11 +79,14 @@ void main() {
                 fbm(p * 1.3 + q * 1.4 + vec2(8.3, 2.8) - t * 0.6));
   float f = fbm(p * 1.1 + r * 1.6);
 
-  // mauve pools in the top-left corner; the rest stays warm peach -> cream
-  float d = distance(vec2(uv.x * aspect, uv.y), vec2(0.0, 1.0));
-  float dn = clamp(d / 0.7, 0.0, 1.0);
-  float warm = clamp(uv.x * 0.45 + (1.0 - uv.y) * 0.28 + 0.5, 0.0, 1.0);
-  float base = mix(0.22, warm, smoothstep(0.0, 1.0, dn));
+  // colour rises from the bottom edge: rich mauve/clay along the bottom,
+  // easing up to cream toward the top of the band (uv.y: 0 bottom -> 1 top).
+  float rise = smoothstep(0.0, 1.0, uv.y);
+  float base = mix(0.24, 0.95, rise);
+  // mauve pools near the bottom for the liquid feel
+  float d = distance(vec2(uv.x * aspect, uv.y), vec2(0.5 * aspect, 0.0));
+  float dn = clamp(d / 0.8, 0.0, 1.0);
+  base = mix(base * 0.7, base, smoothstep(0.0, 1.0, dn));
   float mixv = base + (f - 0.5) * 0.45;
 
   vec3 col = palette(mixv);
@@ -189,5 +192,19 @@ export default function LiquidGradient({ className }: { className?: string }) {
     };
   }, []);
 
-  return <canvas ref={ref} className={className} aria-hidden="true" />;
+  // static CSS gradient placeholder that matches the shader's look, so the
+  // surface is painted on the very first frame (before JS/WebGL initialises)
+  // instead of flashing the bare cream background. The opaque WebGL draw then
+  // covers it seamlessly.
+  return (
+    <canvas
+      ref={ref}
+      className={className}
+      aria-hidden="true"
+      style={{
+        background:
+          "linear-gradient(to top, #986165 0%, #b5766e 22%, #d09372 42%, #efca9d 66%, #faf2df 100%)",
+      }}
+    />
+  );
 }

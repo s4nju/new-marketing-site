@@ -2,7 +2,7 @@ import Image from "next/image";
 import LiquidGradient from "./LiquidGradient";
 import { Android } from "./icons";
 import styles from "./FinalCta.module.css";
-import { AppStoreLogoIcon } from "@phosphor-icons/react";
+import { AppStoreLogoIcon } from "@/app/ui/ph-icon";
 
 export default function FinalCta() {
   return (

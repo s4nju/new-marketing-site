@@ -1,18 +1,37 @@
 .hero {
   position: relative;
   background: var(--cream);
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  overflow: hidden;
+  /* border-radius: 0 0 var(--radius-lg) var(--radius-lg); */
   padding-bottom: 60px;
+  max-height: 1027px;
+  overflow: hidden;
 }
 
 .gradient {
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
+  /* rises from the bottom edge; the phone mockup (z-index 2) sits on top of
+     it. Taller than the visible dip so the left/right sides can climb high
+     while the centre stays low. */
   height: 100%;
   z-index: 0;
   display: block;
+  /* Valley-shaped reveal: an ellipse centred on the top edge keeps the centre
+     (under the phone) transparent longest, so the gradient dips low there and
+     climbs high on the left/right, framing the phone. */
+  -webkit-mask-image: radial-gradient(
+    70% 120% at 50% 0%,
+    rgba(0, 0, 0, 0) 30%,
+    #000 74%
+  );
+  mask-image: radial-gradient(
+    70% 120% at 50% 0%,
+    rgba(0, 0, 0, 0) 30%,
+    #000 74%
+  );
 }
 
 .inner {
@@ -137,7 +156,17 @@
 /* floating cards */
 .card {
   position: absolute;
-  z-index: 3;
+  /* below the phone (z-index 2) so it stays hidden while tucked behind it */
+  z-index: 1;
+  /* --reveal is inherited from .phoneWrap (set inline, 0 tucked -> 1 out);
+     falls back to 1 for the no-JS / SSR case. Do NOT set --reveal here,
+     a local declaration would shadow the inherited value. */
+  --rx: 0px;
+  --rot: 0deg;
+  transform: translateX(calc(var(--rx) * (1 - var(--reveal, 1))))
+    rotate(var(--rot));
+  opacity: var(--reveal, 1);
+  will-change: transform, opacity;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -173,36 +202,44 @@
 .fSummaries {
   left: -230px;
   top: 120px;
-  transform: rotate(-4deg);
+  --rot: -4deg;
+  --rx: 270px;
 }
 .fFlash {
   left: -190px;
   top: 300px;
-  transform: rotate(3deg);
+  --rot: 3deg;
+  --rx: 230px;
 }
 .fStreaks {
   right: -210px;
   top: 120px;
-  transform: rotate(4deg);
+  --rot: 4deg;
+  --rx: -250px;
 }
 .fQuiz {
   right: -190px;
   top: 300px;
-  transform: rotate(-3deg);
+  --rot: -3deg;
+  --rx: -230px;
 }
 
 @media (max-width: 1100px) {
   .fSummaries {
     left: -60px;
+    --rx: 140px;
   }
   .fFlash {
     left: -40px;
+    --rx: 120px;
   }
   .fStreaks {
     right: -60px;
+    --rx: -140px;
   }
   .fQuiz {
     right: -40px;
+    --rx: -120px;
   }
 }
 

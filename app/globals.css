@@ -26,8 +26,10 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Lenis drives smooth scrolling; keep overflow clipping on the root
+     scroller so body isn't promoted to a separate scroll container. */
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -36,7 +38,6 @@ body {
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 a {

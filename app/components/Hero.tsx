@@ -1,3 +1,7 @@
+"use client";
+
+import { useCallback, useEffect, useRef } from "react";
+import { useLenis } from "lenis/react";
 import Image from "next/image";
 import LiquidGradient from "./LiquidGradient";
 import { MoonSparkle, Leaf, Lotus, Lightning } from "./icons";
@@ -6,7 +10,7 @@ import {
   AppStoreLogoIcon,
   GooglePlayLogoIcon,
   StarIcon,
-} from "@phosphor-icons/react/dist/ssr";
+} from "@/app/ui/ph-icon";
 
 function FloatCard({
   className,
@@ -35,6 +39,44 @@ function FloatCard({
 }
 
 export default function Hero() {
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  // Map the phone's viewport position to the fan-out progress and write it
+  // straight to the DOM (no React re-render). Driven by Lenis every frame,
+  // so the value stays continuous and the motion tracks the smooth scroll.
+  const update = useCallback(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const vh = window.innerHeight || 1;
+    // Tucked (0) when the phone first sits in view, fully fanned (1)
+    // once it has scrolled up toward the top of the viewport. The wide
+    // start/end gap spreads the fan-out over a long scroll for a smooth,
+    // gradual reveal rather than a quick snap.
+    const start = vh * 0.72;
+    const end = vh * 0.15;
+    const p = (start - rect.top) / (start - end);
+    el.style.setProperty("--reveal", String(Math.min(Math.max(p, 0), 1)));
+  }, []);
+
+  // Lenis fires this on every interpolated scroll frame.
+  useLenis(update);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reduced) {
+      el.style.setProperty("--reveal", "1");
+      return;
+    }
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [update]);
+
   return (
     <section className={styles.hero} id="download">
       <LiquidGradient className={styles.gradient} />
@@ -47,7 +89,7 @@ export default function Hero() {
           loved by 3,433+ learners
           <span className={styles.stars}>
             {Array.from({ length: 5 }).map((_, i) => (
-              <StarIcon />
+              <StarIcon key={i} fill="black" />
             ))}
           </span>
         </div>
@@ -64,7 +106,11 @@ export default function Hero() {
           download now
         </a>
 
-        <div className={styles.phoneWrap}>
+        <div
+          ref={wrapRef}
+          className={styles.phoneWrap}
+          style={{ "--reveal": 0 } as React.CSSProperties}
+        >
           <div className={styles.phone}>
             <Image
               src="/images/phone-mockup.jpg"
