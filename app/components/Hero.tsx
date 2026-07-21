@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useLenis } from "lenis/react";
 import Image from "next/image";
-// import LiquidGradient from "./LiquidGradient";
+import LiquidGradient from "./LiquidGradient";
 import { MoonSparkle, Leaf, Lotus, Lightning } from "./icons";
 import styles from "./Hero.module.css";
 import {
@@ -112,7 +112,7 @@ export default function Hero() {
 
   return (
     <section ref={heroRef} className={styles.hero} id="download">
-      {/* <LiquidGradient className={styles.gradient} /> */}
+      <LiquidGradient className={styles.gradient} />
       <div className={styles.inner}>
         <div className={styles.socialProof}>
           <span className={styles.storeLogos}>
