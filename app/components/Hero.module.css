@@ -5,6 +5,7 @@
   padding-bottom: 60px;
   max-height: 1027px;
   overflow: hidden;
+  contain: paint;
 }
 
 .gradient {
@@ -19,6 +20,17 @@
   height: 100%;
   z-index: 0;
   display: block;
+  pointer-events: none;
+  contain: strict;
+  /* First-paint and WebGL-unavailable fallback. */
+  background: linear-gradient(
+    to top,
+    #986165 0%,
+    #b5766e 22%,
+    #d09372 42%,
+    #efca9d 66%,
+    #faf2df 100%
+  );
   /* Valley-shaped reveal: an ellipse centred on the top edge keeps the centre
      (under the phone) transparent longest, so the gradient dips low there and
      climbs high on the left/right, framing the phone. */
@@ -39,7 +51,7 @@
   z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 150px 24px 0;
+  padding: 120px 24px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,6 +92,7 @@
   align-items: center;
   gap: 8px;
   color: var(--ink);
+  font-size: 12px;
 }
 .storeLogos {
   display: inline-flex;
@@ -94,9 +107,9 @@
 }
 
 .title {
-  margin-top: 26px;
+  margin-top: 24px;
   font-weight: 500;
-  font-size: clamp(42px, 4.24vw, 61px);
+  font-size: clamp(42px, 5.24vw, 64px);
   line-height: 0.9;
   letter-spacing: -0.04em;
   color: var(--ink);
@@ -166,19 +179,21 @@
   transform: translateX(calc(var(--rx) * (1 - var(--reveal, 1))))
     rotate(var(--rot));
   opacity: var(--reveal, 1);
-  will-change: transform, opacity;
   display: flex;
   align-items: center;
   gap: 12px;
   background: rgba(250, 242, 223, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.6);
   padding: 14px 18px;
   border-radius: 16px;
   box-shadow: 0 18px 40px rgba(44, 39, 34, 0.12);
   text-align: left;
   white-space: nowrap;
+}
+
+/* Only reserve compositor layers while the hero is near the viewport. */
+.hero[data-active] .card {
+  will-change: transform, opacity;
 }
 .cardIcon {
   display: inline-flex;

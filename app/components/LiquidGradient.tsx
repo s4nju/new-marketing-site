@@ -2,12 +2,11 @@
 
 import { useEffect, useRef } from "react";
 
-/**
- * Animated liquid gradient, a port of the look of Framer's "Liquid Gradient"
- * shader tuned to biu's warm palette. Domain-warped fbm noise blends the
- * colour stops; the warp field translates in time so the colour bands visibly
- * drift across the surface (liquid flow), with a light grain dither.
- */
+const TARGET_FPS = 30;
+const FRAME_INTERVAL = 1000 / TARGET_FPS;
+const RENDER_SCALE = 0.75;
+const MAX_RENDER_PIXELS = 850_000;
+const INPUT_IDLE_DELAY = 160;
 
 const VERT = `
 attribute vec2 position;
@@ -17,16 +16,15 @@ void main() {
 `;
 
 const FRAG = `
-precision highp float;
+precision mediump float;
 uniform vec2 u_res;
 uniform float u_time;
 
-// warm palette sampled from the biu hero
-const vec3 C0 = vec3(0.235, 0.145, 0.164); // #3c2529 deep maroon
-const vec3 C1 = vec3(0.596, 0.380, 0.396); // #986165 dusty mauve
-const vec3 C2 = vec3(0.816, 0.576, 0.447); // #d09372 clay/terracotta
-const vec3 C3 = vec3(0.937, 0.792, 0.616); // #efca9d apricot
-const vec3 C4 = vec3(0.980, 0.949, 0.874); // #faf2df cream
+const vec3 C0 = vec3(0.235, 0.145, 0.164);
+const vec3 C1 = vec3(0.596, 0.380, 0.396);
+const vec3 C2 = vec3(0.816, 0.576, 0.447);
+const vec3 C3 = vec3(0.937, 0.792, 0.616);
+const vec3 C4 = vec3(0.980, 0.949, 0.874);
 
 vec3 palette(float t) {
   t = clamp(t, 0.0, 1.0);
@@ -36,12 +34,12 @@ vec3 palette(float t) {
   return mix(C3, C4, smoothstep(0.75, 1.0, t));
 }
 
-// value noise
 float hash(vec2 p) {
   p = fract(p * vec2(123.34, 456.21));
   p += dot(p, p + 45.32);
   return fract(p.x * p.y);
 }
+
 float noise(vec2 p) {
   vec2 i = floor(p);
   vec2 f = fract(p);
@@ -52,10 +50,13 @@ float noise(vec2 p) {
   float d = hash(i + vec2(1.0, 1.0));
   return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
 }
+
 float fbm(vec2 p) {
   float v = 0.0;
   float amp = 0.6;
-  for (int i = 0; i < 6; i++) {
+  // Four octaves preserve the soft liquid shapes while cutting a third of
+  // the most expensive fragment-shader work from the original six passes.
+  for (int i = 0; i < 4; i++) {
     v += amp * noise(p);
     p *= 1.9;
     amp *= 0.55;
@@ -66,47 +67,47 @@ float fbm(vec2 p) {
 void main() {
   vec2 uv = gl_FragCoord.xy / u_res.xy;
   float aspect = u_res.x / u_res.y;
-  vec2 p = uv;
-  p.x *= aspect;
-
+  vec2 p = vec2(uv.x * aspect, uv.y);
   float t = u_time * 0.09;
 
-  // domain warp for the liquid feel - the warp field translates in time so
-  // the colour bands visibly drift instead of morphing in place
-  vec2 q = vec2(fbm(p * 1.3 + vec2(0.0, t)),
-                fbm(p * 1.3 + vec2(5.2, -t * 0.9)));
-  vec2 r = vec2(fbm(p * 1.3 + q * 1.4 + vec2(1.7, 9.2) + t * 0.7),
-                fbm(p * 1.3 + q * 1.4 + vec2(8.3, 2.8) - t * 0.6));
+  vec2 q = vec2(
+    fbm(p * 1.3 + vec2(0.0, t)),
+    fbm(p * 1.3 + vec2(5.2, -t * 0.9))
+  );
+  vec2 r = vec2(
+    fbm(p * 1.3 + q * 1.4 + vec2(1.7, 9.2) + t * 0.7),
+    fbm(p * 1.3 + q * 1.4 + vec2(8.3, 2.8) - t * 0.6)
+  );
   float f = fbm(p * 1.1 + r * 1.6);
 
-  // colour rises from the bottom edge: rich mauve/clay along the bottom,
-  // easing up to cream toward the top of the band (uv.y: 0 bottom -> 1 top).
   float rise = smoothstep(0.0, 1.0, uv.y);
   float base = mix(0.24, 0.95, rise);
-  // mauve pools near the bottom for the liquid feel
   float d = distance(vec2(uv.x * aspect, uv.y), vec2(0.5 * aspect, 0.0));
   float dn = clamp(d / 0.8, 0.0, 1.0);
   base = mix(base * 0.7, base, smoothstep(0.0, 1.0, dn));
-  float mixv = base + (f - 0.5) * 0.45;
 
-  vec3 col = palette(mixv);
-
-  // grain
-  float g = hash(gl_FragCoord.xy + u_time) - 0.5;
-  col += g * 0.035;
-
-  gl_FragColor = vec4(col, 1.0);
+  vec3 col = palette(base + (f - 0.5) * 0.45);
+  float grain = hash(gl_FragCoord.xy) - 0.5;
+  gl_FragColor = vec4(col + grain * 0.025, 1.0);
 }
 `;
 
-function compile(gl: WebGLRenderingContext, type: number, src: string) {
-  const sh = gl.createShader(type)!;
-  gl.shaderSource(sh, src);
-  gl.compileShader(sh);
-  if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
-    console.error("LiquidGradient shader compile failed:", gl.getShaderInfoLog(sh));
+function compile(gl: WebGLRenderingContext, type: number, source: string) {
+  const shader = gl.createShader(type);
+  if (!shader) return null;
+
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    console.error(
+      "LiquidGradient shader compile failed:",
+      gl.getShaderInfoLog(shader),
+    );
+    gl.deleteShader(shader);
+    return null;
   }
-  return sh;
+
+  return shader;
 }
 
 export default function LiquidGradient({ className }: { className?: string }) {
@@ -115,96 +116,185 @@ export default function LiquidGradient({ className }: { className?: string }) {
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const gl = canvas.getContext("webgl", { antialias: true });
+
+    const gl = canvas.getContext("webgl", {
+      alpha: false,
+      antialias: false,
+      depth: false,
+      stencil: false,
+      desynchronized: true,
+      powerPreference: "low-power",
+      preserveDrawingBuffer: false,
+    });
     if (!gl) return;
 
-    const prog = gl.createProgram()!;
-    gl.attachShader(prog, compile(gl, gl.VERTEX_SHADER, VERT));
-    gl.attachShader(prog, compile(gl, gl.FRAGMENT_SHADER, FRAG));
-    gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-      console.error("LiquidGradient program link failed:", gl.getProgramInfoLog(prog));
+    const vertexShader = compile(gl, gl.VERTEX_SHADER, VERT);
+    const fragmentShader = compile(gl, gl.FRAGMENT_SHADER, FRAG);
+    if (!vertexShader || !fragmentShader) return;
+
+    const program = gl.createProgram();
+    if (!program) return;
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      console.error(
+        "LiquidGradient program link failed:",
+        gl.getProgramInfoLog(program),
+      );
       return;
     }
-    gl.useProgram(prog);
+    gl.useProgram(program);
 
-    const buf = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(
       gl.ARRAY_BUFFER,
       new Float32Array([-1, -1, 3, -1, -1, 3]),
-      gl.STATIC_DRAW
+      gl.STATIC_DRAW,
     );
-    const loc = gl.getAttribLocation(prog, "position");
-    gl.enableVertexAttribArray(loc);
-    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    const position = gl.getAttribLocation(program, "position");
+    gl.enableVertexAttribArray(position);
+    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
 
-    const uRes = gl.getUniformLocation(prog, "u_res");
-    const uTime = gl.getUniformLocation(prog, "u_time");
-
-    let raf = 0;
-    const start = performance.now();
-
-    const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const w = canvas.clientWidth;
-      const h = canvas.clientHeight;
-      canvas.width = Math.max(1, Math.round(w * dpr));
-      canvas.height = Math.max(1, Math.round(h * dpr));
-      gl.viewport(0, 0, canvas.width, canvas.height);
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    // honour users who prefer less motion: draw a single static frame
+    const resolution = gl.getUniformLocation(program, "u_res");
+    const time = gl.getUniformLocation(program, "u_time");
     const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    const draw = (time: number) => {
-      gl.uniform2f(uRes, canvas.width, canvas.height);
-      gl.uniform1f(uTime, time);
+    let animationFrame = 0;
+    let resumeTimer: ReturnType<typeof setTimeout> | undefined;
+    let isVisible = false;
+    let isPageVisible = !document.hidden;
+    let isInteracting = false;
+    let contextLost = false;
+    let elapsed = 0;
+    let lastTick = 0;
+    let lastDraw = -FRAME_INTERVAL;
+
+    const resize = () => {
+      const cssWidth = Math.max(1, canvas.clientWidth);
+      const cssHeight = Math.max(1, canvas.clientHeight);
+      const pixelBudgetScale = Math.sqrt(
+        MAX_RENDER_PIXELS / (cssWidth * cssHeight),
+      );
+      // This is a soft, intentionally blurred surface, so rendering below CSS
+      // resolution is visually lossless while dramatically reducing fill rate.
+      const scale = Math.min(RENDER_SCALE, pixelBudgetScale);
+      const width = Math.max(1, Math.round(cssWidth * scale));
+      const height = Math.max(1, Math.round(cssHeight * scale));
+
+      if (canvas.width === width && canvas.height === height) return;
+      canvas.width = width;
+      canvas.height = height;
+      gl.viewport(0, 0, width, height);
+    };
+
+    const draw = () => {
+      gl.uniform2f(resolution, canvas.width, canvas.height);
+      gl.uniform1f(time, elapsed);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     };
 
-    const render = () => {
-      draw((performance.now() - start) / 1000);
-      raf = requestAnimationFrame(render);
+    const canAnimate = () =>
+      !reduceMotion &&
+      isVisible &&
+      isPageVisible &&
+      !isInteracting &&
+      !contextLost;
+
+    const stop = () => {
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+      lastTick = 0;
     };
 
-    if (reduceMotion) {
-      draw(0);
-    } else {
-      render();
-    }
+    const render = (now: number) => {
+      animationFrame = 0;
+      if (!canAnimate()) return;
 
-    // keep animating after a GPU context loss/restore (e.g. tab backgrounded)
-    const onLost = (e: Event) => {
-      e.preventDefault();
-      cancelAnimationFrame(raf);
+      if (!lastTick) lastTick = now;
+      elapsed += Math.min((now - lastTick) / 1000, 0.05);
+      lastTick = now;
+
+      if (now - lastDraw >= FRAME_INTERVAL) {
+        draw();
+        lastDraw = now;
+      }
+      animationFrame = requestAnimationFrame(render);
     };
-    canvas.addEventListener("webglcontextlost", onLost);
+
+    const start = () => {
+      if (!animationFrame && canAnimate()) {
+        animationFrame = requestAnimationFrame(render);
+      }
+    };
+
+    const pauseForInput = () => {
+      if (!isVisible || reduceMotion) return;
+      isInteracting = true;
+      stop();
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => {
+        isInteracting = false;
+        start();
+      }, INPUT_IDLE_DELAY);
+    };
+
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+      if (isVisible) {
+        resize();
+        start();
+      } else {
+        stop();
+      }
+    });
+
+    const resizeObserver = new ResizeObserver(() => {
+      resize();
+      if (isVisible || reduceMotion) draw();
+    });
+
+    const onVisibilityChange = () => {
+      isPageVisible = !document.hidden;
+      if (isPageVisible) start();
+      else stop();
+    };
+
+    const onContextLost = (event: Event) => {
+      event.preventDefault();
+      contextLost = true;
+      stop();
+    };
+
+    resize();
+    draw();
+    visibilityObserver.observe(canvas);
+    resizeObserver.observe(canvas);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    window.addEventListener("wheel", pauseForInput, { passive: true });
+    window.addEventListener("touchmove", pauseForInput, { passive: true });
+    window.addEventListener("scroll", pauseForInput, { passive: true });
+    canvas.addEventListener("webglcontextlost", onContextLost);
 
     return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
-      canvas.removeEventListener("webglcontextlost", onLost);
+      stop();
+      if (resumeTimer) clearTimeout(resumeTimer);
+      visibilityObserver.disconnect();
+      resizeObserver.disconnect();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.removeEventListener("wheel", pauseForInput);
+      window.removeEventListener("touchmove", pauseForInput);
+      window.removeEventListener("scroll", pauseForInput);
+      canvas.removeEventListener("webglcontextlost", onContextLost);
+      gl.deleteBuffer(buffer);
+      gl.deleteProgram(program);
+      gl.deleteShader(vertexShader);
+      gl.deleteShader(fragmentShader);
     };
   }, []);
 
-  // static CSS gradient placeholder that matches the shader's look, so the
-  // surface is painted on the very first frame (before JS/WebGL initialises)
-  // instead of flashing the bare cream background. The opaque WebGL draw then
-  // covers it seamlessly.
-  return (
-    <canvas
-      ref={ref}
-      className={className}
-      aria-hidden="true"
-      style={{
-        background:
-          "linear-gradient(to top, #986165 0%, #b5766e 22%, #d09372 42%, #efca9d 66%, #faf2df 100%)",
-      }}
-    />
-  );
+  return <canvas ref={ref} className={className} aria-hidden="true" />;
 }

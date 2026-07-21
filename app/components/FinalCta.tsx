@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LiquidGradient from "./LiquidGradient";
+// import LiquidGradient from "./LiquidGradient";
 import { Android } from "./icons";
 import styles from "./FinalCta.module.css";
 import { AppStoreLogoIcon } from "@/app/ui/ph-icon";
@@ -8,7 +8,7 @@ export default function FinalCta() {
   return (
     <section className={styles.section}>
       <div className={styles.panel}>
-        <LiquidGradient className={styles.gradient} />
+        {/* <LiquidGradient className={styles.gradient} /> */}
         <div className={styles.inner}>
           <h2 className={styles.title}>start remembering what you learn.</h2>
           <p className={styles.sub}>
