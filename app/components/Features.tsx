@@ -23,13 +23,13 @@ const cards = [
   {
     icon: PlantIcon,
     title: "daily quiz",
-    tone: "green" as const,
+    tone: "blue" as const,
     desc: "spaced repetition shows each card right before you'd forget. pick your ambition: spark, learn, practice, mastery.",
   },
   {
     icon: RabbitIcon,
     title: "assistant",
-    tone: "berry" as const,
+    tone: "apricot" as const,
     desc: "ask anything from your assistant, it will organize all your random thoughts and give you the perfect answers.",
   },
 ];

@@ -149,6 +149,7 @@ export default function Hero() {
             <Image
               src="/images/phone-mockup.jpg"
               alt="biu app dashboard showing today's quiz, weak cards, and recently added notes"
+              loading="eager"
               width={470}
               height={1024}
               priority

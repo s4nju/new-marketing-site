@@ -54,6 +54,14 @@
   background: #e4eadf;
   --tone: var(--green);
 }
+.blue {
+  background: #dde7e8;
+  --tone: #55747a;
+}
+.apricot {
+  background: #f1ddc9;
+  --tone: #a45f4b;
+}
 
 .cardText {
   display: flex;

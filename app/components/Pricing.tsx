@@ -1,4 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import { Check } from "./icons";
+import LiquidGradient from "./LiquidGradient";
 import styles from "./Pricing.module.css";
 
 const free = {
@@ -18,7 +22,6 @@ const free = {
 
 const pro = {
   title: "biu pro",
-  badge: "MONTHLY",
   desc: "keep everything after your trial. cancel anytime.",
   label: "everything in the trial, plus:",
   items: [
@@ -28,12 +31,35 @@ const pro = {
     "long-term progress + insights",
     "priority support",
   ],
-  price: "$5",
-  unit: "/month",
   cta: "get biu pro",
 };
 
+const billingOptions = {
+  monthly: {
+    label: "MONTHLY",
+    price: "$5",
+    unit: "/month",
+  },
+  annual: {
+    label: "ANNUAL",
+    price: "$8",
+    unit: "/month",
+  },
+} as const;
+
+type BillingCycle = keyof typeof billingOptions;
+
 export default function Pricing() {
+  const [billingCycle, setBillingCycle] =
+    useState<BillingCycle>("monthly");
+  const billing = billingOptions[billingCycle];
+
+  const toggleBilling = () => {
+    setBillingCycle((current) =>
+      current === "monthly" ? "annual" : "monthly",
+    );
+  };
+
   return (
     <section className={styles.section} id="pricing">
       <div className={styles.head}>
@@ -64,7 +90,10 @@ export default function Pricing() {
           </ul>
           <div className={styles.footer}>
             <div className={styles.price}>{free.price}</div>
-            <button className={`${styles.cta} ${styles.ctaLight}`}>
+            <button
+              className={`${styles.cta} ${styles.ctaLight}`}
+              type="button"
+            >
               {free.cta}
             </button>
           </div>
@@ -72,9 +101,24 @@ export default function Pricing() {
 
         {/* pro */}
         <div className={`${styles.card} ${styles.cardDark}`}>
+          <LiquidGradient className={styles.cardGradient} />
           <div className={styles.proHead}>
             <h3 className={styles.cardTitle}>{pro.title}</h3>
-            <span className={styles.badge}>{pro.badge}</span>
+            <button
+              aria-checked={billingCycle === "annual"}
+              aria-label={`Switch to ${
+                billingCycle === "monthly" ? "annual" : "monthly"
+              } billing`}
+              className={styles.billingSwitch}
+              onClick={toggleBilling}
+              role="switch"
+              type="button"
+            >
+              <span className={styles.billingLabel}>{billing.label}</span>
+              <span className={styles.switchTrack} aria-hidden="true">
+                <span className={styles.switchThumb} />
+              </span>
+            </button>
           </div>
           <p className={styles.cardDesc}>{pro.desc}</p>
           <div className={styles.divider} />
@@ -91,10 +135,13 @@ export default function Pricing() {
           </ul>
           <div className={styles.footer}>
             <div className={styles.price}>
-              {pro.price}
-              <span className={styles.unit}>{pro.unit}</span>
+              {billing.price}
+              <span className={styles.unit}>{billing.unit}</span>
             </div>
-            <button className={`${styles.cta} ${styles.ctaBerry}`}>
+            <button
+              className={`${styles.cta} ${styles.ctaBerry}`}
+              type="button"
+            >
               {pro.cta}
             </button>
           </div>
