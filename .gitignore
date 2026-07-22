@@ -5,3 +5,6 @@
 *.log
 
 .env
+
+.agents/*
+.claude/*

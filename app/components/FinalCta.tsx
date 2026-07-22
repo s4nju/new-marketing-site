@@ -12,8 +12,16 @@ import {
 import { siteConfig } from "../site-config";
 
 const socialLinks = [
-  { label: "Instagram", href: siteConfig.links.instagram, Icon: InstagramLogoIcon },
-  { label: "Facebook", href: siteConfig.links.facebook, Icon: FacebookLogoIcon },
+  {
+    label: "Instagram",
+    href: siteConfig.links.instagram,
+    Icon: InstagramLogoIcon,
+  },
+  {
+    label: "Facebook",
+    href: siteConfig.links.facebook,
+    Icon: FacebookLogoIcon,
+  },
   { label: "YouTube", href: siteConfig.links.youtube, Icon: YoutubeLogoIcon },
   { label: "Reddit", href: siteConfig.links.reddit, Icon: RedditLogoIcon },
   { label: "X", href: siteConfig.links.x, Icon: XLogoIcon },
@@ -29,102 +37,117 @@ export default function FinalCta() {
   return (
     <section className={styles.section}>
       <footer className={styles.footer}>
-        <div className={styles.cta}>
-          <div className={styles.ctaCopy}>
-            <div className={styles.copyText}>
-              <h2 className={styles.title}>start remembering what you learn.</h2>
-              <p className={styles.sub}>
-                free early access, no card needed. add your first note and let
-                biu handle the rest.
-              </p>
-            </div>
-            <div className={styles.buttons}>
-              {siteConfig.links.ios ? (
-                <a href={siteConfig.links.ios} className={styles.iosButton}>
-                  <AppStoreLogoIcon weight="fill" />
-                  download on ios
-                </a>
-              ) : null}
-              {siteConfig.links.android ? (
-                <a href={siteConfig.links.android} className={styles.androidButton}>
-                  <Android />
-                  download on android
-                </a>
-              ) : null}
-              {!siteConfig.links.ios && !siteConfig.links.android ? (
-                <a href="#pricing" className={styles.iosButton}>
-                  start free trial
-                </a>
-              ) : null}
-            </div>
-          </div>
-
-          <div
-            className={styles.phoneFrame}
-            data-scroll-reveal
-            style={{ "--reveal-y": "80px" } as React.CSSProperties}
-          >
-            <Image
-              src="/images/phone-mockup.jpg"
-              alt="iPhone mockup displaying the biu learning dashboard."
-              width={470}
-              height={1024}
-              sizes="(max-width: 900px) 86vw, 355px"
-            />
-          </div>
-        </div>
-
-        <div className={styles.footerGrid}>
-          <div className={styles.brandColumn}>
-            <a href="#download" className={styles.logo} aria-label="biu home">
-              biu
-            </a>
-            {socialLinks.length > 0 ? (
-              <div className={styles.socials}>
-                {socialLinks.map(({ label, href, Icon }) => (
-                  <a key={label} href={href} aria-label={label}>
-                    <Icon weight="regular" />
+        <div
+          style={{ maxWidth: "85%", marginLeft: "auto", marginRight: "auto" }}
+        >
+          <div className={styles.cta}>
+            <div className={styles.ctaCopy}>
+              <div className={styles.copyText}>
+                <h2 className={styles.title}>
+                  start remembering what you learn.
+                </h2>
+                <p className={styles.sub}>
+                  free early access, no card needed. add your first note and let
+                  biu handle the rest.
+                </p>
+              </div>
+              <div className={styles.buttons}>
+                {siteConfig.links.ios ? (
+                  <a href={siteConfig.links.ios} className={styles.iosButton}>
+                    <AppStoreLogoIcon weight="fill" />
+                    download on ios
                   </a>
-                ))}
+                ) : null}
+                {siteConfig.links.android ? (
+                  <a
+                    href={siteConfig.links.android}
+                    className={styles.androidButton}
+                  >
+                    <Android />
+                    download on android
+                  </a>
+                ) : null}
+                {!siteConfig.links.ios && !siteConfig.links.android ? (
+                  <a href="#pricing" className={styles.iosButton}>
+                    start free trial
+                  </a>
+                ) : null}
+              </div>
+            </div>
+
+            <div
+              className={styles.phoneFrame}
+              data-scroll-reveal
+              style={{ "--reveal-y": "80px" } as React.CSSProperties}
+            >
+              <Image
+                src="/images/phone-mockup.jpg"
+                alt="iPhone mockup displaying the biu learning dashboard."
+                width={470}
+                height={1024}
+                sizes="(max-width: 900px) 86vw, 355px"
+              />
+            </div>
+          </div>
+
+          <div className={styles.footerGrid}>
+            <div className={styles.brandColumn}>
+              <a href="#download" className={styles.logo} aria-label="biu home">
+                biu
+              </a>
+              {socialLinks.length > 0 ? (
+                <div className={styles.socials}>
+                  {socialLinks.map(({ label, href, Icon }) => (
+                    <a key={label} href={href} aria-label={label}>
+                      <Icon weight="regular" />
+                    </a>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+
+            <nav className={styles.linkColumn} aria-label="Footer navigation">
+              <h3>navigation</h3>
+              <a href="#features">features</a>
+              <a href="#how-it-works">how it works</a>
+              <a href="#testimonials">testimonials</a>
+              <a href="#pricing">pricing</a>
+              <a href="#faq">faq</a>
+            </nav>
+
+            <nav className={styles.linkColumn} aria-label="Pages">
+              <h3>pages</h3>
+              {pageLinks.map(({ label, href }) => (
+                <a key={label} href={href}>
+                  {label}
+                </a>
+              ))}
+            </nav>
+
+            {siteConfig.links.newsletter ? (
+              <div className={styles.newsletter}>
+                <h3>subscribe to the newsletter</h3>
+                <p>stay informed about biu.</p>
+                <form
+                  className={styles.form}
+                  action={siteConfig.links.newsletter}
+                  method="post"
+                >
+                  <label className={styles.srOnly} htmlFor="newsletter-email">
+                    Email address
+                  </label>
+                  <input
+                    id="newsletter-email"
+                    name="email"
+                    type="email"
+                    placeholder="email"
+                    required
+                  />
+                  <button type="submit">Submit</button>
+                </form>
               </div>
             ) : null}
           </div>
-
-          <nav className={styles.linkColumn} aria-label="Footer navigation">
-            <h3>navigation</h3>
-            <a href="#features">features</a>
-            <a href="#how-it-works">how it works</a>
-            <a href="#testimonials">testimonials</a>
-            <a href="#pricing">pricing</a>
-            <a href="#faq">faq</a>
-          </nav>
-
-          <nav className={styles.linkColumn} aria-label="Pages">
-            <h3>pages</h3>
-            {pageLinks.map(({ label, href }) => (
-              <a key={label} href={href}>{label}</a>
-            ))}
-          </nav>
-
-          {siteConfig.links.newsletter ? (
-            <div className={styles.newsletter}>
-              <h3>subscribe to the newsletter</h3>
-              <p>stay informed about biu.</p>
-              <form className={styles.form} action={siteConfig.links.newsletter} method="post">
-                <label className={styles.srOnly} htmlFor="newsletter-email">
-                  Email address
-                </label>
-                <input
-                  id="newsletter-email"
-                  name="email"
-                  type="email"
-                  placeholder="email"
-                  required
-                />
-                <button type="submit">Submit</button>
-              </form>
-            </div>
-          ) : null}
         </div>
       </footer>
     </section>

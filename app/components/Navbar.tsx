@@ -1,12 +1,13 @@
+import Link from "next/link";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
   return (
     <header className={styles.wrap}>
       <nav className={styles.pill}>
-        <a href="#download" className={styles.logo} aria-label="biu home">
+        <Link href="/" className={styles.logo}>
           biu
-        </a>
+        </Link>
         <div className={styles.links}>
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>

@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "lenis/dist/lenis.css";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 import { siteConfig } from "./site-config";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-poppins",
   display: "swap",
 });

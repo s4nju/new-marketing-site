@@ -1,4 +1,6 @@
+import { AppStoreLogoIcon, GooglePlayLogoIcon, StarIcon } from "../ui/ph-icon";
 import styles from "./Testimonials.module.css";
+import heroStyle from "./Hero.module.css";
 
 const rowA = [
   {
@@ -49,7 +51,19 @@ export default function Testimonials() {
   return (
     <section className={styles.section} id="testimonials">
       <div className={styles.head}>
-        <span className={styles.pill}>loved by 3,433+ learners</span>
+        <div className={heroStyle.socialProof} style={{ marginBottom: "20px" }}>
+          <span className={heroStyle.storeLogos}>
+            <AppStoreLogoIcon width={14} height={14} />
+            <GooglePlayLogoIcon width={14} height={14} />
+          </span>
+          loved by 3,433+ learners
+          <span className={heroStyle.stars}>
+            {Array.from({ length: 5 }).map((_, i) => (
+              <StarIcon key={i} fill="black" />
+            ))}
+          </span>
+        </div>
+
         <h2 className="h2">learners who finally reached new heights</h2>
       </div>
 
