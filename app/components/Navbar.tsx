@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <header className={styles.wrap}>
       <nav className={styles.pill}>
-        <a href="#" className={styles.logo}>
+        <a href="#download" className={styles.logo} aria-label="biu home">
           biu
         </a>
         <div className={styles.links}>

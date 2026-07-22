@@ -47,7 +47,7 @@ function Card({ quote, name }: { quote: string; name: string }) {
 
 export default function Testimonials() {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="testimonials">
       <div className={styles.head}>
         <span className={styles.pill}>loved by 3,433+ learners</span>
         <h2 className="h2">learners who finally reached new heights</h2>

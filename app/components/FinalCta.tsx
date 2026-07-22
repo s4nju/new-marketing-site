@@ -9,14 +9,21 @@ import {
   XLogoIcon,
   YoutubeLogoIcon,
 } from "@/app/ui/ph-icon";
+import { siteConfig } from "../site-config";
 
 const socialLinks = [
-  { label: "Instagram", href: "#", Icon: InstagramLogoIcon },
-  { label: "Facebook", href: "#", Icon: FacebookLogoIcon },
-  { label: "YouTube", href: "#", Icon: YoutubeLogoIcon },
-  { label: "Reddit", href: "#", Icon: RedditLogoIcon },
-  { label: "X", href: "#", Icon: XLogoIcon },
-];
+  { label: "Instagram", href: siteConfig.links.instagram, Icon: InstagramLogoIcon },
+  { label: "Facebook", href: siteConfig.links.facebook, Icon: FacebookLogoIcon },
+  { label: "YouTube", href: siteConfig.links.youtube, Icon: YoutubeLogoIcon },
+  { label: "Reddit", href: siteConfig.links.reddit, Icon: RedditLogoIcon },
+  { label: "X", href: siteConfig.links.x, Icon: XLogoIcon },
+].filter((link): link is typeof link & { href: string } => Boolean(link.href));
+
+const pageLinks = [
+  { label: "get the app", href: "#download" },
+  { label: "waitlist", href: siteConfig.links.waitlist },
+  { label: "legal & privacy", href: siteConfig.links.privacy },
+].filter((link): link is typeof link & { href: string } => Boolean(link.href));
 
 export default function FinalCta() {
   return (
@@ -32,14 +39,23 @@ export default function FinalCta() {
               </p>
             </div>
             <div className={styles.buttons}>
-              <a href="#" className={styles.iosButton}>
-                <AppStoreLogoIcon weight="fill" />
-                download on ios
-              </a>
-              <a href="#" className={styles.androidButton}>
-                <Android />
-                download on android
-              </a>
+              {siteConfig.links.ios ? (
+                <a href={siteConfig.links.ios} className={styles.iosButton}>
+                  <AppStoreLogoIcon weight="fill" />
+                  download on ios
+                </a>
+              ) : null}
+              {siteConfig.links.android ? (
+                <a href={siteConfig.links.android} className={styles.androidButton}>
+                  <Android />
+                  download on android
+                </a>
+              ) : null}
+              {!siteConfig.links.ios && !siteConfig.links.android ? (
+                <a href="#pricing" className={styles.iosButton}>
+                  start free trial
+                </a>
+              ) : null}
             </div>
           </div>
 
@@ -60,16 +76,18 @@ export default function FinalCta() {
 
         <div className={styles.footerGrid}>
           <div className={styles.brandColumn}>
-            <a href="#" className={styles.logo} aria-label="biu home">
+            <a href="#download" className={styles.logo} aria-label="biu home">
               biu
             </a>
-            <div className={styles.socials}>
-              {socialLinks.map(({ label, href, Icon }) => (
-                <a key={label} href={href} aria-label={label}>
-                  <Icon weight="regular" />
-                </a>
-              ))}
-            </div>
+            {socialLinks.length > 0 ? (
+              <div className={styles.socials}>
+                {socialLinks.map(({ label, href, Icon }) => (
+                  <a key={label} href={href} aria-label={label}>
+                    <Icon weight="regular" />
+                  </a>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <nav className={styles.linkColumn} aria-label="Footer navigation">
@@ -83,27 +101,30 @@ export default function FinalCta() {
 
           <nav className={styles.linkColumn} aria-label="Pages">
             <h3>pages</h3>
-            <a href="#">get the app</a>
-            <a href="#">waitlist</a>
-            <a href="#">legal &amp; privacy</a>
+            {pageLinks.map(({ label, href }) => (
+              <a key={label} href={href}>{label}</a>
+            ))}
           </nav>
 
-          <div className={styles.newsletter}>
-            <h3>subscribe to the newsletter</h3>
-            <p>stay informed about biu.</p>
-            <form className={styles.form} action="#">
-              <label className={styles.srOnly} htmlFor="newsletter-email">
-                Email address
-              </label>
-              <input
-                id="newsletter-email"
-                name="email"
-                type="email"
-                placeholder="email"
-              />
-              <button type="submit">Submit</button>
-            </form>
-          </div>
+          {siteConfig.links.newsletter ? (
+            <div className={styles.newsletter}>
+              <h3>subscribe to the newsletter</h3>
+              <p>stay informed about biu.</p>
+              <form className={styles.form} action={siteConfig.links.newsletter} method="post">
+                <label className={styles.srOnly} htmlFor="newsletter-email">
+                  Email address
+                </label>
+                <input
+                  id="newsletter-email"
+                  name="email"
+                  type="email"
+                  placeholder="email"
+                  required
+                />
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          ) : null}
         </div>
       </footer>
     </section>

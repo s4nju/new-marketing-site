@@ -56,8 +56,8 @@ export default function Hero() {
           <span className={styles.titleLine}>remember forever</span>
         </h1>
         <p className={styles.sub}>
-          Learn once. Remember it longer. biu transforms your study material
-          into lasting knowledge, so revision feels simple & fun — not
+          Add anything to biu. It turns your study material into flashcards and
+          sets up spaced repetition, so reviewing feels simple and fun—not
           repetitive.
         </p>
         <a href="#pricing" className={styles.download}>

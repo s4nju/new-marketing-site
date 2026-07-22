@@ -10,6 +10,17 @@ npm run dev      # http://localhost:3000
 npm run build    # production build (fully static)
 ```
 
+## Production URLs
+
+Copy `.env.example` to `.env.local` and configure the canonical site URL plus
+the real app-store, social, privacy, waitlist, and newsletter destinations.
+Links without a configured destination are omitted instead of rendering dead
+placeholders. `NEXT_PUBLIC_SITE_URL` defaults to `https://biu.framer.website`.
+
+SEO metadata is defined once in `app/site-config.ts` and reused by the page
+metadata, canonical URL, Open Graph/Twitter cards, robots.txt, sitemap, and
+structured data.
+
 ## What's inside
 
 - **App Router** page composed from one component per section: `Navbar`, `Hero`, `Features`, `HowItWorks`, `Testimonials`, `Referral`, `Pricing`, `Faq`, `FinalCta` (under `app/components/`).
