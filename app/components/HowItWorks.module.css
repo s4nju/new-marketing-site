@@ -52,6 +52,7 @@
   overflow: hidden;
   box-shadow: 0 16px 34px rgba(44, 39, 34, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 .overlay img {
   width: 100%;
@@ -78,6 +79,11 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .overlay:not(.ov5):hover { transform: scale(1.05); }
+  .ov5:hover { transform: translate(-50%, -50%) scale(1.05); }
 }
 
 .meta {

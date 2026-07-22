@@ -57,8 +57,13 @@ export default function HowItWorks() {
       </div>
 
       <div className={styles.steps}>
-        {steps.map((s) => (
-          <div key={s.title} className={styles.step}>
+        {steps.map((s, index) => (
+          <div
+            key={s.title}
+            className={styles.step}
+            data-scroll-reveal
+            style={{ "--reveal-delay": `${index * 0.2}s` } as React.CSSProperties}
+          >
             <div
               className={`${styles.visual} ${!s.bg ? styles.visualPlain : ""}`}
               style={s.bg ? { backgroundImage: `url(${s.bg})` } : undefined}

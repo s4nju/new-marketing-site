@@ -7,10 +7,12 @@ import Referral from "./components/Referral";
 import Pricing from "./components/Pricing";
 import Faq from "./components/Faq";
 import FinalCta from "./components/FinalCta";
+import MotionController from "./components/MotionController";
 
 export default function Home() {
   return (
     <>
+      <MotionController />
       <Navbar />
       <main>
         <Hero />

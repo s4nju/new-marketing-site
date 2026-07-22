@@ -18,6 +18,7 @@ export default function Referral() {
             alt=""
             width={258}
             height={331}
+            data-scroll-reveal
           />
         </div>
 

@@ -43,7 +43,11 @@ export default function FinalCta() {
             </div>
           </div>
 
-          <div className={styles.phoneFrame}>
+          <div
+            className={styles.phoneFrame}
+            data-scroll-reveal
+            style={{ "--reveal-y": "80px" } as React.CSSProperties}
+          >
             <Image
               src="/images/phone-mockup.jpg"
               alt="iPhone mockup displaying the biu learning dashboard."

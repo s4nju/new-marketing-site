@@ -1,7 +1,3 @@
-"use client";
-
-import { useCallback, useEffect, useRef } from "react";
-import { useLenis } from "lenis/react";
 import Image from "next/image";
 import LiquidGradient from "./LiquidGradient";
 import { MoonSparkle, Leaf, Lotus, Lightning } from "./icons";
@@ -39,79 +35,8 @@ function FloatCard({
 }
 
 export default function Hero() {
-  const heroRef = useRef<HTMLElement>(null);
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const isHeroVisibleRef = useRef(true);
-  const lastRevealRef = useRef(-1);
-
-  // Map the phone's viewport position to the fan-out progress and write it
-  // straight to the DOM (no React re-render). Driven by Lenis every frame,
-  // so the value stays continuous and the motion tracks the smooth scroll.
-  const update = useCallback(() => {
-    // Lenis continues notifying subscribers as the rest of the page scrolls.
-    // Avoid forcing layout once the hero is safely outside the viewport.
-    if (!isHeroVisibleRef.current) return;
-
-    const el = wrapRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const vh = window.innerHeight || 1;
-    // Tucked (0) when the phone first sits in view, fully fanned (1)
-    // once it has scrolled up toward the top of the viewport. The wide
-    // start/end gap spreads the fan-out over a long scroll for a smooth,
-    // gradual reveal rather than a quick snap.
-    const start = vh * 0.72;
-    const end = vh * 0.15;
-    const p = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
-
-    // Skip redundant DOM writes on Lenis frames where the clamped value has
-    // already settled at either end of the animation.
-    if (Math.abs(p - lastRevealRef.current) < 0.001) return;
-    lastRevealRef.current = p;
-    el.style.setProperty("--reveal", String(p));
-  }, []);
-
-  // Lenis fires this on every interpolated scroll frame.
-  useLenis(update);
-
-  useEffect(() => {
-    const el = wrapRef.current;
-    if (!el) return;
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduced) {
-      isHeroVisibleRef.current = false;
-      el.style.setProperty("--reveal", "1");
-      return;
-    }
-
-    const hero = heroRef.current;
-    const observer = hero
-      ? new IntersectionObserver(
-          ([entry]) => {
-            isHeroVisibleRef.current = entry.isIntersecting;
-            hero.toggleAttribute("data-active", entry.isIntersecting);
-            if (entry.isIntersecting) update();
-          },
-          // Keep the effect ready just before the hero enters the viewport,
-          // but suspend it for the long scroll through the rest of the page.
-          { rootMargin: "160px 0px" },
-        )
-      : null;
-
-    if (hero) observer?.observe(hero);
-    update();
-    window.addEventListener("resize", update);
-    return () => {
-      observer?.disconnect();
-      hero?.removeAttribute("data-active");
-      window.removeEventListener("resize", update);
-    };
-  }, [update]);
-
   return (
-    <section ref={heroRef} className={styles.hero} id="download">
+    <section className={styles.hero} id="download">
       <LiquidGradient className={styles.gradient} />
       <div className={styles.inner}>
         <div className={styles.socialProof}>
@@ -127,9 +52,8 @@ export default function Hero() {
           </span>
         </div>
         <h1 className={styles.title}>
-          learn smarter,
-          <br />
-          remember forever
+          <span className={styles.titleLine}>learn smarter,</span>
+          <span className={styles.titleLine}>remember forever</span>
         </h1>
         <p className={styles.sub}>
           Learn once. Remember it longer. biu transforms your study material
@@ -140,11 +64,7 @@ export default function Hero() {
           start for free
         </a>
 
-        <div
-          ref={wrapRef}
-          className={styles.phoneWrap}
-          style={{ "--reveal": 0 } as React.CSSProperties}
-        >
+        <div className={styles.phoneWrap}>
           <div className={styles.phone}>
             <Image
               src="/images/phone-mockup.jpg"

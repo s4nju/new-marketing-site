@@ -40,7 +40,7 @@ export default function Faq() {
           </p>
         </div>
 
-        <div className={styles.list}>
+        <div className={styles.list} data-scroll-reveal>
           {items.map((it, i) => {
             const isOpen = open === i;
             const answerId = `faq-answer-${i}`;
