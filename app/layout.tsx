@@ -60,6 +60,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={poppins.variable}>
+      <head>
+        <link
+          rel="alternate"
+          type="text/plain"
+          href="/llms.txt"
+          title="biu LLM context"
+        />
+        <link
+          rel="alternate"
+          type="text/markdown"
+          href="/pricing.md"
+          title="biu machine-readable pricing"
+        />
+      </head>
       <body>
         <SmoothScroll>{children}</SmoothScroll>
       </body>

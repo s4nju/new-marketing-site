@@ -273,9 +273,9 @@ export default function PrivacyPage() {
                     </li>
                     <li>
                       <strong>Google Sheets / Google Workspace</strong> — used
-                      to temporarily store email addresses collected through our
-                      pre-launch waitlist. Once the app launches, new accounts
-                      are created and stored directly in Supabase instead.
+                      to temporarily store email addresses collected through
+                      our pre-launch waitlist. New accounts are created and
+                      stored directly in Supabase.
                     </li>
                   </ul>
                   <p>
@@ -292,9 +292,9 @@ export default function PrivacyPage() {
                   <p>
                     We keep your account information, Your Content, and learning
                     activity for as long as your account is active, so the app
-                    can keep working the way you expect. Waitlist email
-                    addresses are kept until launch or until you ask us to
-                    delete them, whichever comes first.
+                    can keep working the way you expect. Historical waitlist
+                    email addresses are deleted when they are no longer needed
+                    or when you ask us to delete them, whichever comes first.
                   </p>
                   <p>
                     When you delete your account, we delete or anonymize your

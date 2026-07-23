@@ -1,6 +1,6 @@
 # biu marketing site
 
-A pixel-faithful rebuild of the biu Framer marketing site (`https://biu.framer.website`) in **Next.js** (App Router + TypeScript), with clean, editable React components.
+A pixel-faithful rebuild of the biu Framer marketing site (`https://getbiu.app`) in **Next.js** (App Router + TypeScript), with clean, editable React components.
 
 ## Run
 
@@ -15,7 +15,7 @@ npm run build    # production build (fully static)
 Copy `.env.example` to `.env.local` and configure the canonical site URL plus
 the real app-store, social, privacy, waitlist, and newsletter destinations.
 Links without a configured destination are omitted instead of rendering dead
-placeholders. `NEXT_PUBLIC_SITE_URL` defaults to `https://biu.framer.website`.
+placeholders. `NEXT_PUBLIC_SITE_URL` defaults to `https://getbiu.app`.
 
 SEO metadata is defined once in `app/site-config.ts` and reused by the page
 metadata, canonical URL, Open Graph/Twitter cards, robots.txt, sitemap, and
@@ -31,12 +31,12 @@ structured data.
 
 ## Palette
 
-| token | value | use |
-| --- | --- | --- |
-| `--cream` | `#faf2df` | light section bg |
-| `--cream-card` | `#f3ecdf` | card surfaces |
-| `--ink` | `#2c2722` | primary text |
+| token           | value     | use                   |
+| --------------- | --------- | --------------------- |
+| `--cream`       | `#faf2df` | light section bg      |
+| `--cream-card`  | `#f3ecdf` | card surfaces         |
+| `--ink`         | `#2c2722` | primary text          |
 | `--features-bg` | `#2a2622` | dark features section |
-| `--muted` | `#7a6f5e` | secondary text |
-| `--berry` | `#8a3b43` | primary accent |
-| `--green` | `#5e8c5a` | secondary accent |
+| `--muted`       | `#7a6f5e` | secondary text        |
+| `--berry`       | `#8a3b43` | primary accent        |
+| `--green`       | `#5e8c5a` | secondary accent      |

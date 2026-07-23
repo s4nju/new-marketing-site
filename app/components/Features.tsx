@@ -24,7 +24,7 @@ const cards = [
     icon: PlantIcon,
     title: "daily quiz",
     tone: "blue" as const,
-    desc: "spaced repetition shows each card right before you'd forget. pick your ambition: spark, learn, practice, mastery.",
+    desc: "biu schedules each card from your review history and increases the interval when you answer correctly.",
   },
   {
     icon: RabbitIcon,

@@ -10,6 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: `${siteConfig.url}/faq`,
+      lastModified: new Date("2026-07-23"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${siteConfig.url}/privacy`,
       lastModified: new Date("2026-07-01"),
       changeFrequency: "yearly",
@@ -19,6 +25,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteConfig.url}/terms`,
       lastModified: new Date("2026-07-01"),
       changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${siteConfig.url}/pricing.md`,
+      lastModified: new Date("2026-07-23"),
+      changeFrequency: "monthly",
+      priority: 0.4,
+    },
+    {
+      url: `${siteConfig.url}/llms.txt`,
+      lastModified: new Date("2026-07-23"),
+      changeFrequency: "monthly",
       priority: 0.3,
     },
   ];

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./Navbar.module.css";
+import { appAccessHref } from "../site-config";
 
 export default function Navbar() {
   return (
@@ -9,12 +10,12 @@ export default function Navbar() {
           biu
         </Link>
         <div className={styles.links}>
-          <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <Link href="/faq">FAQ</Link>
         </div>
-        <a href="#download" className={styles.cta}>
-          download now
+        <a href={appAccessHref} className={styles.cta}>
+          get biu
         </a>
       </nav>
     </header>

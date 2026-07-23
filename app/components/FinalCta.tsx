@@ -1,15 +1,13 @@
 import Image from "next/image";
-import { Android } from "./icons";
 import styles from "./FinalCta.module.css";
 import {
-  AppStoreLogoIcon,
   FacebookLogoIcon,
   InstagramLogoIcon,
   RedditLogoIcon,
   XLogoIcon,
   YoutubeLogoIcon,
 } from "@/app/ui/ph-icon";
-import { siteConfig } from "../site-config";
+import { appAccessHref, siteConfig } from "../site-config";
 
 const socialLinks = [
   {
@@ -28,14 +26,15 @@ const socialLinks = [
 ].filter((link): link is typeof link & { href: string } => Boolean(link.href));
 
 const pageLinks = [
-  { label: "get the app", href: "#download" },
-  { label: "waitlist", href: siteConfig.links.waitlist },
-  { label: "legal & privacy", href: siteConfig.links.privacy },
+  { label: "get the app", href: "/#download" },
+  { label: "all FAQs", href: "/faq" },
+  { label: "privacy policy", href: siteConfig.links.privacy },
+  { label: "terms", href: "/terms" },
 ].filter((link): link is typeof link & { href: string } => Boolean(link.href));
 
 export default function FinalCta() {
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="get-biu">
       <footer className={styles.footer}>
         <div
           style={{ maxWidth: "85%", marginLeft: "auto", marginRight: "auto" }}
@@ -47,31 +46,14 @@ export default function FinalCta() {
                   start remembering what you learn.
                 </h2>
                 <p className={styles.sub}>
-                  free early access, no card needed. add your first note and let
-                  biu handle the rest.
+                  start with a 14-day free trial, no card required. add your
+                  first note and let biu handle the rest.
                 </p>
               </div>
               <div className={styles.buttons}>
-                {siteConfig.links.ios ? (
-                  <a href={siteConfig.links.ios} className={styles.iosButton}>
-                    <AppStoreLogoIcon weight="fill" />
-                    download on ios
-                  </a>
-                ) : null}
-                {siteConfig.links.android ? (
-                  <a
-                    href={siteConfig.links.android}
-                    className={styles.androidButton}
-                  >
-                    <Android />
-                    download on android
-                  </a>
-                ) : null}
-                {!siteConfig.links.ios && !siteConfig.links.android ? (
-                  <a href="#pricing" className={styles.iosButton}>
-                    start free trial
-                  </a>
-                ) : null}
+                <a href={appAccessHref} className={styles.iosButton}>
+                  start free trial
+                </a>
               </div>
             </div>
 
@@ -108,11 +90,11 @@ export default function FinalCta() {
 
             <nav className={styles.linkColumn} aria-label="Footer navigation">
               <h3>navigation</h3>
-              <a href="#features">features</a>
-              <a href="#how-it-works">how it works</a>
-              <a href="#testimonials">testimonials</a>
-              <a href="#pricing">pricing</a>
-              <a href="#faq">faq</a>
+              <a href="/#features">features</a>
+              <a href="/#how-it-works">how it works</a>
+              {/* <a href="#testimonials">testimonials</a> */}
+              <a href="/#pricing">pricing</a>
+              <a href="/#faq">faq</a>
             </nav>
 
             <nav className={styles.linkColumn} aria-label="Pages">

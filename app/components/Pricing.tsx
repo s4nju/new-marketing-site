@@ -4,10 +4,12 @@ import { useState } from "react";
 import { Check } from "./icons";
 import LiquidGradient from "./LiquidGradient";
 import styles from "./Pricing.module.css";
+import { appAccessHref } from "../site-config";
+import { productData } from "../product-data";
 
 const free = {
-  title: "free trial",
-  desc: "everything in biu pro, free for 14 days.",
+  title: "14-day free trial",
+  desc: "everything in biu pro, free for 14 days. no card required.",
   label: "Includes:",
   items: [
     "add videos, links, pdfs, notes",
@@ -37,21 +39,20 @@ const pro = {
 const billingOptions = {
   monthly: {
     label: "MONTHLY",
-    price: "$5",
+    price: productData.pro.monthlyPrice.replace("/month", ""),
     unit: "/month",
   },
   annual: {
-    label: "ANNUAL",
-    price: "$8",
-    unit: "/month",
+    label: "YEARLY",
+    price: productData.pro.yearlyPrice.replace("/year", ""),
+    unit: "/year",
   },
 } as const;
 
 type BillingCycle = keyof typeof billingOptions;
 
 export default function Pricing() {
-  const [billingCycle, setBillingCycle] =
-    useState<BillingCycle>("monthly");
+  const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
   const billing = billingOptions[billingCycle];
 
   const toggleBilling = () => {
@@ -65,9 +66,8 @@ export default function Pricing() {
       <div className={styles.head}>
         <h2 className="h2">start free, upgrade when you&rsquo;re ready</h2>
         <p className={styles.sub}>
-          start with a 14-day free trial, no card. keep biu pro going by
-          quizzing daily and referring friends, or subscribe when you&rsquo;re
-          ready.
+          start with a 14-day free trial, no card required. continue with biu
+          Pro monthly or yearly, and cancel anytime.
         </p>
       </div>
 
@@ -90,12 +90,12 @@ export default function Pricing() {
           </ul>
           <div className={styles.footer}>
             <div className={styles.price}>{free.price}</div>
-            <button
+            <a
+              href={appAccessHref}
               className={`${styles.cta} ${styles.ctaLight}`}
-              type="button"
             >
               {free.cta}
-            </button>
+            </a>
           </div>
         </div>
 
@@ -138,12 +138,12 @@ export default function Pricing() {
               {billing.price}
               <span className={styles.unit}>{billing.unit}</span>
             </div>
-            <button
+            <a
+              href={appAccessHref}
               className={`${styles.cta} ${styles.ctaBerry}`}
-              type="button"
             >
               {pro.cta}
-            </button>
+            </a>
           </div>
         </div>
       </div>

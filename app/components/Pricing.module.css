@@ -24,6 +24,23 @@
   letter-spacing: -0.02em;
   color: var(--muted);
 }
+.machineLink {
+  margin-top: 10px;
+  color: var(--berry);
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.machineLink:hover {
+  text-decoration-thickness: 2px;
+}
+.machineLink:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
 
 .grid {
   width: min(100% - 40px, 768px);

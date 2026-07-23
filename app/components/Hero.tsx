@@ -2,11 +2,7 @@ import Image from "next/image";
 import LiquidGradient from "./LiquidGradient";
 import { MoonSparkle, Leaf, Lotus, Lightning } from "./icons";
 import styles from "./Hero.module.css";
-import {
-  AppStoreLogoIcon,
-  GooglePlayLogoIcon,
-  StarIcon,
-} from "@/app/ui/ph-icon";
+import { appAccessHref } from "../site-config";
 
 function FloatCard({
   className,
@@ -40,16 +36,7 @@ export default function Hero() {
       <LiquidGradient className={styles.gradient} />
       <div className={styles.inner}>
         <div className={styles.socialProof}>
-          <span className={styles.storeLogos}>
-            <AppStoreLogoIcon width={14} height={14} />
-            <GooglePlayLogoIcon width={14} height={14} />
-          </span>
-          loved by 3,433+ learners
-          <span className={styles.stars}>
-            {Array.from({ length: 5 }).map((_, i) => (
-              <StarIcon key={i} fill="black" />
-            ))}
-          </span>
+          Available on iOS and Android
         </div>
         <h1 className={styles.title}>
           <span className={styles.titleLine}>learn smarter,</span>
@@ -60,8 +47,8 @@ export default function Hero() {
           sets up spaced repetition, so reviewing feels simple and fun—not
           repetitive.
         </p>
-        <a href="#pricing" className={styles.download}>
-          start for free
+        <a href={appAccessHref} className={styles.download}>
+          start free trial
         </a>
 
         <div className={styles.phoneWrap}>

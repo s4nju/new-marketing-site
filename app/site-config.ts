@@ -5,7 +5,7 @@ export const siteConfig = {
     "biu is your smartest companion. Add anything and it breaks it into flashcards and sets you up for spaced repetition, so reviewing never feels like a chore.",
   url:
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-    "https://biu.framer.website",
+    "https://getbiu.app",
   links: {
     ios: process.env.NEXT_PUBLIC_IOS_APP_URL,
     android: process.env.NEXT_PUBLIC_ANDROID_APP_URL,
@@ -19,3 +19,9 @@ export const siteConfig = {
     x: process.env.NEXT_PUBLIC_X_URL,
   },
 } as const;
+
+export const appAccessHref =
+  siteConfig.links.ios ||
+  siteConfig.links.android ||
+  siteConfig.links.waitlist ||
+  "/#pricing";

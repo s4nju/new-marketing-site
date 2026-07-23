@@ -32,7 +32,7 @@ const steps = [
   {
     num: "3.",
     title: "remember it",
-    desc: "a scientifically tuned daily quiz resurfaces each card right before you'd forget.",
+    desc: "biu schedules each card from your review history and increases the interval when you answer correctly.",
     bg: "/images/img-blossoms.webp",
     overlays: [{ src: "/images/ui-routine.jpg", w: 300, iw: 818, ih: 592, cls: "ov5", alt: "Spaced-repetition study routine in biu" }],
   },
