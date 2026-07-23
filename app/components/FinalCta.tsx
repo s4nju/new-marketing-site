@@ -26,11 +26,17 @@ const socialLinks = [
 ].filter((link): link is typeof link & { href: string } => Boolean(link.href));
 
 const pageLinks = [
-  { label: "get the app", href: "/#download" },
+  // { label: "get the app", href: "/#download" },
   { label: "all FAQs", href: "/faq" },
   { label: "privacy policy", href: siteConfig.links.privacy },
   { label: "terms", href: "/terms" },
 ].filter((link): link is typeof link & { href: string } => Boolean(link.href));
+
+const learnLinks = [
+  { label: "AI flashcard maker", href: "/ai-flashcard-maker" },
+  { label: "PDF to flashcards", href: "/pdf-to-flashcards" },
+  { label: "spaced repetition", href: "/spaced-repetition" },
+] as const;
 
 export default function FinalCta() {
   return (
@@ -46,13 +52,13 @@ export default function FinalCta() {
                   start remembering what you learn.
                 </h2>
                 <p className={styles.sub}>
-                  start with a 14-day free trial, no card required. add your
-                  first note and let biu handle the rest.
+                  biu is in private beta. request access to add your first note
+                  and try the learning workflow before public launch.
                 </p>
               </div>
               <div className={styles.buttons}>
                 <a href={appAccessHref} className={styles.iosButton}>
-                  start free trial
+                  request beta access
                 </a>
               </div>
             </div>
@@ -74,7 +80,7 @@ export default function FinalCta() {
 
           <div className={styles.footerGrid}>
             <div className={styles.brandColumn}>
-              <a href="#download" className={styles.logo} aria-label="biu home">
+              <a href="/" className={styles.logo} aria-label="biu home">
                 biu
               </a>
               {socialLinks.length > 0 ? (
@@ -93,7 +99,7 @@ export default function FinalCta() {
               <a href="/#features">features</a>
               <a href="/#how-it-works">how it works</a>
               {/* <a href="#testimonials">testimonials</a> */}
-              <a href="/#pricing">pricing</a>
+              {/* <a href="/pricing">pricing</a> */}
               <a href="/#faq">faq</a>
             </nav>
 
@@ -105,6 +111,16 @@ export default function FinalCta() {
                 </a>
               ))}
             </nav>
+
+            {/* new pages links. will be polished and added later. */}
+            {/* <nav className={styles.linkColumn} aria-label="Learn">
+              <h3>learn</h3>
+              {learnLinks.map(({ label, href }) => (
+                <a key={href} href={href}>
+                  {label}
+                </a>
+              ))}
+            </nav> */}
 
             {siteConfig.links.newsletter ? (
               <div className={styles.newsletter}>

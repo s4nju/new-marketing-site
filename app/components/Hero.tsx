@@ -35,9 +35,7 @@ export default function Hero() {
     <section className={styles.hero} id="download">
       <LiquidGradient className={styles.gradient} />
       <div className={styles.inner}>
-        <div className={styles.socialProof}>
-          Available on iOS and Android
-        </div>
+        <div className={styles.socialProof}>Private beta · Request access</div>
         <h1 className={styles.title}>
           <span className={styles.titleLine}>learn smarter,</span>
           <span className={styles.titleLine}>remember forever</span>
@@ -48,7 +46,7 @@ export default function Hero() {
           repetitive.
         </p>
         <a href={appAccessHref} className={styles.download}>
-          start free trial
+          request beta
         </a>
 
         <div className={styles.phoneWrap}>

@@ -63,7 +63,7 @@ export default function FaqPage() {
             </p>
             <div className={styles.actions}>
               <a href={appAccessHref} className={styles.primaryAction}>
-                start free trial
+                request beta access
               </a>
               <Link href="/" className={styles.secondaryAction}>
                 back to home

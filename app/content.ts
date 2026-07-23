@@ -22,7 +22,7 @@ export const homepageFaqItems = [
   },
   {
     q: "is biu free?",
-    a: "biu includes a 14-day free trial with no card required. After the trial, biu Pro costs $14.99 per month or $99 per year.",
+    a: "biu is currently in private beta. The planned public launch includes a 14-day free trial with no card required, followed by biu Pro at a planned price of $14.99 per month or $99 per year. Pricing may change before launch.",
   },
   {
     q: "does biu include an ai tutor?",
@@ -45,7 +45,7 @@ export const additionalFaqItems = [
   },
   {
     q: "where is biu available?",
-    a: "biu is available for iOS and Android. Use the download links on the website to get the app and begin your 14-day free trial.",
+    a: "biu is being prepared for iOS and Android and is currently in private beta. You can request beta access now; public app downloads and the self-serve trial are planned for launch.",
   },
   {
     q: "does my progress sync across devices?",
@@ -53,7 +53,7 @@ export const additionalFaqItems = [
   },
   {
     q: "can i cancel biu pro?",
-    a: "yes. biu Pro can be cancelled at any time. Your 14-day trial comes first, before a paid monthly or yearly plan begins.",
+    a: "yes. biu Pro subscription can be cancelled at any time. Your 14-day trial comes first, before a paid monthly or yearly plan begins.",
   },
 ] as const satisfies readonly FaqItem[];
 

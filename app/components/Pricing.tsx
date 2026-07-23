@@ -19,7 +19,7 @@ const free = {
     "streaks + progress tracking",
   ],
   price: "Free",
-  cta: "start free trial",
+  cta: "request beta access",
 };
 
 const pro = {
@@ -33,7 +33,7 @@ const pro = {
     "long-term progress + insights",
     "priority support",
   ],
-  cta: "get biu pro",
+  cta: "request beta",
 };
 
 const billingOptions = {
@@ -64,10 +64,10 @@ export default function Pricing() {
   return (
     <section className={styles.section} id="pricing">
       <div className={styles.head}>
-        <h2 className="h2">start free, upgrade when you&rsquo;re ready</h2>
+        <h2 className="h2">simple pricing, planned for launch</h2>
         <p className={styles.sub}>
-          start with a 14-day free trial, no card required. continue with biu
-          Pro monthly or yearly, and cancel anytime.
+          biu is currently in private beta. request access now and review the
+          planned public pricing before launch.
         </p>
       </div>
 

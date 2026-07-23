@@ -1,5 +1,4 @@
 import { homepageFaqItems } from "../content";
-import { productData } from "../product-data";
 import { siteConfig } from "../site-config";
 
 export default function StructuredData() {
@@ -39,32 +38,6 @@ export default function StructuredData() {
         description: siteConfig.description,
         applicationCategory: "EducationalApplication",
         operatingSystem: "iOS, Android",
-        offers: [
-          {
-            "@type": "Offer",
-            name: productData.trial.name,
-            price: productData.trial.price.replace("$", ""),
-            priceCurrency: "USD",
-            description: `${productData.trial.duration}, no payment card required`,
-            url: `${siteConfig.url}/#pricing`,
-          },
-          {
-            "@type": "Offer",
-            name: `${productData.pro.name} monthly`,
-            price: productData.pro.monthlyPrice.replace(/[^0-9.]/g, ""),
-            priceCurrency: "USD",
-            description: "Monthly subscription",
-            url: `${siteConfig.url}/#pricing`,
-          },
-          {
-            "@type": "Offer",
-            name: `${productData.pro.name} yearly`,
-            price: productData.pro.yearlyPrice.replace(/[^0-9.]/g, ""),
-            priceCurrency: "USD",
-            description: "Yearly subscription",
-            url: `${siteConfig.url}/#pricing`,
-          },
-        ],
       },
       {
         "@type": "FAQPage",

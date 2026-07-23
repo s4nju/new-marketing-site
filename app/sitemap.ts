@@ -5,12 +5,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: siteConfig.url,
-      lastModified: new Date(),
+      lastModified: new Date("2026-07-23"),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${siteConfig.url}/faq`,
+      lastModified: new Date("2026-07-23"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteConfig.url}/ai-flashcard-maker`,
+      lastModified: new Date("2026-07-23"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteConfig.url}/pdf-to-flashcards`,
+      lastModified: new Date("2026-07-23"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteConfig.url}/spaced-repetition`,
       lastModified: new Date("2026-07-23"),
       changeFrequency: "monthly",
       priority: 0.8,

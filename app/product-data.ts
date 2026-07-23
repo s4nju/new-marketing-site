@@ -1,7 +1,7 @@
 export const productData = {
   availability: {
-    status: "Available",
-    action: "Get biu",
+    status: "Private beta",
+    action: "Request beta access",
   },
   inputs: ["videos", "links", "PDFs", "photos of notes"],
   capabilities: [
@@ -16,13 +16,13 @@ export const productData = {
     price: "$0",
     duration: "14 days",
     paymentCardRequired: false,
-    availability: "Available",
+    availability: "Planned for public launch",
   },
   pro: {
     name: "biu Pro",
     monthlyPrice: "$14.99/month",
     yearlyPrice: "$99/year",
-    availability: "Available",
+    availability: "Planned for public launch",
     cancellation: "Cancel anytime",
     features: [
       "Unlimited notes and flashcards",

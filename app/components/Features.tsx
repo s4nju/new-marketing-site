@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   FlowerLotusIcon,
   MoonStarsIcon,
@@ -11,24 +12,28 @@ const cards = [
   {
     icon: FlowerLotusIcon,
     title: "add anything",
+    href: "/pdf-to-flashcards",
     tone: "berry" as const,
     desc: "videos, links, pdfs, photos of notes. tap add and walk away.",
   },
   {
     icon: MoonStarsIcon,
     title: "flashcards",
+    href: "/ai-flashcard-maker",
     tone: "green" as const,
     desc: "every item you add generates flashcards tailored to how you learn, automatically.",
   },
   {
     icon: PlantIcon,
     title: "daily quiz",
+    href: "/spaced-repetition",
     tone: "blue" as const,
     desc: "biu schedules each card from your review history and increases the interval when you answer correctly.",
   },
   {
     icon: RabbitIcon,
     title: "assistant",
+    href: "/ai-flashcard-maker",
     tone: "apricot" as const,
     desc: "ask anything from your assistant, it will organize all your random thoughts and give you the perfect answers.",
   },
@@ -51,13 +56,15 @@ export default function Features() {
       </div>
 
       <div className={styles.grid}>
-        {cards.map(({ icon: Icon, title, tone, desc }) => (
+        {cards.map(({ icon: Icon, title, href, tone, desc }) => (
           <article key={title} className={`${styles.card} ${styles[tone]}`}>
             <div className={styles.cardText}>
               <span className={styles.cardIcon}>
                 <Icon size={48} weight="light" />
               </span>
-              <h3 className={styles.cardTitle}>{title}</h3>
+              <h3 className={styles.cardTitle}>
+                <Link href={href}>{title}</Link>
+              </h3>
               <p className={styles.cardDesc}>{desc}</p>
             </div>
             <div className={styles.cardPhone}>

@@ -21,7 +21,4 @@ export const siteConfig = {
 } as const;
 
 export const appAccessHref =
-  siteConfig.links.ios ||
-  siteConfig.links.android ||
-  siteConfig.links.waitlist ||
-  "/#pricing";
+  siteConfig.links.waitlist || "/#get-biu";

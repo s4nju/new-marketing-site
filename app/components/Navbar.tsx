@@ -11,11 +11,11 @@ export default function Navbar() {
         </Link>
         <div className={styles.links}>
           <a href="/#features">Features</a>
-          <a href="/#pricing">Pricing</a>
+          <Link href="/#pricing">Pricing</Link>
           <Link href="/faq">FAQ</Link>
         </div>
         <a href={appAccessHref} className={styles.cta}>
-          get biu
+          get beta
         </a>
       </nav>
     </header>

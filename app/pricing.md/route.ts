@@ -39,6 +39,7 @@ biu accepts ${productData.inputs.join(", ")}.
 ## Notes
 
 - Prices are listed in US dollars.
+- The yearly plan is billed as one $99 annual charge.
 - Privacy policy: ${siteConfig.url}/privacy
 - Terms of service: ${siteConfig.url}/terms
 `;
