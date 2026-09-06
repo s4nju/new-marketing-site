@@ -178,9 +178,6 @@
   overflow: hidden;
   box-shadow: 0 40px 80px rgba(44, 39, 34, 0.18);
   border: 6px solid rgba(255, 255, 255, 0.5);
-  opacity: 0.001;
-  transform: translateY(80px);
-  animation: heroLift 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 .phone :global(img) {
   width: 100%;
@@ -279,6 +276,15 @@
 @media (max-width: 820px) {
   .inner {
     padding-top: 120px;
+  }
+  .socialProof,
+  .titleLine,
+  .sub,
+  .download {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
   }
   .card {
     display: none;

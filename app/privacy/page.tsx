@@ -330,6 +330,8 @@ export default function PrivacyPage() {
                     delete individual pieces of content, directly inside the biu
                     app at any time. You can also permanently delete your
                     account and associated data from within the app’s settings,
+                    via our{" "}
+                    <a href="/data-deletion">data deletion request page</a>,
                     or by emailing admin@getbiu.app.
                   </p>
                   <h3>

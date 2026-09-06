@@ -52,15 +52,15 @@
 }
 .green {
   background: #e4eadf;
-  --tone: var(--green);
+  --tone: #496f46;
 }
 .blue {
   background: #dde7e8;
-  --tone: #55747a;
+  --tone: #4b686d;
 }
 .apricot {
   background: #f1ddc9;
-  --tone: #a45f4b;
+  --tone: #8f4f3d;
 }
 
 .cardText {

@@ -35,7 +35,6 @@ export default function Hero() {
     <section className={styles.hero} id="download">
       <LiquidGradient className={styles.gradient} />
       <div className={styles.inner}>
-        <div className={styles.socialProof}>Private beta · Request access</div>
         <h1 className={styles.title}>
           <span className={styles.titleLine}>learn smarter,</span>
           <span className={styles.titleLine}>remember forever</span>
@@ -46,18 +45,20 @@ export default function Hero() {
           repetitive.
         </p>
         <a href={appAccessHref} className={styles.download}>
-          request beta
+          request access
         </a>
 
         <div className={styles.phoneWrap}>
           <div className={styles.phone}>
             <Image
-              src="/images/phone-mockup.jpg"
+              src="/images/phone-mockup.png"
               alt="biu app dashboard showing today's quiz, weak cards, and recently added notes"
+              decoding="sync"
               loading="eager"
+              fetchPriority="high"
               width={470}
               height={1024}
-              priority
+              sizes="(max-width: 820px) calc(100vw - 48px), 360px"
             />
           </div>
 

@@ -110,191 +110,252 @@ function compile(gl: WebGLRenderingContext, type: number, source: string) {
   return shader;
 }
 
-export default function LiquidGradient({ className }: { className?: string }) {
+type LiquidGradientProps = {
+  className?: string;
+  activation?: "idle" | "visible";
+};
+
+export default function LiquidGradient({
+  className,
+  activation = "idle",
+}: LiquidGradientProps) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext("webgl", {
-      alpha: false,
-      antialias: false,
-      depth: false,
-      stencil: false,
-      desynchronized: true,
-      powerPreference: "low-power",
-      preserveDrawingBuffer: false,
-    });
-    if (!gl) return;
+    // The CSS background is a complete static fallback. Respect reduced
+    // motion without allocating a WebGL context or compiling shaders.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const vertexShader = compile(gl, gl.VERTEX_SHADER, VERT);
-    const fragmentShader = compile(gl, gl.FRAGMENT_SHADER, FRAG);
-    if (!vertexShader || !fragmentShader) return;
+    let cancelled = false;
+    let idleHandle: number | undefined;
+    let delayHandle: ReturnType<typeof setTimeout> | undefined;
+    let activationObserver: IntersectionObserver | undefined;
+    let cleanupRenderer: (() => void) | undefined;
 
-    const program = gl.createProgram();
-    if (!program) return;
-    gl.attachShader(program, vertexShader);
-    gl.attachShader(program, fragmentShader);
-    gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      console.error(
-        "LiquidGradient program link failed:",
-        gl.getProgramInfoLog(program),
-      );
-      return;
-    }
-    gl.useProgram(program);
+    const initialize = () => {
+      if (cancelled || cleanupRenderer) return;
 
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(
-      gl.ARRAY_BUFFER,
-      new Float32Array([-1, -1, 3, -1, -1, 3]),
-      gl.STATIC_DRAW,
-    );
-    const position = gl.getAttribLocation(program, "position");
-    gl.enableVertexAttribArray(position);
-    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+      const gl = canvas.getContext("webgl", {
+        alpha: false,
+        antialias: false,
+        depth: false,
+        stencil: false,
+        desynchronized: true,
+        powerPreference: "low-power",
+        preserveDrawingBuffer: false,
+      });
+      if (!gl) return;
 
-    const resolution = gl.getUniformLocation(program, "u_res");
-    const time = gl.getUniformLocation(program, "u_time");
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+      const vertexShader = compile(gl, gl.VERTEX_SHADER, VERT);
+      const fragmentShader = compile(gl, gl.FRAGMENT_SHADER, FRAG);
+      if (!vertexShader || !fragmentShader) return;
 
-    let animationFrame = 0;
-    let resumeTimer: ReturnType<typeof setTimeout> | undefined;
-    let isVisible = false;
-    let isPageVisible = !document.hidden;
-    let isInteracting = false;
-    let contextLost = false;
-    let elapsed = 0;
-    let lastTick = 0;
-    let lastDraw = -FRAME_INTERVAL;
-
-    const resize = () => {
-      const cssWidth = Math.max(1, canvas.clientWidth);
-      const cssHeight = Math.max(1, canvas.clientHeight);
-      const pixelBudgetScale = Math.sqrt(
-        MAX_RENDER_PIXELS / (cssWidth * cssHeight),
-      );
-      // This is a soft, intentionally blurred surface, so rendering below CSS
-      // resolution is visually lossless while dramatically reducing fill rate.
-      const scale = Math.min(RENDER_SCALE, pixelBudgetScale);
-      const width = Math.max(1, Math.round(cssWidth * scale));
-      const height = Math.max(1, Math.round(cssHeight * scale));
-
-      if (canvas.width === width && canvas.height === height) return;
-      canvas.width = width;
-      canvas.height = height;
-      gl.viewport(0, 0, width, height);
-    };
-
-    const draw = () => {
-      gl.uniform2f(resolution, canvas.width, canvas.height);
-      gl.uniform1f(time, elapsed);
-      gl.drawArrays(gl.TRIANGLES, 0, 3);
-    };
-
-    const canAnimate = () =>
-      !reduceMotion &&
-      isVisible &&
-      isPageVisible &&
-      !isInteracting &&
-      !contextLost;
-
-    const stop = () => {
-      if (animationFrame) cancelAnimationFrame(animationFrame);
-      animationFrame = 0;
-      lastTick = 0;
-    };
-
-    const render = (now: number) => {
-      animationFrame = 0;
-      if (!canAnimate()) return;
-
-      if (!lastTick) lastTick = now;
-      elapsed += Math.min((now - lastTick) / 1000, 0.05);
-      lastTick = now;
-
-      if (now - lastDraw >= FRAME_INTERVAL) {
-        draw();
-        lastDraw = now;
+      const program = gl.createProgram();
+      if (!program) return;
+      gl.attachShader(program, vertexShader);
+      gl.attachShader(program, fragmentShader);
+      gl.linkProgram(program);
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.error(
+          "LiquidGradient program link failed:",
+          gl.getProgramInfoLog(program),
+        );
+        return;
       }
-      animationFrame = requestAnimationFrame(render);
-    };
+      gl.useProgram(program);
 
-    const start = () => {
-      if (!animationFrame && canAnimate()) {
+      const buffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bufferData(
+        gl.ARRAY_BUFFER,
+        new Float32Array([-1, -1, 3, -1, -1, 3]),
+        gl.STATIC_DRAW,
+      );
+      const position = gl.getAttribLocation(program, "position");
+      gl.enableVertexAttribArray(position);
+      gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+
+      const resolution = gl.getUniformLocation(program, "u_res");
+      const time = gl.getUniformLocation(program, "u_time");
+
+      let animationFrame = 0;
+      let resumeTimer: ReturnType<typeof setTimeout> | undefined;
+      let isVisible = false;
+      let isPageVisible = !document.hidden;
+      let isInteracting = false;
+      let contextLost = false;
+      let elapsed = 0;
+      let lastTick = 0;
+      let lastDraw = -FRAME_INTERVAL;
+
+      const resize = () => {
+        const cssWidth = Math.max(1, canvas.clientWidth);
+        const cssHeight = Math.max(1, canvas.clientHeight);
+        const pixelBudgetScale = Math.sqrt(
+          MAX_RENDER_PIXELS / (cssWidth * cssHeight),
+        );
+        // This is a soft, intentionally blurred surface, so rendering below CSS
+        // resolution is visually lossless while dramatically reducing fill rate.
+        const scale = Math.min(RENDER_SCALE, pixelBudgetScale);
+        const width = Math.max(1, Math.round(cssWidth * scale));
+        const height = Math.max(1, Math.round(cssHeight * scale));
+
+        if (canvas.width === width && canvas.height === height) return;
+        canvas.width = width;
+        canvas.height = height;
+        gl.viewport(0, 0, width, height);
+      };
+
+      const draw = () => {
+        gl.uniform2f(resolution, canvas.width, canvas.height);
+        gl.uniform1f(time, elapsed);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      };
+
+      const canAnimate = () =>
+        isVisible && isPageVisible && !isInteracting && !contextLost;
+
+      const stop = () => {
+        if (animationFrame) cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+        lastTick = 0;
+      };
+
+      const render = (now: number) => {
+        animationFrame = 0;
+        if (!canAnimate()) return;
+
+        if (!lastTick) lastTick = now;
+        elapsed += Math.min((now - lastTick) / 1000, 0.05);
+        lastTick = now;
+
+        if (now - lastDraw >= FRAME_INTERVAL) {
+          draw();
+          lastDraw = now;
+        }
         animationFrame = requestAnimationFrame(render);
-      }
-    };
+      };
 
-    const pauseForInput = () => {
-      if (!isVisible || reduceMotion) return;
-      isInteracting = true;
-      stop();
-      if (resumeTimer) clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(() => {
-        isInteracting = false;
-        start();
-      }, INPUT_IDLE_DELAY);
-    };
+      const start = () => {
+        if (!animationFrame && canAnimate()) {
+          animationFrame = requestAnimationFrame(render);
+        }
+      };
 
-    const visibilityObserver = new IntersectionObserver(([entry]) => {
-      isVisible = entry.isIntersecting;
-      if (isVisible) {
-        resize();
-        start();
-      } else {
+      const pauseForInput = () => {
+        if (!isVisible) return;
+        isInteracting = true;
         stop();
-      }
-    });
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => {
+          isInteracting = false;
+          start();
+        }, INPUT_IDLE_DELAY);
+      };
 
-    const resizeObserver = new ResizeObserver(() => {
+      const visibilityObserver = new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          resize();
+          start();
+        } else {
+          stop();
+        }
+      });
+
+      const resizeObserver = new ResizeObserver(() => {
+        resize();
+        draw();
+      });
+
+      const onVisibilityChange = () => {
+        isPageVisible = !document.hidden;
+        if (isPageVisible) start();
+        else stop();
+      };
+
+      const onContextLost = (event: Event) => {
+        event.preventDefault();
+        contextLost = true;
+        stop();
+      };
+
       resize();
-      if (isVisible || reduceMotion) draw();
-    });
+      draw();
+      visibilityObserver.observe(canvas);
+      resizeObserver.observe(canvas);
+      document.addEventListener("visibilitychange", onVisibilityChange);
+      window.addEventListener("wheel", pauseForInput, { passive: true });
+      window.addEventListener("touchmove", pauseForInput, { passive: true });
+      window.addEventListener("scroll", pauseForInput, { passive: true });
+      canvas.addEventListener("webglcontextlost", onContextLost);
 
-    const onVisibilityChange = () => {
-      isPageVisible = !document.hidden;
-      if (isPageVisible) start();
-      else stop();
+      cleanupRenderer = () => {
+        stop();
+        if (resumeTimer) clearTimeout(resumeTimer);
+        visibilityObserver.disconnect();
+        resizeObserver.disconnect();
+        document.removeEventListener("visibilitychange", onVisibilityChange);
+        window.removeEventListener("wheel", pauseForInput);
+        window.removeEventListener("touchmove", pauseForInput);
+        window.removeEventListener("scroll", pauseForInput);
+        canvas.removeEventListener("webglcontextlost", onContextLost);
+        gl.deleteBuffer(buffer);
+        gl.deleteProgram(program);
+        gl.deleteShader(vertexShader);
+        gl.deleteShader(fragmentShader);
+      };
     };
 
-    const onContextLost = (event: Event) => {
-      event.preventDefault();
-      contextLost = true;
-      stop();
+    const requestInitialization = () => {
+      const startWhenIdle = () => {
+        if ("requestIdleCallback" in window) {
+          idleHandle = window.requestIdleCallback(initialize, {
+            timeout: 1200,
+          });
+        } else {
+          initialize();
+        }
+      };
+
+      // Keep shader compilation out of the critical mobile render window.
+      // Desktop retains its animated treatment shortly after first paint.
+      const delay =
+        activation === "visible"
+          ? 80
+          : window.matchMedia("(pointer: coarse)").matches
+            ? 2200
+            : 500;
+      delayHandle = setTimeout(startWhenIdle, delay);
     };
 
-    resize();
-    draw();
-    visibilityObserver.observe(canvas);
-    resizeObserver.observe(canvas);
-    document.addEventListener("visibilitychange", onVisibilityChange);
-    window.addEventListener("wheel", pauseForInput, { passive: true });
-    window.addEventListener("touchmove", pauseForInput, { passive: true });
-    window.addEventListener("scroll", pauseForInput, { passive: true });
-    canvas.addEventListener("webglcontextlost", onContextLost);
+    if (activation === "visible") {
+      activationObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          activationObserver?.disconnect();
+          requestInitialization();
+        },
+        { rootMargin: "300px" },
+      );
+      activationObserver.observe(canvas);
+    } else {
+      requestInitialization();
+    }
 
     return () => {
-      stop();
-      if (resumeTimer) clearTimeout(resumeTimer);
-      visibilityObserver.disconnect();
-      resizeObserver.disconnect();
-      document.removeEventListener("visibilitychange", onVisibilityChange);
-      window.removeEventListener("wheel", pauseForInput);
-      window.removeEventListener("touchmove", pauseForInput);
-      window.removeEventListener("scroll", pauseForInput);
-      canvas.removeEventListener("webglcontextlost", onContextLost);
-      gl.deleteBuffer(buffer);
-      gl.deleteProgram(program);
-      gl.deleteShader(vertexShader);
-      gl.deleteShader(fragmentShader);
+      cancelled = true;
+      activationObserver?.disconnect();
+      if (delayHandle) clearTimeout(delayHandle);
+      if (idleHandle !== undefined && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleHandle);
+      }
+      cleanupRenderer?.();
     };
-  }, []);
+  }, [activation]);
 
   return <canvas ref={ref} className={className} aria-hidden="true" />;
 }

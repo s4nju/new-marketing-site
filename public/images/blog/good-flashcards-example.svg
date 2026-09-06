@@ -1,0 +1,39 @@
+<svg width="1400" height="820" viewBox="0 0 1400 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="820" rx="36" fill="#EDE3D2"/>
+  <text x="88" y="94" fill="#8A3B43" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="2">ONE BROAD CARD</text>
+  <text x="748" y="94" fill="#5E8C5A" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="2">TWO FOCUSED CARDS</text>
+
+  <rect x="76" y="134" width="570" height="586" rx="30" fill="#FAF2DF" stroke="#2C2722" stroke-opacity=".12" stroke-width="3"/>
+  <circle cx="128" cy="190" r="17" fill="#8A3B43"/>
+  <text x="160" y="200" fill="#2C2722" font-family="Arial, sans-serif" font-size="27" font-weight="700">Describe the mitochondrion.</text>
+  <path d="M126 246H594" stroke="#2C2722" stroke-opacity=".12" stroke-width="3"/>
+  <text x="126" y="302" fill="#4E463C" font-family="Arial, sans-serif" font-size="23">
+    <tspan x="126" dy="0">It has an outer membrane, a folded</tspan>
+    <tspan x="126" dy="39">inner membrane, an intermembrane</tspan>
+    <tspan x="126" dy="39">space and a matrix, and produces</tspan>
+    <tspan x="126" dy="39">ATP through cellular respiration.</tspan>
+  </text>
+  <rect x="126" y="530" width="322" height="48" rx="24" fill="#8A3B43" fill-opacity=".12"/>
+  <text x="150" y="562" fill="#8A3B43" font-family="Arial, sans-serif" font-size="20" font-weight="700">Several targets, hard to grade</text>
+
+  <rect x="724" y="134" width="600" height="270" rx="30" fill="#FAF2DF" stroke="#2C2722" stroke-opacity=".12" stroke-width="3"/>
+  <circle cx="776" cy="190" r="17" fill="#5E8C5A"/>
+  <text x="808" y="190" fill="#2C2722" font-family="Arial, sans-serif" font-size="24" font-weight="700">
+    <tspan x="808" dy="0">Where does the citric acid cycle</tspan>
+    <tspan x="808" dy="34">occur in a eukaryotic cell?</tspan>
+  </text>
+  <path d="M774 272H1274" stroke="#2C2722" stroke-opacity=".12" stroke-width="3"/>
+  <text x="774" y="330" fill="#4E463C" font-family="Arial, sans-serif" font-size="24">In the mitochondrial matrix.</text>
+
+  <rect x="724" y="450" width="600" height="270" rx="30" fill="#FAF2DF" stroke="#2C2722" stroke-opacity=".12" stroke-width="3"/>
+  <circle cx="776" cy="506" r="17" fill="#5E8C5A"/>
+  <text x="808" y="506" fill="#2C2722" font-family="Arial, sans-serif" font-size="24" font-weight="700">
+    <tspan x="808" dy="0">Why is the mitochondrial inner</tspan>
+    <tspan x="808" dy="34">membrane folded?</tspan>
+  </text>
+  <path d="M774 588H1274" stroke="#2C2722" stroke-opacity=".12" stroke-width="3"/>
+  <text x="774" y="642" fill="#4E463C" font-family="Arial, sans-serif" font-size="22">
+    <tspan x="774" dy="0">To increase surface area for</tspan>
+    <tspan x="774" dy="32">oxidative phosphorylation.</tspan>
+  </text>
+</svg>

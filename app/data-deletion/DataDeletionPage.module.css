@@ -1,0 +1,147 @@
+.page {
+  background: var(--cream);
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 168px 24px 72px;
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: 999px;
+  filter: blur(2px);
+}
+
+.hero::before {
+  width: 460px;
+  height: 460px;
+  top: -170px;
+  left: -120px;
+  background: radial-gradient(circle, rgb(138 59 67 / 20%), transparent 68%);
+}
+
+.hero::after {
+  width: 520px;
+  height: 520px;
+  right: -170px;
+  bottom: -280px;
+  background: radial-gradient(circle, rgb(94 140 90 / 18%), transparent 68%);
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--cream-card);
+  color: var(--berry);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.title {
+  max-width: 760px;
+  margin-top: 28px;
+  font-size: clamp(44px, 6vw, 72px);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+
+.intro {
+  max-width: 620px;
+  margin-top: 24px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+
+.body {
+  padding: 24px 24px 96px;
+  border-radius: 48px 48px 0 0;
+  background: var(--white);
+}
+
+.bodyInner {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+}
+
+.card {
+  padding: 32px;
+  border-radius: 32px;
+  background: var(--cream);
+  border: 1px solid rgb(44 39 34 / 8%);
+}
+
+.note {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+
+.note a {
+  color: var(--berry);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.steps {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.steps li {
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: var(--cream-card);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.steps strong {
+  font-weight: 600;
+}
+
+@media (max-width: 809px) {
+  .hero {
+    padding: 136px 20px 56px;
+  }
+
+  .body {
+    padding: 20px 20px 72px;
+    border-radius: 32px 32px 0 0;
+  }
+
+  .card {
+    padding: 24px 20px;
+    border-radius: 24px;
+  }
+}

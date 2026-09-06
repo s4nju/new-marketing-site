@@ -7,7 +7,8 @@ import {
   XLogoIcon,
   YoutubeLogoIcon,
 } from "@/app/ui/ph-icon";
-import { appAccessHref, siteConfig } from "../site-config";
+import { siteConfig } from "../site-config";
+import BetaAccessForm from "./BetaAccessForm";
 
 const socialLinks = [
   {
@@ -27,9 +28,11 @@ const socialLinks = [
 
 const pageLinks = [
   // { label: "get the app", href: "/#download" },
+  { label: "blog", href: "/blog" },
   { label: "all FAQs", href: "/faq" },
   { label: "privacy policy", href: siteConfig.links.privacy },
   { label: "terms", href: "/terms" },
+  { label: "data deletion", href: "/data-deletion" },
 ].filter((link): link is typeof link & { href: string } => Boolean(link.href));
 
 const learnLinks = [
@@ -57,9 +60,7 @@ export default function FinalCta() {
                 </p>
               </div>
               <div className={styles.buttons}>
-                <a href={appAccessHref} className={styles.iosButton}>
-                  request beta access
-                </a>
+                <BetaAccessForm />
               </div>
             </div>
 
@@ -80,9 +81,15 @@ export default function FinalCta() {
 
           <div className={styles.footerGrid}>
             <div className={styles.brandColumn}>
-              <a href="/" className={styles.logo} aria-label="biu home">
-                biu
-              </a>
+              <Image
+                src="/images/biu-logo.png"
+                alt="biu logo"
+                preload={true}
+                loading="eager"
+                width={100}
+                height={50}
+              />
+
               {socialLinks.length > 0 ? (
                 <div className={styles.socials}>
                   {socialLinks.map(({ label, href, Icon }) => (

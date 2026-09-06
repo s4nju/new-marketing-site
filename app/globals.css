@@ -6,7 +6,7 @@
   --ink: #2c2722;
   --features-bg: #2a2622;
   --dark-bg: #2c2722;
-  --muted: #7a6f5e;
+  --muted: #706554;
   --berry: #8a3b43;
   --green: #5e8c5a;
   --white: #ffffff;
@@ -55,10 +55,11 @@ html.lenis body {
 }
 
 html {
-  /* Lenis drives smooth scrolling; keep overflow clipping on the root
-     scroller so body isn't promoted to a separate scroll container. */
+  /* Native scrolling is the lightweight default. Lenis progressively
+     enhances fine-pointer devices after the page's critical work is done. */
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -141,6 +142,10 @@ html.motion-ready [data-scroll-reveal][data-revealed="true"] {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   [data-scroll-reveal] {
     opacity: 1 !important;
     transform: none !important;

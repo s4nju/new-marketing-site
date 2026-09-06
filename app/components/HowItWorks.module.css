@@ -46,8 +46,13 @@
 .visualPlain {
   background: linear-gradient(135deg, #e9efe4, #dfe9df);
 }
+.visualBackground {
+  object-fit: cover;
+  object-position: center;
+}
 .overlay {
   position: absolute;
+  z-index: 1;
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 16px 34px rgba(44, 39, 34, 0.18);

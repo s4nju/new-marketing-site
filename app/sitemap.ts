@@ -1,7 +1,17 @@
 import type { MetadataRoute } from "next";
+import { getPublishedBlogPosts } from "@/lib/blog";
 import { siteConfig } from "./site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const blogPosts: MetadataRoute.Sitemap = getPublishedBlogPosts().map(
+    (post) => ({
+      url: `${siteConfig.url}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt ?? post.publishedAt),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    }),
+  );
+
   return [
     {
       url: siteConfig.url,
@@ -13,6 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteConfig.url}/faq`,
       lastModified: new Date("2026-07-23"),
       changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteConfig.url}/blog`,
+      lastModified: new Date("2026-07-26"),
+      changeFrequency: "weekly",
       priority: 0.8,
     },
     {
@@ -46,6 +62,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
+      url: `${siteConfig.url}/data-deletion`,
+      lastModified: new Date("2026-09-06"),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
       url: `${siteConfig.url}/pricing.md`,
       lastModified: new Date("2026-07-23"),
       changeFrequency: "monthly",
@@ -57,5 +79,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.3,
     },
+    ...blogPosts,
   ];
 }

@@ -21,6 +21,15 @@ SEO metadata is defined once in `app/site-config.ts` and reused by the page
 metadata, canonical URL, Open Graph/Twitter cards, robots.txt, sitemap, and
 structured data.
 
+## Blog
+
+The repository-backed blog lives at `/blog`. Article Markdown is stored in
+`content/blogs/`, while titles, dates, images, tags, authors, and draft status
+live in `content/blog.json`. Published articles are validated and statically
+rendered at `/blog/<slug>` during the production build.
+
+See [docs/blog-authoring.md](docs/blog-authoring.md) before publishing a post.
+
 ## What's inside
 
 - **App Router** page composed from one component per section: `Navbar`, `Hero`, `Features`, `HowItWorks`, `Testimonials`, `Referral`, `Pricing`, `Faq`, `FinalCta` (under `app/components/`).

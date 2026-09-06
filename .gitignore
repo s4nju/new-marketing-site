@@ -10,4 +10,9 @@
 .claude/*
 
 docs/*
+!docs/adr/
+docs/adr/*
+!docs/adr/0001-repository-backed-blog.md
+!docs/blog-authoring.md
+!docs/glossary.md
 .gstack/

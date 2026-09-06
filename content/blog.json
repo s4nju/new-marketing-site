@@ -1,0 +1,112 @@
+[
+  {
+    "slug": "how-to-make-good-flashcards",
+    "title": "How to Make Good Flashcards: 9 Rules and 7 Mistakes",
+    "description": "Learn how to make good flashcards with nine practical rules, seven common mistakes, clear examples, and a checklist for manual or AI-generated cards.",
+    "publishedAt": "2026-07-30",
+    "author": "biu team",
+    "coverImage": "/images/blog/how-to-make-good-flashcards.svg",
+    "tags": ["flashcards", "active recall", "study methods"],
+    "draft": false
+  },
+  {
+    "slug": "active-recall-vs-spaced-repetition",
+    "title": "Active Recall vs Spaced Repetition: The Difference",
+    "description": "Learn the difference between active recall and spaced repetition, why they work together, and how to build a practical seven-day study routine that lasts.",
+    "publishedAt": "2026-07-30",
+    "author": "biu team",
+    "coverImage": "/images/blog/active-recall-vs-spaced-repetition.svg",
+    "tags": ["active recall", "spaced repetition", "study methods"],
+    "draft": false
+  },
+  {
+    "slug": "how-to-study-lecture-slides",
+    "title": "How to Study Lecture Slides Without Rereading Them",
+    "description": "Turn lecture slides into understanding, retrieval questions, diagrams, and a manageable review plan instead of repeatedly reading the same deck before exams.",
+    "publishedAt": "2026-07-30",
+    "author": "biu team",
+    "coverImage": "/images/blog/how-to-study-lecture-slides.svg",
+    "tags": ["lecture slides", "active recall", "study workflow"],
+    "draft": false
+  },
+  {
+    "slug": "how-to-study-a-long-pdf",
+    "title": "How to Study a Long PDF for an Exam: A 10-Step Plan",
+    "description": "Learn how to triage a long PDF, map its structure, retrieve the important ideas, and build a realistic review plan without converting every page into cards.",
+    "publishedAt": "2026-07-30",
+    "author": "biu team",
+    "coverImage": "/images/blog/how-to-study-a-long-pdf.svg",
+    "tags": ["PDF study", "exam revision", "study workflow"],
+    "draft": false
+  },
+  {
+    "slug": "ai-vs-manual-flashcards",
+    "title": "AI Flashcards vs Manual Flashcards: Which Is Better?",
+    "description": "Compare AI and manual flashcards across speed, accuracy, understanding, and personalization, then use a hybrid workflow that preserves active learning.",
+    "publishedAt": "2026-07-30",
+    "author": "biu team",
+    "coverImage": "/images/blog/ai-vs-manual-flashcards.svg",
+    "tags": ["AI flashcards", "flashcards", "study workflow"],
+    "draft": false
+  },
+  {
+    "slug": "are-ai-flashcards-accurate",
+    "title": "Are AI-Generated Flashcards Accurate? A 7-Step Audit",
+    "description": "Learn where AI-generated flashcards go wrong and use a repeatable audit to check source fidelity, factual accuracy, prompt quality, and relevance.",
+    "publishedAt": "2026-07-30",
+    "author": "biu team",
+    "coverImage": "/images/blog/are-ai-flashcards-accurate.svg",
+    "tags": ["AI flashcards", "accuracy", "study workflow"],
+    "draft": false
+  },
+  {
+    "slug": "how-many-flashcards-per-day",
+    "title": "How Many Flashcards Should You Review Per Day?",
+    "description": "Set a sustainable daily flashcard limit using your available time, real review speed, new-card workload, subject, and upcoming exam schedule without rushing.",
+    "publishedAt": "2026-07-30",
+    "author": "biu team",
+    "coverImage": "/images/blog/how-many-flashcards-per-day.svg",
+    "tags": ["flashcard reviews", "study planning", "spaced repetition"],
+    "draft": false
+  },
+  {
+    "slug": "how-to-use-flashcards-for-exams",
+    "title": "How to Use Flashcards for Exams: A Practical Guide",
+    "description": "Build exam flashcards from the syllabus, review them with active recall, and connect every deck to past papers, problems, essays, and application.",
+    "publishedAt": "2026-07-30",
+    "author": "biu team",
+    "coverImage": "/images/blog/how-to-use-flashcards-for-exams.svg",
+    "tags": ["exam revision", "flashcards", "active recall"],
+    "draft": false
+  },
+  {
+    "slug": "spaced-repetition-backlog",
+    "title": "What to Do When Spaced-Repetition Reviews Pile Up",
+    "description": "Recover from a spaced-repetition backlog with a calm plan to pause new cards, triage the queue, repair weak prompts, and prevent another pile-up.",
+    "publishedAt": "2026-07-30",
+    "author": "biu team",
+    "coverImage": "/images/blog/spaced-repetition-backlog.svg",
+    "tags": ["spaced repetition", "review backlog", "study planning"],
+    "draft": false
+  },
+  {
+    "slug": "anki-alternatives-for-students",
+    "title": "Best Anki Alternatives for Students: Less Setup",
+    "description": "Compare biu, Quizlet, RemNote, Knowt, and Anki by workflow, study features, setup, pricing, and fit to choose the right flashcard app for your routine.",
+    "publishedAt": "2026-07-30",
+    "author": "biu team",
+    "coverImage": "/images/blog/anki-alternatives-for-students.svg",
+    "tags": ["Anki alternatives", "study apps", "flashcards"],
+    "draft": false
+  },
+  {
+    "slug": "example-study-note",
+    "title": "A practical title for your first learning note",
+    "description": "A draft post that demonstrates the Markdown elements supported by the biu blog.",
+    "publishedAt": "2026-07-26",
+    "author": "biu team",
+    "coverImage": "/images/blog/example-study-note.svg",
+    "tags": ["learning", "example"],
+    "draft": true
+  }
+]

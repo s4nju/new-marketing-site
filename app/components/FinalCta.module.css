@@ -1,5 +1,7 @@
 .section {
   background: var(--cream);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 860px;
 }
 
 .footer {
@@ -92,9 +94,94 @@
 }
 
 .buttons {
+  width: 100%;
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+}
+
+.betaForm {
+  position: relative;
+  width: min(100%, 460px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.betaInput {
+  min-width: 0;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid rgba(31, 24, 24, 0.14);
+  border-radius: 12px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.betaInput::placeholder {
+  color: var(--muted);
+}
+
+.betaInput:focus {
+  border-color: var(--berry);
+  box-shadow: 0 0 0 3px rgba(152, 97, 101, 0.14);
+}
+
+.betaInput:disabled {
+  opacity: 0.65;
+}
+
+.betaButton {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--berry);
+  color: var(--white);
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.betaButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+  opacity: 0.94;
+}
+
+.betaButton:disabled {
+  cursor: default;
+  opacity: 0.72;
+}
+
+.betaMessage {
+  grid-column: 1 / -1;
+  margin: 2px 0 0;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.betaError {
+  color: #8c2f39;
+}
+
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .iosButton,
@@ -339,6 +426,15 @@
   .buttons {
     width: 100%;
     flex-direction: column;
+  }
+
+  .betaForm {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .betaMessage {
+    grid-column: 1;
   }
 
   .iosButton,
