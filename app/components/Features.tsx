@@ -13,26 +13,30 @@ const cards = [
     icon: FlowerLotusIcon,
     title: "add anything",
     href: "/pdf-to-flashcards",
+    image: "/images/app-marketing/add-anything.png",
     tone: "berry" as const,
     desc: "videos, links, pdfs, photos of notes. tap add and walk away.",
   },
   {
     icon: MoonStarsIcon,
-    title: "flashcards",
+    title: "library",
     href: "/ai-flashcard-maker",
+    image: "/images/app-marketing/library.webp",
     tone: "green" as const,
-    desc: "every item you add generates flashcards tailored to how you learn, automatically.",
+    desc: "every item you add is organised to enhnace your learning, automatically.",
   },
   {
     icon: PlantIcon,
     title: "daily quiz",
     href: "/spaced-repetition",
+    image: "/images/app-marketing/daily-quiz.png",
     tone: "blue" as const,
     desc: "biu schedules each card from your review history and increases the interval when you answer correctly.",
   },
   {
     icon: RabbitIcon,
     title: "assistant",
+    image: "/images/app-marketing/ai-assistant-image.webp",
     href: "/ai-flashcard-maker",
     tone: "apricot" as const,
     desc: "ask anything from your assistant, it will organize all your random thoughts and give you the perfect answers.",
@@ -56,7 +60,7 @@ export default function Features() {
       </div>
 
       <div className={styles.grid}>
-        {cards.map(({ icon: Icon, title, href, tone, desc }) => (
+        {cards.map(({ icon: Icon, title, href, tone, desc, image }) => (
           <article key={title} className={`${styles.card} ${styles[tone]}`}>
             <div className={styles.cardText}>
               <span className={styles.cardIcon}>
@@ -69,7 +73,7 @@ export default function Features() {
             </div>
             <div className={styles.cardPhone}>
               <Image
-                src="/images/phone-mockup.jpg"
+                src={image}
                 alt=""
                 width={470}
                 height={1024}
