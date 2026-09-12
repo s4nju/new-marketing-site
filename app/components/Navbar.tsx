@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { featureFlags } from "../feature-flags";
 import Image from "next/image";
 import styles from "./Navbar.module.css";
 import { appAccessHref } from "../site-config";
@@ -18,7 +19,7 @@ export default function Navbar() {
         <div className={styles.links}>
           <a href="/#features">features</a>
           <a href="/#pricing">pricing</a>
-          <Link href="/blog">blog</Link>
+          {featureFlags.blogEnabled && <Link href="/blog">blog</Link>}
           <Link href="/faq">faq</Link>
         </div>
         <a href={appAccessHref} className={styles.cta}>

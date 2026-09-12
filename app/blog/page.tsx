@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { featureFlags } from "../feature-flags";
 import FinalCta from "../components/FinalCta";
 import MotionController from "../components/MotionController";
 import Navbar from "../components/Navbar";
@@ -8,7 +10,7 @@ import { formatBlogDate, getPublishedBlogPosts } from "@/lib/blog";
 import { siteConfig } from "../site-config";
 import styles from "./BlogPage.module.css";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = featureFlags.blogEnabled ? {
   title: `Learning notes | ${siteConfig.name}`,
   description:
     "Practical notes from biu about learning, memory, flashcards, and building a study practice that lasts.",
@@ -22,9 +24,11 @@ export const metadata: Metadata = {
     description:
       "Practical notes about learning, memory, flashcards, and building a study practice that lasts.",
   },
-};
+} : {};
 
 export default function BlogPage() {
+  if (!featureFlags.blogEnabled) notFound();
+
   const posts = getPublishedBlogPosts();
   const [featuredPost, ...remainingPosts] = posts;
 

@@ -57,15 +57,17 @@ export default function TermsPage() {
             <div className={styles.intro}>
               <span className={styles.kicker}>legal</span>
               <h1>Terms of Service</h1>
-              <p className={styles.updated}>last updated July 1, 2026</p>
+              <p className={styles.updated}>last updated September 12, 2026</p>
               <p className={styles.lede}>
                 These Terms of Service (“<strong>Terms</strong>”) are a legal
                 agreement between you and FlipFlop Labs Private Limited (“
                 <strong>biu</strong>”, “we”, “us”, or “our”) governing your use
                 of the biu mobile app and the website at getbiu.app (together,
                 the “Service”). By creating an account, downloading the app, or
-                using the Service, you agree to these Terms. If you do not
-                agree, please do not use the Service.
+                using the Service, you acknowledge that you have read and
+                agree to these Terms and our Privacy Policy. If you do not
+                agree, please do not create an account, upload content, or use
+                the Service.
               </p>
             </div>
 
@@ -91,8 +93,9 @@ export default function TermsPage() {
                     under the age of majority in your country, you may only use
                     the Service with the consent and supervision of a parent or
                     legal guardian who agrees to these Terms on your behalf. By
-                    using the Service, you represent that you have the legal
-                    capacity to enter into this agreement.
+                    using the Service, you represent that you meet this age
+                    requirement and have the legal capacity to enter into this
+                    agreement. biu is not directed to children under 13.
                   </p>
                 </section>
 
@@ -106,20 +109,27 @@ export default function TermsPage() {
                     <a href="mailto:admin@getbiu.app">admin@getbiu.app</a>. You
                     can delete your account at any time from within the app,
                     which permanently removes the data associated with it as
-                    described in our Privacy Policy.
+                    described in our Privacy Policy. Deleting your biu account
+                    does not cancel a subscription billed by Apple or Google;
+                    you must manage that subscription through the applicable
+                    store.
                   </p>
                 </section>
 
                 <section id="the-service">
                   <SectionHeading number="03">The Service</SectionHeading>
                   <p>
-                    biu lets you upload or link videos, PDFs, photos, and notes,
-                    and uses artificial intelligence to generate summaries,
-                    flashcards, and daily quizzes built on spaced repetition,
-                    along with an AI tutor grounded in your own material. We may
-                    add, change, or remove features, or suspend the Service, and
-                    we will give reasonable notice of material changes where we
-                    can.
+                    biu lets you upload or link videos, documents, images,
+                    notes, and other study material; create and import
+                    flashcards; record short voice clips for transcription;
+                    and use artificial intelligence to generate summaries,
+                    flashcards, quizzes, recall feedback, and AI tutor answers.
+                    The AI tutor may use your material, optional web search, and
+                    optional Personal Memory features that you control. You may
+                    also choose to create a revocable link to a read-only
+                    snapshot of a chat. We may add, change, or remove features,
+                    or suspend the Service, and we will give reasonable notice
+                    of material changes where we can.
                   </p>
                 </section>
 
@@ -128,11 +138,12 @@ export default function TermsPage() {
                     Free trial, subscriptions & billing
                   </SectionHeading>
                   <p>
-                    New accounts receive a 14-day free trial of biu Pro with no
-                    upfront payment required, and our referral program can
-                    extend that trial. After the trial ends, Pro features
-                    require a paid subscription managed through the Apple App
-                    Store or Google Play.
+                    Eligible new accounts may receive a free period of biu Pro
+                    without an upfront payment, and referral or promotional
+                    rewards may extend access. The duration and eligibility
+                    shown in the app at the time of an offer control. After free
+                    access ends, Pro features require an in-app subscription
+                    managed through the Apple App Store or Google Play.
                   </p>
                   <ul>
                     <li>
@@ -140,8 +151,16 @@ export default function TermsPage() {
                       before you subscribe.
                     </li>
                     <li>
-                      Subscriptions renew automatically unless cancelled at
-                      least 24 hours before the renewal date.
+                      Before purchase, the app shows the subscription name,
+                      benefits, localized price, billing period, and any trial
+                      or introductory terms that apply to that store product.
+                    </li>
+                    <li>
+                      Payment is charged to your Apple App Store or Google Play
+                      account when you confirm the purchase. Subscriptions renew
+                      automatically for the displayed period and price unless
+                      cancelled before renewal under the applicable store&apos;s
+                      rules.
                     </li>
                     <li>
                       You manage and cancel subscriptions through your device’s
@@ -153,13 +172,24 @@ export default function TermsPage() {
                     </li>
                     <li>
                       Refunds are handled by Apple or Google under their
-                      respective policies.
+                      respective policies and applicable law.
                     </li>
                     <li>
                       We will communicate any price changes before they take
                       effect.
                     </li>
                   </ul>
+                  <p>
+                    biu may also offer prepaid gift products as one-time in-app
+                    purchases. A gift provides the displayed period of Pro
+                    access after it is successfully funded and claimed. Gift
+                    purchases do not create an auto-renewing subscription and
+                    do not by themselves grant Pro access to the purchaser.
+                    Store billing, refunds, transaction recovery, and purchase
+                    eligibility remain subject to Apple&apos;s or Google&apos;s rules.
+                    We may cancel, refuse, or reverse a gift affected by fraud,
+                    abuse, chargeback, or an invalid transaction.
+                  </p>
                 </section>
 
                 <section id="referral-program">
@@ -183,20 +213,30 @@ export default function TermsPage() {
                     Your content & license
                   </SectionHeading>
                   <p>
-                    You retain ownership of everything you upload: the videos,
-                    links, PDFs, photos, and notes, along with the summaries,
-                    flashcards, and quizzes generated from them (“
+                    You retain ownership of the material you submit, including
+                    videos, links, documents, images, notes, chat messages,
+                    voice input, and attachments, along with your rights, if
+                    any, in summaries, flashcards, quizzes, and other output
+                    generated for you (“
                     <strong>Your Content</strong>”). By uploading Your Content,
                     you grant biu a worldwide, non-exclusive, royalty-free
-                    license to host, store, process, reproduce, and display it
-                    solely to operate and improve the Service for you.
+                    license to host, store, process, reproduce, transform, and
+                    display it solely as needed to provide, secure, maintain,
+                    and improve the Service for you. This includes sending the
+                    portions needed for a requested feature to our service
+                    providers and AI processors as described in our Privacy
+                    Policy. biu does not use Your Content to train its own
+                    general-purpose AI models.
                   </p>
                   <p>
                     This license ends when you delete the content or your
                     account, except for brief residual copies kept in backups.
                     You confirm that you hold all necessary rights to Your
                     Content and that it does not infringe anyone else’s rights
-                    or violate any law.
+                    or violate any law. If you intentionally create a public
+                    chat-share link, you direct us to display the selected
+                    snapshot to anyone with that link until you revoke it or
+                    delete the underlying thread.
                   </p>
                 </section>
 
@@ -205,14 +245,18 @@ export default function TermsPage() {
                     AI-generated content disclaimer
                   </SectionHeading>
                   <p>
-                    Summaries, flashcards, quiz questions, and AI tutor answers
-                    are generated automatically by third-party AI models based
-                    on Your Content. They may contain errors, omissions, or
-                    inaccuracies, and should not be treated as a substitute for
-                    your own judgment, your source material, or professional or
-                    academic advice. You are responsible for verifying any
-                    critical information, especially for exams or professional
-                    use.
+                    Summaries, flashcards, quiz questions, recall feedback,
+                    transcriptions, Personal Memory facts, and AI tutor answers
+                    may be generated automatically using third-party AI systems
+                    based on Your Content and instructions. AI output is
+                    probabilistic and may be incomplete, inaccurate, biased, or
+                    unsuitable. It is not a substitute for your source material,
+                    your own judgment, or medical, legal, financial, academic,
+                    or other professional advice. You are responsible for
+                    checking important output before relying on or sharing it.
+                    If generated content appears harmful, unlawful, or
+                    inappropriate, stop using it and notify us at{" "}
+                    <a href="mailto:admin@getbiu.app">admin@getbiu.app</a>.
                   </p>
                 </section>
 
@@ -229,6 +273,11 @@ export default function TermsPage() {
                       or otherwise harmful content.
                     </li>
                     <li>
+                      Upload images, recordings, documents, or personal
+                      information about another person without the rights,
+                      notices, and consents required by law.
+                    </li>
+                    <li>
                       Use automated means such as bots or scrapers to access the
                       Service or create accounts, including to manipulate
                       referrals.
@@ -236,6 +285,18 @@ export default function TermsPage() {
                     <li>
                       Attempt to reverse-engineer, decompile, or otherwise
                       interfere with the Service or the AI models behind it.
+                    </li>
+                    <li>
+                      Circumvent security, rate limits, access controls, safety
+                      filters, subscription checks, or other protective
+                      measures, or probe the Service for vulnerabilities without
+                      written authorization.
+                    </li>
+                    <li>
+                      Use the Service or generated output to facilitate fraud,
+                      impersonation, harassment, child exploitation, self-harm,
+                      violence, malware, academic dishonesty, or other unlawful
+                      or dangerous conduct.
                     </li>
                     <li>
                       Resell, sublicense, or provide third-party access to the
@@ -270,11 +331,17 @@ export default function TermsPage() {
                     Third-party services
                   </SectionHeading>
                   <p>
-                    biu relies on third parties including Supabase for backend
-                    infrastructure, OpenAI, Anthropic, and Google for AI
-                    processing, and Apple and Google for distribution, sign-in,
-                    and billing. Their terms govern their services, and we are
-                    not responsible for their availability, content, or conduct.
+                    biu relies on third-party infrastructure and processors,
+                    including Supabase; Cloudflare; OpenRouter and downstream
+                    model providers such as Google, OpenAI, DeepSeek, and
+                    Anthropic where configured; Supermemory; PostHog;
+                    RevenueCat; Expo; ChottuLink; Exa where web search is used;
+                    and Apple and Google for distribution, sign-in, billing, and
+                    device services. Providers and models may change as the
+                    Service evolves. Our Privacy Policy explains what data is
+                    sent and why. Third-party services may also be governed by
+                    their own terms, and we are not responsible for their
+                    availability or independent conduct.
                   </p>
                 </section>
 
@@ -291,6 +358,12 @@ export default function TermsPage() {
                     <li>
                       This agreement is between you and biu only; Apple is not
                       responsible for the Service or its content.
+                    </li>
+                    <li>
+                      biu grants you a personal, limited, non-exclusive,
+                      non-transferable license to use the app on Apple-branded
+                      products you own or control, as permitted by Apple&apos;s Usage
+                      Rules, including applicable Family Sharing rules.
                     </li>
                     <li>
                       Apple has no obligation to provide maintenance or support
@@ -320,6 +393,14 @@ export default function TermsPage() {
                       Apple has the right to enforce these Terms against you.
                     </li>
                   </ul>
+                  <p>
+                    If you obtain biu through Google Play, Google is not a party
+                    to these Terms and is not responsible for the Service.
+                    Google Play&apos;s terms govern downloads, billing, renewals,
+                    cancellations, and refunds processed by Google. You agree to
+                    comply with the usage rules and other third-party terms that
+                    apply to your device and store account.
+                  </p>
                 </section>
 
                 <section id="termination">

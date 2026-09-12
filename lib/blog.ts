@@ -1,5 +1,7 @@
 import "server-only";
 
+import { featureFlags } from "@/app/feature-flags";
+
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 
@@ -259,6 +261,7 @@ function loadCatalog(): BlogPost[] {
 }
 
 export function getPublishedBlogPosts() {
+  if (!featureFlags.blogEnabled) return [];
   return loadCatalog().filter((post) => !post.draft);
 }
 

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { featureFlags } from "./feature-flags";
 import { getPublishedBlogPosts } from "@/lib/blog";
 import { siteConfig } from "./site-config";
 
@@ -25,12 +26,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    {
-      url: `${siteConfig.url}/blog`,
-      lastModified: new Date("2026-07-26"),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+    ...(featureFlags.blogEnabled
+      ? [{
+          url: `${siteConfig.url}/blog`,
+          lastModified: new Date("2026-07-26"),
+          changeFrequency: "weekly" as const,
+          priority: 0.8,
+        }]
+      : []),
     {
       url: `${siteConfig.url}/ai-flashcard-maker`,
       lastModified: new Date("2026-07-23"),

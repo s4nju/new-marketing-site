@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { featureFlags } from "../feature-flags";
 import styles from "./FinalCta.module.css";
 import {
   FacebookLogoIcon,
@@ -28,10 +29,10 @@ const socialLinks = [
 
 const pageLinks = [
   // { label: "get the app", href: "/#download" },
-  { label: "blog", href: "/blog" },
-  { label: "all FAQs", href: "/faq" },
+  ...(featureFlags.blogEnabled ? [{ label: "blog", href: "/blog" }] : []),
+  // { label: "all FAQs", href: "/faq" },
   { label: "privacy policy", href: siteConfig.links.privacy },
-  { label: "terms", href: "/terms" },
+  { label: "terms of use", href: "/terms" },
   { label: "data deletion", href: "/data-deletion" },
 ].filter((link): link is typeof link & { href: string } => Boolean(link.href));
 

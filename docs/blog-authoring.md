@@ -1,5 +1,15 @@
 # Blog authoring
 
+## Release flag
+
+`app/feature-flags.ts` contains `blogEnabled`, currently `false` pending review.
+While disabled, `/blog` and `/blog/<slug>` return 404, no article pages are
+prerendered, and blog links are omitted from navigation and the sitemap.
+Content can remain on main without being published. This applies to all
+environments; set the flag to `true` locally to review, and only commit that
+change once the listing and articles are approved for release. Rebuild and
+deploy for flag changes to take effect.
+
 ## Add a post
 
 1. Copy `content/blogs/example-study-note.md` to
