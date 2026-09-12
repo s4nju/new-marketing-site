@@ -28,10 +28,8 @@ const socialLinks = [
 ].filter((link): link is typeof link & { href: string } => Boolean(link.href));
 
 const pageLinks = [
-  // { label: "get the app", href: "/#download" },
   ...(featureFlags.blogEnabled ? [{ label: "blog", href: "/blog" }] : []),
-  // { label: "all FAQs", href: "/faq" },
-  { label: "privacy policy", href: siteConfig.links.privacy },
+  { label: "privacy policy", href: "/privacy-policy" },
   { label: "terms of use", href: "/terms" },
   { label: "data deletion", href: "/data-deletion" },
 ].filter((link): link is typeof link & { href: string } => Boolean(link.href));
@@ -106,8 +104,6 @@ export default function FinalCta() {
               <h3>navigation</h3>
               <a href="/#features">features</a>
               <a href="/#how-it-works">how it works</a>
-              {/* <a href="#testimonials">testimonials</a> */}
-              {/* <a href="/pricing">pricing</a> */}
               <a href="/#faq">faq</a>
             </nav>
 
@@ -119,16 +115,6 @@ export default function FinalCta() {
                 </a>
               ))}
             </nav>
-
-            {/* new pages links. will be polished and added later. */}
-            {/* <nav className={styles.linkColumn} aria-label="Learn">
-              <h3>learn</h3>
-              {learnLinks.map(({ label, href }) => (
-                <a key={href} href={href}>
-                  {label}
-                </a>
-              ))}
-            </nav> */}
 
             {siteConfig.links.newsletter ? (
               <div className={styles.newsletter}>
