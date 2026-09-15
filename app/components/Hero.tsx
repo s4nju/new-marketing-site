@@ -36,16 +36,19 @@ export default function Hero() {
       <LiquidGradient className={styles.gradient} />
       <div className={styles.inner}>
         <h1 className={styles.title}>
-          <span className={styles.titleLine}>learn smarter,</span>
-          <span className={styles.titleLine}>remember forever</span>
+          <span className={styles.titleLine}>never forget</span>
+          <span className={styles.titleLine}>
+            <span className={styles.anything}>anything</span> important
+          </span>
         </h1>
         <p className={styles.sub}>
-          Add anything to biu. It turns your study material into flashcards and
-          sets up spaced repetition, so reviewing feels simple and fun—not
-          repetitive.
+          bring biu anything you want to remember, it will power-up your memory
+          with AI flashcards and spaced-repetition - remembering will never be
+          hard again.
         </p>
+
         <a href={appAccessHref} className={styles.download}>
-          request access
+          request beta access
         </a>
 
         <div className={styles.phoneWrap}>
@@ -67,7 +70,7 @@ export default function Hero() {
             icon={<MoonSparkle />}
             tint="var(--ink)"
             title="summaries"
-            sub="auto-generated"
+            sub="the key ideas"
           />
           <FloatCard
             className={styles.fFlash}
@@ -81,14 +84,14 @@ export default function Hero() {
             icon={<Lightning />}
             tint="var(--berry)"
             title="streaks"
-            sub="28 day streak"
+            sub="keep showing up"
           />
           <FloatCard
             className={styles.fQuiz}
             icon={<Lotus />}
             tint="var(--berry)"
             title="daily quiz"
-            sub="2 min a day"
+            sub="your next review"
           />
         </div>
       </div>
