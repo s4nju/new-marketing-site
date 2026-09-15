@@ -21,6 +21,32 @@ SEO metadata is defined once in `app/site-config.ts` and reused by the page
 metadata, canonical URL, Open Graph/Twitter cards, robots.txt, sitemap, and
 structured data.
 
+## Website analytics
+
+PostHog is initialized site-wide in `instrumentation-client.ts`, following the
+[PostHog Next.js integration](https://posthog.com/docs/libraries/next-js).
+It captures initial page views, client-side navigation, page leaves, and
+automatic click/form interactions. Session recording is disabled, and no
+user identity or form values are explicitly sent by this integration.
+
+Add these values to `.env` or `.env.local` and your hosting environment:
+
+```dotenv
+NEXT_PUBLIC_POSTHOG_KEY=phc_your_public_project_key
+NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+```
+
+Get the public project key from PostHog project settings. For an EU project,
+use `https://eu.i.posthog.com` as the host. Do not use a personal API key.
+Leaving the key empty disables analytics. A configured key also enables
+tracking locally; leave it empty locally or use a separate test project.
+
+Restart the development server after setting these values. For production,
+set them **before building**, then rebuild and deploy: Next.js embeds
+`NEXT_PUBLIC_*` values in the browser bundle at build time.
+To verify, open the site, navigate to another page, and check PostHog's
+activity feed for `$pageview` and `$autocapture` events.
+
 ## Blog
 
 The repository-backed blog lives at `/blog`. Article Markdown is stored in
