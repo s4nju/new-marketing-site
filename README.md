@@ -47,6 +47,14 @@ set them **before building**, then rebuild and deploy: Next.js embeds
 To verify, open the site, navigate to another page, and check PostHog's
 activity feed for `$pageview` and `$autocapture` events.
 
+Keep the entry point named `instrumentation-client.ts`: `instrumentation.ts`
+is the server hook and will not load the browser SDK. The npm package is
+bundled into Next.js's `/_next/static/` JavaScript chunks, so there may be no
+separate `posthog.js` request. In DevTools, use the **All** or **Fetch/XHR**
+Network filter and look for requests to your PostHog host, including `/e/`
+event requests. If they are missing, check that the public key was set at
+build time; if they are blocked, test in a browser without a tracking blocker.
+
 ## Blog
 
 The repository-backed blog lives at `/blog`. Article Markdown is stored in

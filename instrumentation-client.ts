@@ -1,5 +1,7 @@
 import posthog from "posthog-js";
 
+// Next.js loads this exact filename in the browser before hydration.
+// instrumentation.ts is a server hook and cannot initialize browser analytics.
 const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY?.trim();
 
 // Leave analytics inactive until the public project key is configured.
