@@ -1,4 +1,6 @@
 import Image from "next/image";
+import PhoneImage from "./PhoneImage";
+import logo from "../../public/images/biu-logo.png";
 import { featureFlags } from "../feature-flags";
 import styles from "./FinalCta.module.css";
 import {
@@ -68,12 +70,9 @@ export default function FinalCta() {
               data-scroll-reveal
               style={{ "--reveal-y": "80px" } as React.CSSProperties}
             >
-              <Image
-                src="/images/phone-mockup.png"
+              <PhoneImage
                 alt="iPhone mockup displaying the biu learning dashboard."
-                width={470}
-                height={1024}
-                sizes="(max-width: 900px) 86vw, 355px"
+                sizes="(max-width: 809px) calc((100vw - 40px) * 0.85), (max-width: 965px) calc(((100vw - 64px) * 0.85 - 56px) / 2), 355px"
               />
             </div>
           </div>
@@ -81,10 +80,8 @@ export default function FinalCta() {
           <div className={styles.footerGrid}>
             <div className={styles.brandColumn}>
               <Image
-                src="/images/biu-logo.png"
+                src={logo}
                 alt="biu logo"
-                preload={true}
-                loading="eager"
                 width={100}
                 height={50}
               />

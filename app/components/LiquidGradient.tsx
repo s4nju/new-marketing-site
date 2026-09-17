@@ -119,15 +119,20 @@ export default function LiquidGradient({
   className,
   activation = "idle",
 }: LiquidGradientProps) {
-  const ref = useRef<HTMLCanvasElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const canvas = ref.current;
-    if (!canvas) return;
+    const host = ref.current;
+    if (!host) return;
 
     // The CSS background is a complete static fallback. Respect reduced
     // motion without allocating a WebGL context or compiling shaders.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // A fresh canvas also makes OffscreenCanvas safe across Strict Mode effects.
+    const canvas = document.createElement("canvas");
+    canvas.style.cssText = "display:block;width:100%;height:100%;opacity:0";
+    host.appendChild(canvas);
 
     let cancelled = false;
     let idleHandle: number | undefined;
@@ -137,6 +142,81 @@ export default function LiquidGradient({
 
     const initialize = () => {
       if (cancelled || cleanupRenderer) return;
+
+      if (typeof Worker !== "undefined" && "transferControlToOffscreen" in canvas) {
+        let worker: Worker | undefined;
+        let transferred = false;
+        try {
+          worker = new Worker("/effects/liquid-gradient.v1.js");
+          const rendererWorker = worker;
+          const offscreen = canvas.transferControlToOffscreen();
+          transferred = true;
+          let visible = false;
+          let interacting = false;
+          let resumeTimer: ReturnType<typeof setTimeout> | undefined;
+          const updateActivity = () => rendererWorker.postMessage({
+            type: "active", value: visible && !document.hidden && !interacting,
+          });
+          const visibility = new IntersectionObserver(([entry]) => {
+            visible = entry.isIntersecting;
+            updateActivity();
+          });
+          const resize = new ResizeObserver(([entry]) => {
+            rendererWorker.postMessage({
+              type: "resize", width: entry.contentRect.width,
+              height: entry.contentRect.height,
+            });
+          });
+          const pauseForInput = () => {
+            if (!visible) return;
+            interacting = true;
+            updateActivity();
+            if (resumeTimer) clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => {
+              interacting = false;
+              updateActivity();
+            }, INPUT_IDLE_DELAY);
+          };
+          const onError = () => {
+            canvas.style.opacity = "0";
+            rendererWorker.terminate();
+          };
+          worker.onmessage = ({ data }) => {
+            if (data.type === "ready") {
+              canvas.style.opacity = "1";
+              updateActivity();
+            } else if (data.type === "error") onError();
+          };
+          worker.onerror = onError;
+          const bounds = host.getBoundingClientRect();
+          worker.postMessage({
+            type: "init", canvas: offscreen, width: bounds.width, height: bounds.height,
+            vertexSource: VERT, fragmentSource: FRAG,
+          }, [offscreen]);
+          visibility.observe(host);
+          resize.observe(host);
+          document.addEventListener("visibilitychange", updateActivity);
+          window.addEventListener("scroll", pauseForInput, { passive: true });
+          window.addEventListener("wheel", pauseForInput, { passive: true });
+          window.addEventListener("touchmove", pauseForInput, { passive: true });
+          cleanupRenderer = () => {
+            visibility.disconnect();
+            resize.disconnect();
+            if (resumeTimer) clearTimeout(resumeTimer);
+            document.removeEventListener("visibilitychange", updateActivity);
+            window.removeEventListener("scroll", pauseForInput);
+            window.removeEventListener("wheel", pauseForInput);
+            window.removeEventListener("touchmove", pauseForInput);
+            rendererWorker.terminate();
+          };
+          return;
+        } catch {
+          worker?.terminate();
+          // A transferred canvas cannot allocate a main-thread context.
+          if (transferred) return;
+          // Browsers without worker rendering retain the main-thread renderer.
+        }
+      }
 
       const gl = canvas.getContext("webgl", {
         alpha: false,
@@ -285,6 +365,7 @@ export default function LiquidGradient({
 
       resize();
       draw();
+      canvas.style.opacity = "1";
       visibilityObserver.observe(canvas);
       resizeObserver.observe(canvas);
       document.addEventListener("visibilitychange", onVisibilityChange);
@@ -354,8 +435,9 @@ export default function LiquidGradient({
         window.cancelIdleCallback(idleHandle);
       }
       cleanupRenderer?.();
+      canvas.remove();
     };
   }, [activation]);
 
-  return <canvas ref={ref} className={className} aria-hidden="true" />;
+  return <div ref={ref} className={className} aria-hidden="true" />;
 }

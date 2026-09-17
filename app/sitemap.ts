@@ -4,7 +4,7 @@ import { getPublishedBlogPosts } from "@/lib/blog";
 import { siteConfig } from "./site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const blogPosts: MetadataRoute.Sitemap = getPublishedBlogPosts().map(
+  const blogPosts: MetadataRoute.Sitemap = (featureFlags.blogEnabled ? getPublishedBlogPosts() : []).map(
     (post) => ({
       url: `${siteConfig.url}/blog/${post.slug}`,
       lastModified: new Date(post.updatedAt ?? post.publishedAt),
@@ -16,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: siteConfig.url,
-      lastModified: new Date("2026-07-23"),
+      lastModified: new Date("2026-09-17"),
       changeFrequency: "weekly",
       priority: 1,
     },

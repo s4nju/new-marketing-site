@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "images:hero": "node scripts/optimize-hero.mjs",
     "start": "next start",
     "lint": "next lint"
   },

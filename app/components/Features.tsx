@@ -1,5 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import addAnything from "../../public/images/app-marketing/add-anything.png";
+import library from "../../public/images/app-marketing/library.webp";
+import dailyQuiz from "../../public/images/app-marketing/daily-quiz.png";
+import assistant from "../../public/images/app-marketing/ai-assistant-image.webp";
 import {
   FlowerLotusIcon,
   MoonStarsIcon,
@@ -13,7 +17,7 @@ const cards = [
     icon: FlowerLotusIcon,
     title: "add anything",
     href: "/pdf-to-flashcards",
-    image: "/images/app-marketing/add-anything.png",
+    image: addAnything,
     tone: "berry" as const,
     desc: "videos, links, pdfs, photos of notes. tap add and walk away.",
   },
@@ -21,7 +25,7 @@ const cards = [
     icon: MoonStarsIcon,
     title: "library",
     href: "/ai-flashcard-maker",
-    image: "/images/app-marketing/library.webp",
+    image: library,
     tone: "green" as const,
     desc: "every item you add is organised to enhnace your learning, automatically.",
   },
@@ -29,14 +33,14 @@ const cards = [
     icon: PlantIcon,
     title: "daily quiz",
     href: "/spaced-repetition",
-    image: "/images/app-marketing/daily-quiz.png",
+    image: dailyQuiz,
     tone: "blue" as const,
     desc: "biu schedules each card from your review history and increases the interval when you answer correctly.",
   },
   {
     icon: RabbitIcon,
     title: "assistant",
-    image: "/images/app-marketing/ai-assistant-image.webp",
+    image: assistant,
     href: "/ai-flashcard-maker",
     tone: "apricot" as const,
     desc: "ask anything from your assistant, it will organize all your random thoughts and give you the perfect answers.",
@@ -75,9 +79,7 @@ export default function Features() {
               <Image
                 src={image}
                 alt=""
-                width={470}
-                height={1024}
-                priority={false}
+                sizes="(max-width: 720px) calc((100vw - 112px) / 2), (max-width: 1200px) calc((100vw - 200px) / 4), 250px"
               />
             </div>
           </article>

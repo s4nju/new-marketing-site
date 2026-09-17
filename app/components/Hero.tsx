@@ -1,4 +1,4 @@
-import Image from "next/image";
+import PhoneImage from "./PhoneImage";
 import LiquidGradient from "./LiquidGradient";
 import { MoonSparkle, Leaf, Lotus, Lightning } from "./icons";
 import styles from "./Hero.module.css";
@@ -53,15 +53,10 @@ export default function Hero() {
 
         <div className={styles.phoneWrap}>
           <div className={styles.phone}>
-            <Image
-              src="/images/phone-mockup.png"
+            <PhoneImage
               alt="biu app dashboard showing today's quiz, weak cards, and recently added notes"
-              decoding="sync"
-              loading="eager"
-              fetchPriority="high"
-              width={470}
-              height={1024}
-              sizes="(max-width: 820px) calc(100vw - 48px), 360px"
+              eager
+              sizes="(max-width: 407px) calc(100vw - 60px), 348px"
             />
           </div>
 

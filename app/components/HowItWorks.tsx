@@ -6,6 +6,9 @@ import {
   SparkleIcon,
 } from "@/app/ui/ph-icon";
 import Image from "next/image";
+import add from "../../public/images/marketing/how-it-works-add.png";
+import breakDown from "../../public/images/marketing/how-it-works-break-down.png";
+import remember from "../../public/images/marketing/how-it-works-remember.png";
 import styles from "./HowItWorks.module.css";
 
 const steps = [
@@ -13,21 +16,21 @@ const steps = [
     num: "1.",
     title: "add it",
     desc: "paste any link or upload a pdf, video, or photo of your notes.",
-    image: "/images/marketing/how-it-works-add.png",
+    image: add,
     alt: "Links, PDFs, videos, and handwritten notes flowing into biu",
   },
   {
     num: "2.",
     title: "biu breaks it down",
     desc: "a clear summary and a deck of flashcards, generated automatically.",
-    image: "/images/marketing/how-it-works-break-down.png",
+    image: breakDown,
     alt: "A study document becoming a summary and an organized flashcard deck",
   },
   {
     num: "3.",
     title: "remember it",
     desc: "biu schedules each card from your review history and increases the interval when you answer correctly.",
-    image: "/images/marketing/how-it-works-remember.png",
+    image: remember,
     alt: "Flashcards scheduled across widening review intervals to build lasting memory",
   },
 ];
@@ -68,8 +71,8 @@ export default function HowItWorks() {
                 alt={s.alt}
                 className={styles.visualImage}
                 fill
-                quality={92}
-                sizes="(max-width: 860px) calc(100vw - 48px), 33vw"
+                quality={85}
+                sizes="(max-width: 440px) calc(100vw - 48px), (max-width: 860px) 392px, (max-width: 1200px) calc((100vw - 96px) / 3), 368px"
                 src={s.image}
               />
             </div>

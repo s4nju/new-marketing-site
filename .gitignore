@@ -15,4 +15,5 @@ docs/adr/*
 !docs/adr/0001-repository-backed-blog.md
 !docs/blog-authoring.md
 !docs/glossary.md
+!docs/performance-audit-2026-09-17.md
 .gstack/

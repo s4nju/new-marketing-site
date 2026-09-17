@@ -43,52 +43,8 @@
   background-position: center;
   background-color: #e7ddc9;
 }
-.visualPlain {
-  background: linear-gradient(135deg, #e9efe4, #dfe9df);
-}
-.visualBackground {
+.visualImage {
   object-fit: cover;
-  object-position: center;
-}
-.overlay {
-  position: absolute;
-  z-index: 1;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 16px 34px rgba(44, 39, 34, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.overlay img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.ov1 {
-  left: 18px;
-  bottom: 24px;
-}
-.ov2 {
-  right: 16px;
-  top: 30px;
-}
-.ov3 {
-  left: 22px;
-  top: 40px;
-}
-.ov4 {
-  right: 18px;
-  bottom: 30px;
-}
-.ov5 {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .overlay:not(.ov5):hover { transform: scale(1.05); }
-  .ov5:hover { transform: translate(-50%, -50%) scale(1.05); }
 }
 
 .meta {

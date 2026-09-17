@@ -1,4 +1,5 @@
 import Image from "next/image";
+import padlock from "../../public/images/icon-padlock.png";
 import { CloudSlash, ShieldCheck, SlidersHorizontal } from "../ui/ph-icon";
 import styles from "./Referral.module.css";
 
@@ -14,10 +15,11 @@ export default function Referral() {
       <div className={styles.card}>
         <div className={styles.lock} aria-hidden="true">
           <Image
-            src="/images/icon-padlock.png"
+            src={padlock}
             alt=""
             width={258}
             height={331}
+            sizes="(max-width: 809px) 182px, 218px"
             data-scroll-reveal
           />
         </div>

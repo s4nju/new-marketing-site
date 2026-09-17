@@ -1,0 +1,46 @@
+{
+  "avif": [
+    {
+      "src": "/images/optimized/phone-384.d7bc8f83f992.avif",
+      "width": 384,
+      "height": 835
+    },
+    {
+      "src": "/images/optimized/phone-640.e985cd1ee51b.avif",
+      "width": 640,
+      "height": 1391
+    },
+    {
+      "src": "/images/optimized/phone-750.1ffc7f2cb24f.avif",
+      "width": 750,
+      "height": 1631
+    },
+    {
+      "src": "/images/optimized/phone-1080.3af0ee4604d1.avif",
+      "width": 1080,
+      "height": 2348
+    }
+  ],
+  "webp": [
+    {
+      "src": "/images/optimized/phone-384.8697ebe02d8d.webp",
+      "width": 384,
+      "height": 835
+    },
+    {
+      "src": "/images/optimized/phone-640.cec1fd2372a2.webp",
+      "width": 640,
+      "height": 1391
+    },
+    {
+      "src": "/images/optimized/phone-750.7ad17984e5b7.webp",
+      "width": 750,
+      "height": 1631
+    },
+    {
+      "src": "/images/optimized/phone-1080.702266849349.webp",
+      "width": 1080,
+      "height": 2348
+    }
+  ]
+}

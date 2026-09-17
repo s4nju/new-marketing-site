@@ -18,7 +18,7 @@ export default function StructuredData() {
         "@id": `${siteConfig.url}/#organization`,
         name: siteConfig.name,
         url: siteConfig.url,
-        logo: `${siteConfig.url}/icon.svg`,
+        logo: `${siteConfig.url}/images/biu-logo.png`,
         ...(sameAs.length > 0 ? { sameAs } : {}),
       },
       {

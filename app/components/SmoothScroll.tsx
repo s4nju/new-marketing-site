@@ -10,7 +10,6 @@ export default function SmoothScroll() {
 
     let cancelled = false;
     let idleHandle: number | undefined;
-    let delayHandle: ReturnType<typeof setTimeout> | undefined;
     let destroy: (() => void) | undefined;
 
     const initialize = async () => {
@@ -36,11 +35,12 @@ export default function SmoothScroll() {
       }
     };
 
-    delayHandle = setTimeout(startWhenIdle, 1000);
+    // Load the wheel-scrolling enhancement when it is first needed.
+    window.addEventListener("wheel", startWhenIdle, { once: true, passive: true });
 
     return () => {
       cancelled = true;
-      if (delayHandle) clearTimeout(delayHandle);
+      window.removeEventListener("wheel", startWhenIdle);
       if (idleHandle !== undefined && "cancelIdleCallback" in window) {
         window.cancelIdleCallback(idleHandle);
       }

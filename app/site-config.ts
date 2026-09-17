@@ -1,11 +1,18 @@
+const configuredUrl = new URL(
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.getbiu.app",
+);
+// The hosting platform permanently redirects the bare production domain to www.
+if (configuredUrl.hostname === "getbiu.app") {
+  configuredUrl.hostname = "www.getbiu.app";
+  configuredUrl.protocol = "https:";
+}
+
 export const siteConfig = {
   name: "biu",
-  title: "biu - learn anything and remember forever",
+  title: "biu — AI Flashcards & Spaced Repetition Study App",
   description:
-    "biu is your smartest companion. Add anything and it breaks it into flashcards and sets you up for spaced repetition, so reviewing never feels like a chore.",
-  url:
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
-    "https://getbiu.app",
+    "Turn PDFs, videos, links, and notes into AI flashcards and summaries. Review with biu's daily spaced repetition quiz. Request access to the private beta.",
+  url: configuredUrl.toString().replace(/\/$/, ""),
   links: {
     ios: process.env.NEXT_PUBLIC_IOS_APP_URL,
     android: process.env.NEXT_PUBLIC_ANDROID_APP_URL,
