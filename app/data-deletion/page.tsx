@@ -9,7 +9,7 @@ import styles from "./DataDeletionPage.module.css";
 const path = "/data-deletion";
 const title = `Request data deletion | ${siteConfig.name}`;
 const description =
-  "Request deletion of your biu account data. Share the email linked to your account, how you signed in, and why you want your data deleted.";
+  "Request deletion of your biu account data. Share the email linked to your account and how you signed in. You can optionally include a reason.";
 
 export const metadata: Metadata = {
   title,
@@ -68,7 +68,7 @@ export default function DataDeletionPage() {
             <p className={styles.note}>
               Prefer email? Write to{" "}
               <a href="mailto:admin@getbiu.app">admin@getbiu.app</a> from your
-              account email with your sign-in method and reason. You can also
+              account email with your sign-in method and an optional reason. You can also
               delete your account directly inside the app’s settings. See our{" "}
               <a href="/privacy">privacy policy</a> for details.
             </p>

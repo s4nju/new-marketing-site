@@ -66,14 +66,15 @@ export default function DataDeletionForm() {
       </fieldset>
 
       <div className={styles.field}>
-        <label htmlFor="deletion-reason">Reason for deletion</label>
+        <label className={styles.reasonLabel} htmlFor="deletion-reason">
+          Reason for deletion <span className={styles.optional}>Optional</span>
+        </label>
         <textarea
           disabled={submitted}
           id="deletion-reason"
           maxLength={2000}
           name="reason"
           placeholder="tell us why you want your data deleted…"
-          required
           rows={5}
         />
       </div>

@@ -13,7 +13,7 @@ const dataDeletionSchema = z.object({
   authProvider: z.enum(["google", "apple"], {
     message: "select how you signed in.",
   }),
-  reason: z.string().trim().min(1, "tell us why you want your data deleted.").max(2000),
+  reason: z.string().trim().max(2000).default(""),
   company: z.string().max(200).optional(),
 });
 
@@ -47,7 +47,7 @@ export async function requestDataDeletion(
   const parsed = dataDeletionSchema.safeParse({
     email: formData.get("email"),
     authProvider: formData.get("authProvider"),
-    reason: formData.get("reason"),
+    reason: formData.get("reason") ?? undefined,
     company: formData.get("company") || undefined,
   });
 
