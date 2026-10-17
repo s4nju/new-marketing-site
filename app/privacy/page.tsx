@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const contents = [
   ["information-we-collect", "Information we collect"],
   ["how-we-use-information", "How we use your information"],
-  ["ai-processing", "How AI processes your content"],
+  ["ai-processing", "Content processing and personalization"],
   ["how-we-share-information", "How we share your information"],
   ["data-retention", "Data retention"],
   ["international-transfers", "International data transfers"],
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
             <div className={styles.intro}>
               <span className={styles.kicker}>legal</span>
               <h1>Privacy Policy</h1>
-              <p className={styles.updated}>last updated September 12, 2026</p>
+              <p className={styles.updated}>last updated October 17, 2026</p>
               <p className={styles.lede}>
                 FlipFlop Labs Private Limited (“<strong>biu</strong>”, “we”,
                 “us”, or “our”) builds the biu mobile app and the website at
@@ -129,12 +129,9 @@ export default function PrivacyPage() {
                       Audio is sent for transcription and the temporary recording
                       is removed from the app after transcription or discard; the
                       resulting text may be retained when you use or send it.
-                    </li>
-                    <li>
-                      <strong>Personal Memory:</strong> if you separately enable
-                      this Pro feature, selected facts inferred from eligible
-                      tutor conversations, the categories they belong to, and
-                      your consent and deletion settings.
+                      If you enable optional personalization, we also collect
+                      learning preferences inferred from eligible conversations
+                      and your choices about that processing.
                     </li>
                     <li>
                       <strong>Purchase, gift, and referral information:</strong>
@@ -153,6 +150,11 @@ export default function PrivacyPage() {
                       directly, such as support requests to admin@getbiu.app.
                     </li>
                   </ul>
+                  <p>
+                    Only provide material you have the right to share with us,
+                    including any permissions required for recordings or
+                    personal information relating to other people.
+                  </p>
                   <h3>Information collected automatically</h3>
                   <ul>
                     <li>
@@ -220,6 +222,11 @@ export default function PrivacyPage() {
                       completed.
                     </li>
                     <li>
+                      Adapt study recommendations and, when you enable optional
+                      personalization, use saved learning preferences to tailor
+                      later conversations.
+                    </li>
+                    <li>
                       Process and manage your free trial and Pro subscription,
                       including communicating with Apple or Google about your
                       purchase status.
@@ -249,48 +256,81 @@ export default function PrivacyPage() {
                     third-party advertising, and we do not sell your personal
                     information.
                   </p>
+                  <h3>Legal grounds for EEA and UK processing</h3>
+                  <p>
+                    FlipFlop Labs Private Limited is the controller of your
+                    personal data under the GDPR and UK GDPR. We rely on the
+                    following grounds, depending on the purpose of processing:
+                  </p>
+                  <ul>
+                    <li>
+                      <strong>Contract:</strong> processing needed to provide
+                      the Service you request, including account access,
+                      content processing, study tools, AI conversations, and
+                      administering your purchases.
+                    </li>
+                    <li>
+                      <strong>Consent:</strong> optional personalization you
+                      choose to enable and other processing for which the law
+                      requires your consent. You can withdraw consent through
+                      the available feature controls or by contacting us.
+                      Withdrawal does not affect processing that was lawful
+                      before withdrawal.
+                    </li>
+                    <li>
+                      <strong>Legitimate interests:</strong> protecting accounts,
+                      preventing fraud, diagnosing failures, and improving the
+                      reliability of the Service, where that processing is
+                      necessary and your interests and fundamental rights do
+                      not override ours. This ground does not replace consent
+                      where consent is legally required.
+                    </li>
+                    <li>
+                      <strong>Legal obligations:</strong> keeping records
+                      required by tax or accounting law and responding to
+                      legally binding requests.
+                    </li>
+                  </ul>
+                  <p>
+                    If information necessary to provide a feature is not
+                    supplied, we may be unable to provide that feature.
+                  </p>
                 </section>
 
                 <section id="ai-processing">
                   <SectionHeading number="03">
-                    How AI processes your content
+                    Content processing and personalization
                   </SectionHeading>
                   <p>
-                    To provide AI features, biu sends the parts of Your Content
-                    and instructions needed for the requested feature to AI
-                    processors. Current processing routes include OpenRouter,
-                    which routes requests to configured model providers such as
-                    Google, OpenAI, DeepSeek, or Anthropic, and direct Google
-                    Gemini processing for certain document, image, video, and
-                    embedding tasks. Short voice clips are sent through
-                    OpenRouter for transcription. The precise provider may vary
-                    by feature and may change as models are updated.
+                    We use external AI, transcription, search, and data
+                    processing services to turn Your Content into summaries,
+                    flashcards, and quizzes, transcribe voice input, retrieve
+                    relevant information, and answer tutor questions. These
+                    providers receive the content, conversations, recordings,
+                    and related instructions needed to perform the requested
+                    task on our behalf.
                   </p>
                   <p>
-                    If you enable Personal Memory, biu uses an AI model to
-                    extract a limited set of allowed facts from eligible tutor
-                    conversations and stores those facts with Supermemory so
-                    they can personalize later conversations. This is separate
-                    from ordinary chat history and can be disabled or
-                    permanently deleted from the app. Disabling Personal Memory
-                    stops new use but does not delete saved facts unless you
-                    choose delete-all.
+                    Optional personalization uses learning preferences derived
+                    from eligible conversations to improve later responses.
+                    You control whether this feature is enabled and can clear
+                    its saved preferences in the app. Turning it off stops its
+                    use but does not itself erase previously saved preferences.
                   </p>
                   <p>
                     biu does not use Your Content to train its own
-                    general-purpose AI models. AI processors handle information
-                    under their commercial terms and the privacy and retention
-                    controls available to biu. Provider retention can vary by
-                    service and configuration, so do not upload sensitive
-                    personal information that is not necessary for your use of
-                    the Service.
+                    general-purpose AI models. External processing is subject
+                    to the relevant service agreements and available privacy
+                    and retention controls. Retention by a provider depends on
+                    the service and its configuration; removal of a temporary
+                    recording from your device does not by itself erase copies
+                    held by a processing provider.
                   </p>
                   <p>
-                    Because this processing happens for every piece of content
-                    you add, please avoid uploading anything you would not want
-                    processed by an AI system — for example, sensitive personal
-                    information about yourself or others that isn’t necessary
-                    for your studies.
+                    Content you add for AI features is processed by these
+                    services. Avoid including sensitive personal information
+                    about yourself or others unless it is necessary for your
+                    requested use.
                   </p>
                 </section>
 
@@ -299,83 +339,51 @@ export default function PrivacyPage() {
                     How we share your information
                   </SectionHeading>
                   <p>
-                    We share information only with the service providers who
-                    help us run biu, and only to the extent needed for them to
-                    perform their role:
+                    We disclose information to providers that support the
+                    Service, limited to what they need for their work and
+                    subject to applicable contractual and legal safeguards.
+                    The categories of recipients and their roles are:
                   </p>
                   <ul>
                     <li>
-                      <strong>Supabase</strong> — authentication and managed
-                      database services used for account data, Your Content,
-                      chats, preferences, and learning activity.
+                      <strong>Account, hosting, and storage providers:</strong>
+                      {" "}authentication, databases, uploaded files,
+                      conversations, preferences, learning activity, and
+                      searchable indexes of your material.
                     </li>
                     <li>
-                      <strong>Cloudflare R2</strong> — object storage for uploads
-                      and attachments while they are processed or retained for
-                      your account.
+                      <strong>AI, transcription, search, and personalization
+                      providers:</strong> content and conversation processing,
+                      voice transcription, relevant web searches, and storage
+                      and retrieval of optional saved learning preferences.
                     </li>
                     <li>
-                      <strong>OpenRouter and model providers</strong> — AI
-                      generation and transcription routing. Depending on the
-                      feature, a request may be processed by Google, OpenAI,
-                      DeepSeek, Anthropic, or another model provider that we
-                      configure and vet.
+                      <strong>Analytics, diagnostics, and link-attribution
+                      providers:</strong> device and account identifiers, IP
+                      addresses, app and event information, crash reports, and
+                      link-resolution metadata used to understand service
+                      performance and resolve referral or gift links. Analytics
+                      may be associated with your account after sign-in;
+                      session replay is disabled.
                     </li>
                     <li>
-                      <strong>Google</strong> — direct Gemini processing for
-                      document, image, video, and embedding features, as well as
-                      Google sign-in and Android platform services.
+                      <strong>Payment and app-platform providers:</strong>
+                      {" "}transaction, subscription, gift, entitlement,
+                      renewal, and refund administration, as well as sign-in
+                      and app distribution. Payment credentials are handled by
+                      the relevant payment platform.
                     </li>
                     <li>
-                      <strong>Supermemory</strong> — storage and retrieval of the
-                      limited Personal Memory facts you ask biu to remember.
+                      <strong>Notification and update providers:</strong>
+                      {" "}push tokens and technical delivery information used
+                      to send notifications and deliver app updates.
                     </li>
                     <li>
-                      <strong>PostHog</strong> — selected product analytics,
-                      app-lifecycle events, and crash reporting. Analytics may
-                      be linked to your biu account identifier after sign-in;
-                      session replay is disabled. PostHog may process IP,
-                      device, app-version, event, and diagnostic information on
-                      servers in the United States.
-                    </li>
-                    <li>
-                      <strong>RevenueCat, Apple, and Google</strong> — offering,
-                      purchase, gift, subscription, entitlement, renewal, and
-                      refund administration. Apple and Google also provide
-                      sign-in, distribution, and device platform services.
-                    </li>
-                    <li>
-                      <strong>Expo</strong> — app updates and push-notification
-                      delivery infrastructure. Expo receives the device push
-                      token and technical delivery information needed to send a
-                      notification or deliver an update.
-                    </li>
-                    <li>
-                      <strong>ChottuLink</strong> — deep-link and deferred-link
-                      resolution for referrals and prepaid gifts. It may process
-                      link, device, IP, install, and resolution metadata needed
-                      to attribute and deliver the link when the integration is
-                      enabled.
-                    </li>
-                    <li>
-                      <strong>Exa</strong> — web-search processing when the AI
-                      tutor determines that a user request needs current public
-                      web information.
-                    </li>
-                    <li>
-                      <strong>Qdrant-compatible vector infrastructure</strong> —
-                      semantic indexes used to retrieve relevant portions of
-                      your material and delete them with your account.
-                    </li>
-                    <li>
-                      <strong>Resend</strong> — delivery of transactional and
-                      service-related email where enabled.
-                    </li>
-                    <li>
-                      <strong>Google Sheets / Google Workspace</strong> — used
-                      to temporarily store email addresses collected through
-                      our pre-launch waitlist. New accounts are created and
-                      stored directly in Supabase.
+                      <strong>Communications and administrative providers:</strong>
+                      {" "}service emails, support correspondence, beta and
+                      waitlist sign-ups, and privacy-request records, including
+                      the account email, sign-in method, and any optional
+                      explanation you submit in a deletion request.
                     </li>
                   </ul>
                   <p>
@@ -385,32 +393,74 @@ export default function PrivacyPage() {
                     case we will notify you before your information becomes
                     subject to a different privacy policy.
                   </p>
+                  <h3>Information you choose to share publicly</h3>
+                  <p>
+                    Creating a chat-sharing link makes a read-only snapshot
+                    available to anyone who has the link, including people to
+                    whom a recipient forwards it. Review the snapshot before
+                    sharing and avoid including information you want to keep
+                    private. Revoking the link, deleting the thread, or deleting
+                    your account removes access through biu, but cannot remove
+                    copies, screenshots, or downloads already made by others.
+                  </p>
                 </section>
 
                 <section id="data-retention">
                   <SectionHeading number="05">Data retention</SectionHeading>
                   <p>
-                    We keep your account information, Your Content, chats,
-                    Personal Memory facts, purchase and gift state, and learning
-                    activity for as long as your account is active or as needed
-                    to provide the feature. A voice recording is used for the
-                    requested transcription and is not stored as a chat message
-                    by biu. Public chat snapshots remain available until you
-                    revoke the link, delete the thread, or delete your account.
-                    Analytics and security records are kept only for the period
-                    reasonably needed for product analysis, debugging, fraud
-                    prevention, and security. Historical waitlist email
-                    addresses are deleted when they are no longer needed or
-                    when you ask us to delete them, whichever comes first.
+                    We retain personal information while your account is
+                    active and for the time needed to provide the relevant
+                    feature or meet a lawful retention requirement. We
+                    determine that time by considering the purpose of the
+                    information, the duration of our relationship with you,
+                    outstanding transactions or disputes, applicable legal
+                    requirements, and proportionate security and fraud risks.
+                    Information no longer needed for those purposes is deleted
+                    or irreversibly anonymized.
                   </p>
                   <p>
-                    When you delete your account, we delete or anonymize your
-                    personal information and Your Content within 30 days of a
-                    verified request, except
-                    where we are required to retain certain records for longer
-                    to comply with legal, tax, security, or fraud-prevention
-                    obligations, or where data persists briefly in encrypted
-                    backups until they are rotated out.
+                    Account information, Your Content, conversations, saved
+                    learning preferences, and progress are retained to support
+                    your use of the Service. Temporary voice recordings are
+                    removed from the app after transcription or discard and
+                    are not stored by biu as chat messages; text you choose to
+                    use or send may remain. Shared snapshots remain accessible
+                    until you revoke the link, delete the thread, or delete
+                    your account. Analytics, security, support, waitlist, and
+                    privacy-request records are kept only as needed for their
+                    stated purposes, including responding to requests and
+                    documenting their resolution.
+                  </p>
+                  <h3>Account deletion</h3>
+                  <p>
+                    Requests made in the app schedule permanent erasure after
+                    a 30-day cancellation period. The scheduled date and request
+                    status are shown in Profile → Your data, where you can
+                    cancel before erasure begins. Continuing to use biu does
+                    not cancel your request. For website or email requests, we
+                    verify ownership and confirm the deletion arrangements and
+                    expected timeframe. Requests are handled without undue
+                    delay and within applicable legal deadlines.
+                  </p>
+                  <p>
+                    Permanent deletion removes your account and associated
+                    personal information, content, conversations, uploads, and
+                    learning data from our active systems. We also request
+                    deletion of associated data held on our behalf by service
+                    providers. Limited records may remain where necessary for
+                    legal or tax obligations, resolving disputes, security, or
+                    fraud prevention, only for as long as that reason applies.
+                    Required payment and gift records may be retained under a
+                    pseudonymous reference; pseudonymization does not make
+                    those records anonymous. Backup copies may persist until
+                    they expire under the relevant backup retention schedule
+                    and remain subject to applicable safeguards.
+                  </p>
+                  <p>
+                    Deleting your biu account does not cancel an Apple or
+                    Google subscription. Manage or cancel it separately through
+                    the relevant store; cancellation is not a prerequisite for
+                    requesting account deletion.
                   </p>
                 </section>
 
@@ -425,7 +475,9 @@ export default function PrivacyPage() {
                     require our service providers to protect it consistent with
                     this Privacy Policy and applicable law, including through
                     contractual safeguards such as standard contractual clauses
-                    where required.
+                    where required. Contact admin@getbiu.app for information
+                    about the safeguards applicable to your information or to
+                    request a copy where available.
                   </p>
                 </section>
 
@@ -435,31 +487,39 @@ export default function PrivacyPage() {
                   </SectionHeading>
                   <p>
                     You can review and update your account information,
-                    withdraw notification permission, enable or disable
-                    Personal Memory, permanently delete Personal Memory, and
-                    delete individual pieces of content, directly inside the biu
-                    app at any time. You can also permanently delete your
-                    account and associated data from within the app’s settings,
-                    via our{" "}
+                    withdraw notification permission, manage or clear optional
+                    personalization, and delete individual pieces of content
+                    inside the biu app. To request permanent deletion of your
+                    account and associated data, open Profile → Your data, use
+                    our{" "}
                     <a href="/data-deletion">data deletion request page</a>,
-                    or by emailing admin@getbiu.app.
+                    or email admin@getbiu.app. The retention section explains
+                    the cancellation period and any records retained after
+                    deletion.
                   </p>
                   <p>
                     The current app does not provide a separate control to opt
                     out of product analytics or referral and gift-link
                     attribution. You may contact admin@getbiu.app with a privacy
-                    request. We plan to add an in-app privacy choice before
-                    relying on consent for processing that requires it.
+                    request or objection. Reading this policy or continuing to
+                    use biu does not itself constitute consent where separate
+                    consent is required by law.
                   </p>
                   <h3>
                     If you are in the European Economic Area or United Kingdom
                   </h3>
                   <p>
-                    You have the right to access, correct, delete, or export
-                    your personal data, to restrict or object to certain
-                    processing, and to withdraw consent at any time where
-                    processing is based on consent. You may lodge a complaint
-                    with your local data protection authority.
+                    Subject to the conditions and exceptions in applicable
+                    law, you may access, correct, delete, or receive a portable
+                    copy of your personal data, restrict processing, and
+                    withdraw consent for processing based on consent. You may
+                    lodge a complaint with your local data protection authority.
+                  </p>
+                  <p>
+                    <strong>Right to object:</strong> you may object to
+                    processing based on legitimate interests on grounds
+                    relating to your particular situation by contacting
+                    admin@getbiu.app.
                   </p>
                   <h3>If you are in California</h3>
                   <p>
@@ -473,18 +533,29 @@ export default function PrivacyPage() {
                   </p>
                   <h3>If you are in India</h3>
                   <p>
-                    Under the Digital Personal Data Protection Act, 2023, you
-                    have the right to access a summary of your personal data and
-                    the processing activities involved, request correction or
-                    erasure, nominate another individual to exercise your rights
-                    in the event of death or incapacity, and file a grievance
-                    with us before approaching the relevant Data Protection
-                    Board.
+                    As applicable provisions of the Digital Personal Data
+                    Protection Act, 2023 take effect, rights under that law
+                    include access to a summary of personal data and related
+                    processing, correction or erasure, nomination of another
+                    individual to exercise rights in the event of death or
+                    incapacity, and grievance redressal. You may contact us
+                    about your information or a grievance at any time.
                   </p>
                   <p>
                     Regardless of where you live, you can reach us at
                     admin@getbiu.app to exercise any of these rights, and we
                     will respond within the time required by applicable law.
+                  </p>
+                  <h3>Verifying a privacy request</h3>
+                  <p>
+                    To protect your account, we may ask you to confirm access
+                    to its email address or provide other information
+                    reasonably necessary to verify your identity and understand
+                    the request. If someone acts for you, we may also verify
+                    their authority. Please do not send passwords or payment
+                    credentials. Verification information is used to handle
+                    the request and retained only as needed for that purpose
+                    or a legal recordkeeping requirement.
                   </p>
                 </section>
 
@@ -493,13 +564,15 @@ export default function PrivacyPage() {
                     Children&apos;s privacy
                   </SectionHeading>
                   <p>
-                    biu is intended for users aged 13 and older, and we do not
-                    knowingly allow anyone under 13 to create an account or use
-                    the Service. Users aged 13 to 17 may use biu only with the
+                    biu is intended for users aged 13 and older and is not
+                    directed at children under 13. Where local law requires
+                    parental consent at a higher age, that requirement also
+                    applies. Users aged 13 to 17 may use biu only with the
                     consent and supervision of a parent or legal guardian.
-                    If you believe a child under 13 has created an account or
-                    provided us with personal information, please contact us at
-                    admin@getbiu.app and we will delete it promptly.
+                    If we learn that we have collected a child’s personal
+                    information without consent required by applicable law,
+                    we will take steps to delete it promptly. Contact
+                    admin@getbiu.app if you believe this has happened.
                   </p>
                 </section>
 
