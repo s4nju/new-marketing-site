@@ -46,7 +46,7 @@ const faqs = [
   {
     question: "Can I use the AI flashcard maker now?",
     answer:
-      "biu is currently in private beta. You can request beta access; public iOS and Android availability is planned for launch.",
+      "Yes. biu is available on iOS and Android. Download it from the App Store or Google Play.",
   },
 ] as const satisfies readonly EditorialFaq[];
 
@@ -68,9 +68,9 @@ const relatedPages = [
   {
     href: "/#pricing",
     label: "plans",
-    title: "Review planned launch pricing",
+    title: "Compare Plus and Pro",
     description:
-      "Compare the planned free trial, monthly plan, and yearly plan.",
+      "Compare the 7-day trial, Plus and Pro prices, and monthly credit allowances.",
   },
 ] as const satisfies readonly RelatedPage[];
 

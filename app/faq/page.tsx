@@ -11,7 +11,7 @@ import styles from "./FaqPage.module.css";
 export const metadata: Metadata = {
   title: `Frequently asked questions | ${siteConfig.name}`,
   description:
-    "Answers about biu's AI flashcards, supported study material, spaced-repetition quizzes, pricing, referrals, and AI tutor.",
+    "Answers about biu's AI flashcards, supported study material, spaced-repetition quizzes, Plus and Pro pricing, credits, community decks, and AI tutor.",
   alternates: {
     canonical: "/faq",
   },
@@ -63,7 +63,7 @@ export default function FaqPage() {
             </p>
             <div className={styles.actions}>
               <a href={appAccessHref} className={styles.primaryAction}>
-                request beta access
+                get the app
               </a>
               <Link href="/" className={styles.secondaryAction}>
                 back to home

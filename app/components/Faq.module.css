@@ -1,11 +1,10 @@
 .section {
-  background: var(--white);
-  padding: 80px 40px;
-  scroll-margin-top: 64px;
+  background: var(--features-bg);
+  padding: 96px 24px 56px;
 }
 
 .inner {
-  max-width: 1200px;
+  max-width: 1152px;
   margin: 0 auto;
   display: flex;
   gap: 56px;
@@ -20,6 +19,7 @@
 }
 
 .title {
+  color: var(--cream);
   font-size: 49px;
   font-weight: 500;
   line-height: 1;
@@ -31,7 +31,7 @@
   font-size: 16px;
   line-height: 1.4;
   letter-spacing: -0.02em;
-  color: var(--muted);
+  color: #cbbfa8;
 }
 
 .allQuestions {
@@ -39,7 +39,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: var(--berry);
+  color: rgba(250, 242, 223, 0.82);
   font-size: 16px;
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -47,6 +47,10 @@
 
 .allQuestions span {
   transition: transform 0.2s ease;
+}
+
+.allQuestions:hover {
+  color: var(--cream);
 }
 
 .allQuestions:hover span {
@@ -77,6 +81,29 @@
 
 .itemOpen {
   background: #f6f5f4;
+}
+
+.homeList .item {
+  background: rgba(250, 242, 223, 0.06);
+  border: 1px solid rgba(250, 242, 223, 0.1);
+}
+.homeList .item:hover,
+.homeList .itemOpen {
+  background: rgba(250, 242, 223, 0.1);
+}
+.homeList .question,
+.homeList .plus {
+  color: var(--cream);
+}
+.homeList .question {
+  min-height: 56px;
+  font-size: 17px;
+}
+.homeList .question:focus-visible {
+  outline-color: #efca9d;
+}
+.homeList .answerInner p {
+  color: #cbbfa8;
 }
 
 .question {
@@ -138,7 +165,7 @@
 }
 
 .answerInner p {
-  padding: 0 24px 12px 32px;
+  padding: 0 24px 14px 24px;
   font-size: 16px;
   line-height: 1.4;
   letter-spacing: -0.02em;
@@ -147,7 +174,7 @@
 
 @media (max-width: 1199px) {
   .section {
-    padding: 72px 32px;
+    padding: 80px 24px;
   }
 
   .inner { gap: 48px; }
@@ -157,7 +184,7 @@
 
 @media (max-width: 809px) {
   .section {
-    padding: 64px 20px;
+    padding: 72px 24px;
   }
 
   .inner {
@@ -190,4 +217,21 @@
   .question {
     padding-left: 24px;
   }
+}
+
+/* Homepage layout: centered heading above a single column of questions. */
+.section .inner {
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+.section .head {
+  flex: none;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+.homeList {
+  width: min(100%, 760px);
+  flex: none;
 }

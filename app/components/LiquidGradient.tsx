@@ -68,7 +68,7 @@ void main() {
   vec2 uv = gl_FragCoord.xy / u_res.xy;
   float aspect = u_res.x / u_res.y;
   vec2 p = vec2(uv.x * aspect, uv.y);
-  float t = u_time * 0.09;
+  float t = u_time * 0.24;
 
   vec2 q = vec2(
     fbm(p * 1.3 + vec2(0.0, t)),
@@ -86,7 +86,7 @@ void main() {
   float dn = clamp(d / 0.8, 0.0, 1.0);
   base = mix(base * 0.7, base, smoothstep(0.0, 1.0, dn));
 
-  vec3 col = palette(base + (f - 0.5) * 0.45);
+  vec3 col = palette(base + (f - 0.5) * 0.62);
   float grain = hash(gl_FragCoord.xy) - 0.5;
   gl_FragColor = vec4(col + grain * 0.025, 1.0);
 }
@@ -196,17 +196,13 @@ export default function LiquidGradient({
           visibility.observe(host);
           resize.observe(host);
           document.addEventListener("visibilitychange", updateActivity);
-          window.addEventListener("scroll", pauseForInput, { passive: true });
-          window.addEventListener("wheel", pauseForInput, { passive: true });
-          window.addEventListener("touchmove", pauseForInput, { passive: true });
+                  window.addEventListener("touchmove", pauseForInput, { passive: true });
           cleanupRenderer = () => {
             visibility.disconnect();
             resize.disconnect();
             if (resumeTimer) clearTimeout(resumeTimer);
             document.removeEventListener("visibilitychange", updateActivity);
-            window.removeEventListener("scroll", pauseForInput);
-            window.removeEventListener("wheel", pauseForInput);
-            window.removeEventListener("touchmove", pauseForInput);
+                    window.removeEventListener("touchmove", pauseForInput);
             rendererWorker.terminate();
           };
           return;

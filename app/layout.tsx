@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "./components/SmoothScroll";
 import { siteConfig } from "./site-config";
 
 const poppins = Poppins({
@@ -41,7 +40,7 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "biu — learn anything and remember forever",
+        alt: "biu — study, review, and remember",
       },
     ],
   },
@@ -75,7 +74,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <SmoothScroll />
         {children}
       </body>
     </html>

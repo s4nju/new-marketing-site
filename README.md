@@ -7,8 +7,55 @@ A pixel-faithful rebuild of the biu Framer marketing site (`https://getbiu.app`)
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # production build (fully static)
+npm run build    # Next.js production build
 ```
+
+## Cloudflare deployment
+
+Production is at <https://www.getbiu.app>. The root domain redirects permanently
+to www, preserving paths and query strings. Both hostnames are attached to the
+original `biu-marketing-dev` Worker, retaining its existing encrypted secrets.
+The original test URL <https://biu-marketing-dev.sanjib-code.workers.dev> serves
+the same release with indexing and analytics disabled.
+
+The site uses vinext on Cloudflare Workers, with prerendered pages and static assets
+served by the same Worker. Server Actions run on Workers; a static Pages export
+would not support the beta-access and data-deletion forms.
+
+Use Node.js 22.23.0 (also recorded in `.node-version`) or another version allowed
+by `package.json`. The existing `dev`, `build`, and `start` commands still use
+Next.js for Vercel.
+
+```bash
+npm ci
+npm run dev:vinext        # Cloudflare development server on port 3001
+npm run build:vinext      # build local staging output (not for production)
+npm run build:cloudflare  # build production output
+npm run typecheck:vinext  # type-check without Next.js's generated validator
+npm run start:vinext      # run the built app in the Workers runtime
+npm run deploy:cloudflare # build and deploy production to the existing Worker
+npm run deploy:vinext     # alias for deploy:cloudflare
+```
+
+`cloudflare.config.ts` selects the Cloudflare account, Worker name, custom
+domains, Node compatibility, image optimization, and logs/traces.
+`vite.config.ts` selects production URLs and analytics in production mode.
+Local staging builds use preview metadata and disable indexing and analytics.
+Production builds send `X-Robots-Tag: noindex, nofollow` only on workers.dev;
+`instrumentation-client.ts` also skips analytics on that hostname.
+Do not deploy a staging build to this Worker, because it serves the live domains.
+
+The Worker requires three encrypted secrets: `GOOGLE_SHEET_ID`,
+`GOOGLE_SERVICE_ACCOUNT_EMAIL`, and `GOOGLE_PRIVATE_KEY`. Their values come from
+the existing local environment and are uploaded separately, never committed.
+They point to the same Google Sheet as the existing site, so valid form
+submissions on this dev URL create real rows. Local development reads `.env`.
+
+The apex and www Vercel website DNS records were replaced by Worker-managed
+records on November 11, 2026. API, email, and verification records were preserved.
+The Cloudflare Single Redirect rule `biu_apex_to_www` in the zone ruleset
+`biu canonical hostname redirect` performs the canonical redirect with
+`preserve_query_string` enabled. Keep this rule when changing zone settings.
 
 ## Production URLs
 

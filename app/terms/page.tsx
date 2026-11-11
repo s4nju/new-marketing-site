@@ -15,8 +15,10 @@ const contents = [
   ["your-account", "Your account"],
   ["the-service", "The Service"],
   ["billing", "Free trial, subscriptions & billing"],
-  ["referral-program", "Referral program"],
+  ["credits", "Credits & quiz rewards"],
   ["your-content", "Your content & license"],
+  ["community-decks", "Explore & community decks"],
+  ["reporting", "Reports, moderation & copyright"],
   ["ai-disclaimer", "AI-generated content disclaimer"],
   ["acceptable-use", "Acceptable use"],
   ["our-ip", "Our intellectual property"],
@@ -57,7 +59,8 @@ export default function TermsPage() {
             <div className={styles.intro}>
               <span className={styles.kicker}>legal</span>
               <h1>Terms of Service</h1>
-              <p className={styles.updated}>last updated September 12, 2026</p>
+              <p className={styles.updated}>last updated November 11, 2026</p>
+              <p><strong>Update notice:</strong> These revised Terms take effect on November 25, 2026. They clarify Plus and Pro, credits, quiz rewards, and community-deck use. Until then, the <a href="/terms/2026-09-12">previous Terms</a> apply. The new publishing licence applies to decks published or republished under these revised Terms; it does not retroactively expand permissions for earlier submissions.</p>
               <p className={styles.lede}>
                 These Terms of Service (“<strong>Terms</strong>”) are a legal
                 agreement between you and FlipFlop Labs Private Limited (“
@@ -107,9 +110,10 @@ export default function TermsPage() {
                     account. If you become aware of any unauthorized access,
                     let us know right away at{" "}
                     <a href="mailto:admin@getbiu.app">admin@getbiu.app</a>. You
-                    can delete your account at any time from within the app,
-                    which permanently removes the data associated with it as
-                    described in our Privacy Policy. Deleting your biu account
+                    can request account deletion under Profile → Your data.
+                    Permanent erasure is scheduled after a 30-day cancellation
+                    period; using biu does not cancel the request. The Privacy
+                    Policy explains retained records and copies held by others. Deleting your biu account
                     does not cancel a subscription billed by Apple or Google;
                     you must manage that subscription through the applicable
                     store.
@@ -127,85 +131,47 @@ export default function TermsPage() {
                     The AI tutor may use your material, optional web search, and
                     optional Personal Memory features that you control. You may
                     also choose to create a revocable link to a read-only
-                    snapshot of a chat. We may add, change, or remove features,
+                    snapshot of a chat, browse official and community decks,
+                    clone them into your library, and publish eligible decks. We may add, change, or remove features,
                     or suspend the Service, and we will give reasonable notice
                     of material changes where we can.
                   </p>
                 </section>
 
                 <section id="billing">
-                  <SectionHeading number="04">
-                    Free trial, subscriptions & billing
-                  </SectionHeading>
-                  <p>
-                    Eligible new accounts may receive a free period of biu Pro
-                    without an upfront payment, and referral or promotional
-                    rewards may extend access. The duration and eligibility
-                    shown in the app at the time of an offer control. After free
-                    access ends, Pro features require an in-app subscription
-                    managed through the Apple App Store or Google Play.
-                  </p>
+                  <SectionHeading number="04">Free trial, subscriptions & billing</SectionHeading>
+                  <h3>Plus, Pro, and free access</h3>
+                  <p>Plus and Pro unlock the same paid features. Plus includes 2,000 credits per month and Pro includes 5,000, on monthly and annual subscriptions. Neither plan is unlimited AI usage. Current US prices are on our <a href="/#pricing">pricing page</a>; the localized price, taxes, billing period, allowance, and any offer shown before you confirm a store purchase govern that purchase.</p>
+                  <p>Eligible new accounts currently receive a seven-day BIU Pro trial from first sign-in, with the trial credit allowance shown in the app. No payment card is required and this grant does not automatically create a subscription. Existing historical grants retain their recorded expiry. Do not create or misuse accounts to obtain repeated introductory benefits.</p>
+                  <p>You can save supported original links and files without AI processing, within your storage quota. Saving alone uses no credits and does not automatically process those items when you subscribe or credits renew. Processing requires your explicit action and active Pro access. After Pro access expires, saved content and chats, existing summaries and cards, library organization, non-AI quizzes, streaks, progress, and community decks remain available. New AI work, manual-card creation, and Anki imports require active Pro access. Existing AI recall questions can be presented as multiple-choice questions instead. Storage and rate limits apply.</p>
+                  <h3>Store billing, renewal, cancellation, and refunds</h3>
                   <ul>
-                    <li>
-                      Pricing varies by region and promotion and is shown to you
-                      before you subscribe.
-                    </li>
-                    <li>
-                      Before purchase, the app shows the subscription name,
-                      benefits, localized price, billing period, and any trial
-                      or introductory terms that apply to that store product.
-                    </li>
-                    <li>
-                      Payment is charged to your Apple App Store or Google Play
-                      account when you confirm the purchase. Subscriptions renew
-                      automatically for the displayed period and price unless
-                      cancelled before renewal under the applicable store&apos;s
-                      rules.
-                    </li>
-                    <li>
-                      You manage and cancel subscriptions through your device’s
-                      account settings.
-                    </li>
-                    <li>
-                      Cancelling stops future renewals but does not refund the
-                      current billing period.
-                    </li>
-                    <li>
-                      Refunds are handled by Apple or Google under their
-                      respective policies and applicable law.
-                    </li>
-                    <li>
-                      We will communicate any price changes before they take
-                      effect.
-                    </li>
+                    <li>Apple or Google charges you when you confirm a purchase, subject to any store-eligible offer shown at checkout. Annual plans charge the displayed annual total upfront. Subscriptions renew automatically for the displayed period unless cancelled under the store&apos;s rules.</li>
+                    <li>BIU-granted trial or promotional access and store billing run independently. Buying a subscription during granted access does not defer store charges, add those days to your store subscription, or promise another free trial.</li>
+                    <li>Manage or cancel auto-renewal in the relevant store account. Cancellation normally preserves paid access until the store-confirmed expiry. Deleting BIU or requesting account deletion does not cancel the subscription.</li>
+                    <li>Apple or Google handles purchase refunds under its policies and applicable law. Nothing here removes mandatory cancellation, refund, or other consumer rights.</li>
+                    <li>We may change subscription prices for reasons including changes to service costs, features, taxes, or exchange rates. We will provide advance notice and obtain consent where required. A price change applies to a future renewal under store rules, not retroactively to a paid period; you can cancel before it applies.</li>
                   </ul>
-                  <p>
-                    biu may also offer prepaid gift products as one-time in-app
-                    purchases. A gift provides the displayed period of Pro
-                    access after it is successfully funded and claimed. Gift
-                    purchases do not create an auto-renewing subscription and
-                    do not by themselves grant Pro access to the purchaser.
-                    Store billing, refunds, transaction recovery, and purchase
-                    eligibility remain subject to Apple&apos;s or Google&apos;s rules.
-                    We may cancel, refuse, or reverse a gift affected by fraud,
-                    abuse, chargeback, or an invalid transaction.
-                  </p>
+                  <h3>Changing plans and verifying access</h3>
+                  <p>Google Play upgrades to Pro are charged and take effect immediately; downgrades and monthly/yearly duration changes are deferred until renewal. Apple determines the effective date and any charge or adjustment and shows it before confirmation. A scheduled change is not yet an active plan. A verified tier upgrade adds the allowance difference once for the current credit cycle without resetting spend or holds. A downgrade does not remove credits already granted; the lower allowance starts with the next cycle after the downgrade takes effect.</p>
+                  <p>Purchases and restores are associated with your signed-in BIU account and verified with the store. Access can remain verification pending until confirmation succeeds; contact support if a completed purchase has not appeared. Buying subscriptions on more than one platform can create separate store charges and does not stack monthly credit allowances. Manage each store subscription separately.</p>
+                  <p>Storage quotas are shown in the app and may differ with access status. If your stored files exceed the applicable quota, further uploads can be blocked until space is available. A plan expiry does not by itself erase your saved library. Purchases of Plus or Pro do not transfer ownership of BIU or another publisher&apos;s content.</p>
                 </section>
 
-                <section id="referral-program">
-                  <SectionHeading number="05">Referral program</SectionHeading>
-                  <p>
-                    When a friend signs up through your link, your trial
-                    immediately extends by 7 days. You can earn additional
-                    extensions as your friend completes daily quizzes during
-                    their first 14 days, up to 7 more days per referral.
-                  </p>
-                  <p>
-                    We reserve the right to modify bonus amounts, impose limits,
-                    end the program, or reverse bonuses earned through
-                    fraudulent or abusive activity, including fake accounts or
-                    self-referrals.
-                  </p>
+                <section id="credits">
+                  <SectionHeading number="05">Credits & quiz rewards</SectionHeading>
+                  <p>Credits are a fractional, account-bound allowance for supported work in BIU. They are not currency, a deposit, or a financial product, and cannot be transferred, sold, or redeemed for cash. Subscription refund rights remain governed by store rules and applicable law.</p>
+                  <ul>
+                    <li><strong>What is charged:</strong> library processing is priced by extracted source size, such as words, video duration, or images, with a minimum of one credit. Chat replies and chat-file processing depend on AI work, including context read and output generated. Estimates may differ from the final charge; check the available estimate, balance, and final usage in the app.</li>
+                    <li><strong>Other features:</strong> voice transcription, AI Memory, recall grading, manual-card creation, Anki imports, and community-deck cloning or updates currently have no separate credit charge. Some still require active Pro access and are subject to technical and abuse limits.</li>
+                    <li><strong>Monthly cycle:</strong> both monthly and annual subscriptions receive credits monthly on the account&apos;s cycle date. Short months use the applicable month-end date. Annual subscribers do not receive a year&apos;s allowance upfront. Upgrades and provider recovery do not provide repeated full refills.</li>
+                    <li><strong>Expiry and carryover:</strong> unused ordinary credits expire with the cycle. Unused trial credits join the first paid cycle only if the purchase occurs before trial access expires; that one-time carryover expires with the paid cycle. Losing Pro access forfeits the remaining balance. Support grants expire with their assigned cycle unless expressly stated otherwise.</li>
+                    <li><strong>Processing and failures:</strong> content credits can be held once its size is known, committed on success, and released on final failure. Retrying the same job does not charge twice. Content that needs more credits can wait for credits and be resumed through the app. A BIU-side failed chat is not charged; a chat you stop may charge for work already completed. Enabling quiz sync on content already charged does not charge for processing that same item again.</li>
+                    <li><strong>Exhaustion:</strong> new charged work can pause until credits renew or a verified upgrade supplies more. A final chat charge may leave a small negative balance; that deficit is not billed as an extra purchase or carried into the next cycle. There are no automatic paid top-ups.</li>
+                  </ul>
+                  <h3>Daily quiz rewards during the base trial</h3>
+                  <p>Each eligible completion of your own daily quiz during your base trial adds 100 credits, once per user-local day, up to seven rewards (700 credits). Content, collection, and weak-card practice do not earn this reward. Rewards add credits, not extra trial days. Subscribing during your base-trial window does not end reward eligibility. A reward expires with the credit cycle it is added to; unspent rewards in a trial balance follow the trial-to-paid carryover rule. Your trial and reward status are shown in the app. Referral rewards and gifting are no longer offered; ordinary app sharing is untracked and unrewarded.</p>
+                  <p>We may correct erroneous grants or reverse benefits obtained through fraud or abuse. Changes to allowances, reward eligibility, or rates apply prospectively with notice where required; they do not justify duplicate charges or retroactively remove a valid historical access grant.</p>
                 </section>
 
                 <section id="your-content">
@@ -229,8 +195,10 @@ export default function TermsPage() {
                     general-purpose AI models.
                   </p>
                   <p>
-                    This license ends when you delete the content or your
-                    account, except for brief residual copies kept in backups.
+                    For private content, this service license ends when the
+                    content or account is permanently erased, subject to the
+                    retention described in our Privacy Policy. Published-deck
+                    permissions and existing copies are addressed separately below.
                     You confirm that you hold all necessary rights to Your
                     Content and that it does not infringe anyone else’s rights
                     or violate any law. If you intentionally create a public
@@ -240,8 +208,30 @@ export default function TermsPage() {
                   </p>
                 </section>
 
+                <section id="community-decks">
+                  <SectionHeading number="07">Explore & community decks</SectionHeading>
+                  <h3>Publishing is an explicit sharing action</h3>
+                  <p>A library deck is private unless you publish it. Publishing makes a read-only snapshot of its card text and supported answer information, title, description, topic, tags, display details, and your publisher display name available to other BIU users in Explore. It does not publish your source files, private library, chats, or personal quiz performance. Check every card and the displayed publisher name before publishing, and do not include personal information you do not have the right to disclose.</p>
+                  <h3>Ownership and permission to use a published deck</h3>
+                  <p>You keep whatever intellectual-property rights you hold. By publishing or republishing under these Terms, you grant BIU a worldwide, non-exclusive, royalty-free licence to host, reproduce, display, distribute, and technically adapt that snapshot within the Service so others can find, clone, study, and update it. This is a service licence, not permission to use private source material in advertising or to train BIU general-purpose AI models.</p>
+                  <p>You also permit other users to keep lawfully obtained copies for personal, non-commercial study; edit those copies for that purpose; export them; and share them for non-commercial study through supported features. Preserve available author attributions and legal notices, identify your own adaptations honestly, and do not claim another person&apos;s work as your own. Selling decks, granting broader commercial rights, bulk scraping, or building a competing content catalogue requires separate permission from the relevant rights holders. More permissive third-party licences continue to apply where validly provided.</p>
+                  <p>BIU official decks carry the same personal, non-commercial study, editing, export, and permitted-sharing rights unless a deck states separate licence terms. An edited or republished copy must not be represented as an official BIU edition. Cloning transfers a copy into your library, not ownership of the original author&apos;s rights.</p>
+                  <h3>Snapshots, updates, and removal</h3>
+                  <p>Private edits do not automatically change a published snapshot or another user&apos;s clone. A publisher can republish; a learner chooses whether to use Update with Original. That update can add, update, or retire cards; locally edited cards are protected from automatic replacement. Your study history remains associated with your own cards.</p>
+                  <p>Unpublishing stops new discovery and cloning but keeps the snapshot accessible to its owner and existing cloners. Deleting the source library deck unpublishes it. Permanent publisher-account erasure removes the original publication, but does not automatically erase card copies already cloned into other accounts, exports, or screenshots. The permission for lawfully obtained existing copies survives unpublishing, source deletion, and account closure to the extent necessary for the permitted uses above, subject to valid privacy or intellectual-property claims and applicable law.</p>
+                  <p>Community content is supplied by its publisher. Votes, rankings, clone counts, or inclusion in recommendations are not an endorsement or guarantee of accuracy, safety, ownership, exam results, or professional suitability. Verify important material whether it is official, imported, human-authored, edited, or AI-assisted.</p>
+                </section>
+
+                <section id="reporting">
+                  <SectionHeading number="08">Reports, moderation & copyright</SectionHeading>
+                  <p>Use the in-app report action for a community deck or an AI output, or email <a href="mailto:admin@getbiu.app">admin@getbiu.app</a>. Deck reports can address spam, inaccuracy, offensive material, copyright, or low quality. AI-output reports can include a private snapshot or excerpt and your explanation. Do not submit false reports or include unnecessary sensitive information. A report does not establish that an allegation is true.</p>
+                  <p>We may review reports, restrict visibility, place a deck under review, remove or disable content, stop distribution or updates, and restrict or suspend accounts where reasonably necessary for safety, rights protection, law, or enforcement of these Terms. Multiple reports can automatically remove a community deck from discovery pending review. A report does not guarantee immediate removal, and automatic review status is not a finding of wrongdoing. We do not promise that every publication is checked before it becomes available.</p>
+                  <p>For copyright or privacy complaints, identify the affected work or information, the deck or content location, your contact details and authority to complain, and the action requested. We may request further verification and assess appropriate action, including effects on existing copies, under applicable law. This process does not create a licence to infringing or unlawfully disclosed material.</p>
+                  <p>If you believe a moderation decision is mistaken, email the content reference, relevant context, and the decision you want reconsidered to admin@getbiu.app. We will consider the information provided. Reporter identities and private report evidence are not published on the deck; disclosures needed for legal claims or required by law are governed by the Privacy Policy.</p>
+                </section>
+
                 <section id="ai-disclaimer">
-                  <SectionHeading number="07">
+                  <SectionHeading number="09">
                     AI-generated content disclaimer
                   </SectionHeading>
                   <p>
@@ -255,13 +245,13 @@ export default function TermsPage() {
                     or other professional advice. You are responsible for
                     checking important output before relying on or sharing it.
                     If generated content appears harmful, unlawful, or
-                    inappropriate, stop using it and notify us at{" "}
+                    inappropriate, stop relying on it, use the in-app report action where available, or notify us at{" "}
                     <a href="mailto:admin@getbiu.app">admin@getbiu.app</a>.
                   </p>
                 </section>
 
                 <section id="acceptable-use">
-                  <SectionHeading number="08">Acceptable use</SectionHeading>
+                  <SectionHeading number="10">Acceptable use</SectionHeading>
                   <p>You agree not to:</p>
                   <ul>
                     <li>
@@ -280,7 +270,7 @@ export default function TermsPage() {
                     <li>
                       Use automated means such as bots or scrapers to access the
                       Service or create accounts, including to manipulate
-                      referrals.
+                      votes, reports, recommendations, or quiz rewards.
                     </li>
                     <li>
                       Attempt to reverse-engineer, decompile, or otherwise
@@ -308,13 +298,15 @@ export default function TermsPage() {
                     </li>
                   </ul>
                   <p>
-                    Violations may result in suspension or termination of your
-                    account.
+                    Do not impersonate publishers, misrepresent authorship, publish
+                    spam or plagiarized decks, expose personal information, or evade
+                    moderation by republishing restricted material. Violations may
+                    result in content restrictions, suspension, or termination.
                   </p>
                 </section>
 
                 <section id="our-ip">
-                  <SectionHeading number="09">
+                  <SectionHeading number="11">
                     Our intellectual property
                   </SectionHeading>
                   <p>
@@ -327,26 +319,13 @@ export default function TermsPage() {
                 </section>
 
                 <section id="third-party-services">
-                  <SectionHeading number="10">
-                    Third-party services
-                  </SectionHeading>
-                  <p>
-                    biu relies on third-party infrastructure and processors,
-                    including Supabase; Cloudflare; OpenRouter and downstream
-                    model providers such as Google, OpenAI, DeepSeek, and
-                    Anthropic where configured; Supermemory; PostHog;
-                    RevenueCat; Expo; ChottuLink; Exa where web search is used;
-                    and Apple and Google for distribution, sign-in, billing, and
-                    device services. Providers and models may change as the
-                    Service evolves. Our Privacy Policy explains what data is
-                    sent and why. Third-party services may also be governed by
-                    their own terms, and we are not responsible for their
-                    availability or independent conduct.
-                  </p>
+                  <SectionHeading number="12">Third-party services</SectionHeading>
+                  <p>We use account, hosting, storage, AI, transcription, search, personalization, analytics, notification, email, and billing providers. Current integrations include Supabase, Cloudflare, OpenRouter and configured upstreams such as OpenAI, Morph, and Groq, direct Google video processing, Parallel search through OpenRouter, Supermemory, PostHog, RevenueCat, Expo, Resend where enabled, and Apple and Google platform services. Models and processors may change; the Privacy Policy explains the categories of data and purposes.</p>
+                  <p>Third-party terms may also apply. We do not control a provider&apos;s independent service, linked websites, or a recipient app you choose for exports. Nothing here limits our own responsibilities or your mandatory rights. Upload or link third-party material only when you have the rights and permissions required by the source service and applicable law.</p>
                 </section>
 
                 <section id="app-store-terms">
-                  <SectionHeading number="11">
+                  <SectionHeading number="13">
                     Additional terms for App Store users
                   </SectionHeading>
                   <p>
@@ -404,19 +383,20 @@ export default function TermsPage() {
                 </section>
 
                 <section id="termination">
-                  <SectionHeading number="12">Termination</SectionHeading>
+                  <SectionHeading number="14">Termination</SectionHeading>
                   <p>
-                    You may delete your account at any time. We may suspend or
+                    You may request account deletion at any time under the cancellation and erasure process in the Privacy Policy. We may suspend or
                     terminate your access if you violate these Terms, where the
                     law requires it, or if we discontinue the Service, giving
                     reasonable notice when possible. Sections addressing
-                    intellectual property, disclaimers, limitations of
-                    liability, and governing law survive termination.
+                    intellectual property, permitted existing deck copies, disclaimers,
+                    limitations of liability, and governing law survive termination
+                    to the extent needed to give them effect.
                   </p>
                 </section>
 
                 <section id="disclaimers">
-                  <SectionHeading number="13">Disclaimers</SectionHeading>
+                  <SectionHeading number="15">Disclaimers</SectionHeading>
                   <p>
                     The Service is provided “as is” and “as available,” without
                     warranties of any kind, whether express, implied, or
@@ -429,7 +409,7 @@ export default function TermsPage() {
                 </section>
 
                 <section id="liability">
-                  <SectionHeading number="14">
+                  <SectionHeading number="16">
                     Limitation of liability
                   </SectionHeading>
                   <p>
@@ -446,7 +426,7 @@ export default function TermsPage() {
                 </section>
 
                 <section id="indemnification">
-                  <SectionHeading number="15">Indemnification</SectionHeading>
+                  <SectionHeading number="17">Indemnification</SectionHeading>
                   <p>
                     You agree to indemnify and hold harmless FlipFlop Labs
                     Private Limited from any claims, damages, liabilities, and
@@ -457,7 +437,7 @@ export default function TermsPage() {
                 </section>
 
                 <section id="governing-law">
-                  <SectionHeading number="16">
+                  <SectionHeading number="18">
                     Governing law & disputes
                   </SectionHeading>
                   <p>
@@ -470,7 +450,7 @@ export default function TermsPage() {
                 </section>
 
                 <section id="changes">
-                  <SectionHeading number="17">
+                  <SectionHeading number="19">
                     Changes to these terms
                   </SectionHeading>
                   <p>
@@ -483,7 +463,7 @@ export default function TermsPage() {
                 </section>
 
                 <section id="miscellaneous">
-                  <SectionHeading number="18">Miscellaneous</SectionHeading>
+                  <SectionHeading number="20">Miscellaneous</SectionHeading>
                   <p>
                     If any provision of these Terms is found unenforceable, the
                     rest remains in effect. Our failure to enforce a provision
@@ -495,7 +475,7 @@ export default function TermsPage() {
                 </section>
 
                 <section id="contact">
-                  <SectionHeading number="19">Contact us</SectionHeading>
+                  <SectionHeading number="21">Contact us</SectionHeading>
                   <p>
                     If you have questions about these Terms, contact us at:
                   </p>

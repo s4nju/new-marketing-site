@@ -69,10 +69,10 @@ export default function EditorialPage({
               <p className={styles.intro}>{intro}</p>
               <div className={styles.actions}>
                 <a href={appAccessHref} className={styles.primaryAction}>
-                  request beta access
+                  get the app
                 </a>
                 <Link href="/#pricing" className={styles.secondaryAction}>
-                  view planned pricing
+                  compare Plus and Pro
                 </Link>
               </div>
             </div>

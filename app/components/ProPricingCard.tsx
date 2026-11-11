@@ -4,91 +4,133 @@ import { useState } from "react";
 import { appAccessHref } from "../site-config";
 import { productData } from "../product-data";
 import { Check } from "./icons";
-import LiquidGradient from "./LiquidGradient";
 import styles from "./Pricing.module.css";
 
-const pro = {
-  title: "biu pro",
-  desc: "keep everything after your trial. cancel anytime.",
-  label: "everything in the trial, plus:",
-  items: [
-    "unlimited notes + flashcards",
-    "unlimited ai tutor",
-    "advanced quiz modes",
-    "long-term progress + insights",
-    "priority support",
-  ],
-  cta: "request access",
-};
+const aiFeatures = [
+  "AI summaries and study decks from videos, PDFs, links, and notes",
+  "AI assistant with all your learning knowledge",
+  "Quick feedback on your active-recall quiz answer",
+  "bring your own cards or look into community decks",
+  "a tutor that adapts your learning preferences",
+] as const;
 
-const billingOptions = {
-  monthly: {
-    label: "MONTHLY",
-    price: productData.pro.monthlyPrice.replace("/month", ""),
-    unit: "/month",
+const credits = (n: number) => n.toLocaleString("en-US");
+
+const plans = [
+  {
+    id: "free",
+    name: "free",
+    tagline: "the daily habit, on the house",
+    listLabel: "included",
+    features: [
+      "your library, synced across devices",
+      "daily spaced-repetition quiz",
+      "streaks and skip passes",
+      "decks made by other learners",
+    ],
   },
-  annual: {
-    label: "YEARLY",
-    price: productData.pro.yearlyPrice.replace("/year", ""),
-    unit: "/year",
+  {
+    id: "plus",
+    name: "plus",
+    tagline: "for steady, everyday study",
+    listLabel: "everything in free, and:",
+    features: [
+      `${credits(productData.plus.creditsPerMonth)} AI credits every month`,
+      ...aiFeatures,
+    ],
   },
-} as const;
+  {
+    id: "pro",
+    name: "pro",
+    tagline: "to push the boundaries.",
+    listLabel: "everything in free, and:",
+    features: [
+      `${credits(productData.pro.creditsPerMonth)} AI credits every month`,
+      ...aiFeatures,
+    ],
+  },
+] as const;
 
-type BillingCycle = keyof typeof billingOptions;
-
-export default function ProPricingCard() {
-  const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
-  const billing = billingOptions[billingCycle];
-
-  const toggleBilling = () => {
-    setBillingCycle((current) =>
-      current === "monthly" ? "annual" : "monthly",
-    );
-  };
+export default function PricingPlans() {
+  const [annual, setAnnual] = useState(false);
 
   return (
-    <div className={`${styles.card} ${styles.cardDark}`}>
-      <LiquidGradient activation="visible" className={styles.cardGradient} />
-      <div className={styles.proHead}>
-        <h3 className={styles.cardTitle}>{pro.title}</h3>
+    <>
+      <div className={styles.billing} role="group" aria-label="Billing period">
         <button
-          aria-checked={billingCycle === "annual"}
-          aria-label={`Switch to ${
-            billingCycle === "monthly" ? "annual" : "monthly"
-          } billing`}
-          className={styles.billingSwitch}
-          onClick={toggleBilling}
-          role="switch"
+          aria-pressed={!annual}
+          className={styles.billingOption}
+          onClick={() => setAnnual(false)}
           type="button"
         >
-          <span className={styles.billingLabel}>{billing.label}</span>
-          <span className={styles.switchTrack} aria-hidden="true">
-            <span className={styles.switchThumb} />
-          </span>
+          monthly
+        </button>
+        <button
+          aria-pressed={annual}
+          className={styles.billingOption}
+          onClick={() => setAnnual(true)}
+          type="button"
+        >
+          yearly
+          <span className={styles.billingSave}>2 months free</span>
         </button>
       </div>
-      <p className={styles.cardDesc}>{pro.desc}</p>
-      <div className={styles.divider} />
-      <p className={styles.label}>{pro.label}</p>
-      <ul className={styles.list}>
-        {pro.items.map((item) => (
-          <li key={item}>
-            <span className={`${styles.check} ${styles.checkGreen}`}>
-              <Check />
-            </span>
-            {item}
-          </li>
-        ))}
-      </ul>
-      <div className={styles.footer}>
-        <div className={styles.price}>
-          {billing.price}
-          <span className={styles.unit}>{billing.unit}</span>
-        </div>
-        <a href={appAccessHref} className={`${styles.cta} ${styles.ctaBerry}`}>
-          {pro.cta}
-        </a>
+
+      <div className={styles.grid}>
+        {plans.map((plan) => {
+          const paid = plan.id === "free" ? null : productData[plan.id];
+          const tone =
+            plan.id === "pro"
+              ? styles.cardDark
+              : plan.id === "free"
+                ? styles.cardFree
+                : "";
+          const price = paid
+            ? annual
+              ? paid.yearlyAmount
+              : paid.monthlyAmount
+            : "0";
+          const note = paid
+            ? annual
+              ? `$${(Number(paid.yearlyAmount) / 12).toFixed(2)}/mo, billed yearly. cancel anytime.`
+              : "billed monthly. cancel anytime."
+            : "no card needed.";
+
+          return (
+            <div key={plan.id} className={`${styles.card} ${tone}`}>
+              <h3 className={styles.cardTitle}>{plan.name}</h3>
+              <p className={styles.cardDesc}>{plan.tagline}</p>
+              <div className={styles.price}>
+                ${price}
+                {paid ? (
+                  <span className={styles.unit}>
+                    {annual ? "/year" : "/month"}
+                  </span>
+                ) : null}
+              </div>
+              <p className={styles.billingNote}>{note}</p>
+              <a
+                href={appAccessHref}
+                className={`${styles.cta} ${plan.id === "pro" ? styles.ctaBerry : plan.id === "plus" ? styles.ctaDark : styles.ctaOutline}`}
+              >
+                {paid ? `choose ${plan.name}` : "get the app"}
+              </a>
+              <div className={styles.divider} />
+              <p className={styles.label}>{plan.listLabel}</p>
+              <ul className={styles.list}>
+                {plan.features.map((item) => (
+                  <li key={item}>
+                    <span className={styles.check}>
+                      <Check />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
-    </div>
+    </>
   );
 }

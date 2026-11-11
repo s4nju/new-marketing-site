@@ -1,50 +1,14 @@
-import Image from "next/image";
-import padlock from "../../public/images/icon-padlock.png";
-import { CloudSlash, ShieldCheck, SlidersHorizontal } from "../ui/ph-icon";
 import styles from "./Referral.module.css";
 
-const benefits = [
-  { label: "14 days free", Icon: ShieldCheck },
-  { label: "refer a friend, +7 days", Icon: SlidersHorizontal },
-  { label: "they quiz, you gain", Icon: CloudSlash },
-];
-
-export default function Referral() {
+/** Trial offer strip shown under the pricing plans. */
+export default function TrialBanner() {
   return (
-    <section className={styles.section}>
-      <div className={styles.card}>
-        <div className={styles.lock} aria-hidden="true">
-          <Image
-            src={padlock}
-            alt=""
-            width={258}
-            height={331}
-            sizes="(max-width: 809px) 182px, 218px"
-            data-scroll-reveal
-          />
-        </div>
-
-        <div className={styles.text}>
-          <h2 className={styles.title}>
-            start free. then
-            <br />
-            earn more.
-          </h2>
-          <p className={styles.sub}>
-            your 14-day trial is just the beginning. refer a friend and every
-            one keeps you going longer - you only pay when the trial ends.
-          </p>
-        </div>
-
-        <ul className={styles.benefits} aria-label="Trial benefits">
-          {benefits.map(({ label, Icon }) => (
-            <li key={label} className={styles.benefit}>
-              <Icon size={16} weight="regular" aria-hidden="true" />
-              <span>{label}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
+    <div className={styles.banner}>
+      <h3 className={styles.title}>every account starts with 7 days of pro.</h3>
+      <p className={styles.sub}>
+        no card, no auto-renew. finish your daily quiz during the trial and earn
+        100 bonus credits a day.
+      </p>
+    </div>
   );
 }

@@ -9,17 +9,14 @@ export default function Faq() {
       <div className={styles.inner}>
         <div className={styles.head}>
           <h2 className={styles.title}>questions, answered</h2>
-          <p className={styles.sub}>
-            the essentials about what biu does, what you can add, daily review,
-            app access, and pricing.
-          </p>
-          <Link href="/faq" className={styles.allQuestions}>
-            view all questions
-            <span aria-hidden="true">→</span>
-          </Link>
         </div>
 
-        <FaqAccordion items={homepageFaqItems} />
+        <FaqAccordion items={homepageFaqItems} className={styles.homeList} />
+
+        <Link href="/faq" className={styles.allQuestions}>
+          view all questions
+          <span aria-hidden="true">→</span>
+        </Link>
       </div>
     </section>
   );

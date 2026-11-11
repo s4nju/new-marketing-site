@@ -1,7 +1,11 @@
 // This entry runs before hydration; keep the SDK in a separate async chunk.
 const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY?.trim();
 
-if (posthogKey) {
+// Shared-chat URLs carry a bearer capability, and autocapture would record
+// transcript text, so analytics never loads on those pages.
+const isSharedChatPage = window.location.pathname.startsWith("/shared-chat/");
+
+if (posthogKey && !isSharedChatPage && !window.location.hostname.endsWith(".workers.dev")) {
   const initialize = async () => {
     try {
       const { default: posthog } = await import("posthog-js");

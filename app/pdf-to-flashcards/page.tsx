@@ -45,7 +45,7 @@ const faqs = [
   {
     question: "Does biu publish a PDF size or page limit?",
     answer:
-      "This page does not state a size or page limit because those limits have not been approved for publication. Beta participants should follow the limits shown in the app.",
+      "This page does not state a size or page limit because those limits have not been approved for publication. Follow the limits shown in the app.",
   },
 ] as const satisfies readonly EditorialFaq[];
 

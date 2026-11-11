@@ -1,66 +1,43 @@
-export type FaqItem = {
-  q: string;
-  a: string;
-};
+import { productData } from "./product-data";
 
+export type FaqItem = { q: string; a: string };
+
+// Short answers for the homepage. The full, detailed versions live in
+// coreFaqItems and are shown on /faq.
 export const homepageFaqItems = [
-  {
-    q: "what is biu?",
-    a: "biu is a study app that turns videos, links, PDFs, and photos of notes into summaries and flashcards. It then schedules those cards in a short daily spaced-repetition quiz, helping you review material over time without planning every study session yourself.",
-  },
-  {
-    q: "what study material can i add?",
-    a: "you can add videos, links, PDFs, and photos of handwritten or printed notes. biu processes the material and organizes it into a clear summary and a deck of flashcards for review.",
-  },
-  {
-    q: "how does biu create flashcards?",
-    a: "after you add study material, biu breaks the content into a summary and generates a deck of flashcards automatically. Those cards become part of your review history and daily quiz.",
-  },
-  {
-    q: "how does the daily quiz work?",
-    a: "biu uses your review history to schedule each flashcard. When you answer a card correctly, the interval before its next review increases, so the daily quiz focuses on material that is due for practice.",
-  },
-  {
-    q: "is biu free?",
-    a: "biu is currently in private beta. The planned public launch includes a 14-day free trial with no card required, followed by biu Pro at a planned price of $14.99 per month or $99 per year. Pricing may change before launch.",
-  },
-  {
-    q: "does biu include an ai tutor?",
-    a: "yes. You can ask the AI tutor questions and ground its answers in your own notes or an entire collection, so the conversation stays connected to the study material you added.",
-  },
+  { q: "what is biu?", a: "biu is a study app that turns what you're learning into summaries, study decks, and a short daily quiz, with an AI tutor that answers from your own notes." },
+  { q: "what can you add?", a: "videos, links, PDFs, and photos of your notes. you can also import an Anki deck, paste your own cards, or pick up a ready-made deck in Explore." },
+  { q: "how does the daily quiz work?", a: "biu keeps track of what you get right and wrong, then brings each card back just before you'd forget it. show up each day and the streak takes care of itself." },
+  { q: "will it work for my subject?", a: "if you can read it, watch it, or photograph it, biu can work with it. biology, law, languages, history, code: the loop is the same." },
+  { q: "what are credits?", a: "credits pay for AI work, like turning a lecture into a summary or asking the tutor a question. plus includes 2,000 a month and pro 5,000. your quizzes and library never use them." },
+  { q: "what happens after the trial?", a: "nothing you don't choose. your library, daily quiz, and streaks stay free. AI features pause until you pick plus or pro, and nothing is charged automatically." },
+] as const satisfies readonly FaqItem[];
+
+export const coreFaqItems = [
+  { q: "what is biu?", a: "biu helps you study with summaries, flashcards, and a daily spaced-repetition quiz. Add your own material, create or import cards, or clone a deck from Explore into your library." },
+  { q: "what study material can i add?", a: "Add supported videos, links, PDFs, and photos of notes, or import an Anki deck or paste flashcards. New AI work, manual-card creation, and Anki imports require active Pro access, included in a trial, Plus, or Pro plan. File, storage, and credit limits apply." },
+  { q: "how does biu create flashcards?", a: "With active Pro access and enough credits, biu can process your material into a summary and flashcards. You can also save supported material without processing it and choose when to process it. Review AI output against the source. Quiz sync controls which cards enter daily and weak-card practice." },
+  { q: "how does the daily quiz work?", a: "biu schedules cards using your review history. Daily quizzes and streaks remain available without a paid plan; AI-assisted recall questions fall back to multiple-choice questions when Pro access expires." },
+  { q: "is biu free?", a: `Eligible new accounts get a 7-day Pro trial, no payment card required. Saved material, non-AI quizzes, progress, and community decks stay available afterward. In the US, Plus is ${productData.plus.monthlyPrice} or ${productData.plus.yearlyPrice} with 2,000 credits a month; Pro is ${productData.pro.monthlyPrice} or ${productData.pro.yearlyPrice} with 5,000. Local store prices and taxes apply.` },
+  { q: "does biu include an ai tutor?", a: "Yes. With active Pro access, ask the tutor questions grounded in your notes, a collection, or supported chat attachments. Chat replies and chat-file processing use credits. AI answers can be inaccurate; check important information against the source." },
 ] as const satisfies readonly FaqItem[];
 
 export const additionalFaqItems = [
-  {
-    q: "what if i miss a day?",
-    a: "a skip pass protects your streak. passes refill monthly, and missed days are auto-protected while you have them.",
-  },
-  {
-    q: "how do referrals extend my access?",
-    a: "each successful friend referral adds seven days to your access. The referral program also rewards ongoing quiz activity, helping active learners keep biu Pro for longer before paying.",
-  },
-  {
-    q: "what is included in biu pro?",
-    a: "biu Pro includes unlimited notes and flashcards, unlimited use of the AI tutor, advanced quiz modes, long-term progress insights, and priority support.",
-  },
-  {
-    q: "where is biu available?",
-    a: "biu is being prepared for iOS and Android and is currently in private beta. You can request beta access now; public app downloads and the self-serve trial are planned for launch.",
-  },
-  {
-    q: "does my progress sync across devices?",
-    a: "yes. biu syncs your learning progress across devices, so your review history and the information used to schedule future quizzes stay up to date.",
-  },
-  {
-    q: "can i cancel biu pro?",
-    a: "yes. biu Pro subscription can be cancelled at any time. Your 14-day trial comes first, before a paid monthly or yearly plan begins.",
-  },
+  { q: "what if i miss a day?", a: "An available skip pass can protect your streak on a missed day. Check the app for your current passes and refill details." },
+  { q: "how do quiz rewards work?", a: "Complete your own daily quiz during your base trial to earn 100 credits per eligible daily completion, up to seven rewards (700 credits). Practice sessions do not earn these rewards. Rewards do not extend the trial. Historical access grants already shown on an account keep their recorded expiry." },
+  { q: "what is the difference between Plus and Pro?", a: "Both unlock the same features: AI summaries and flashcards, tutor chat, voice input, recall feedback, optional AI Memory, manual cards, and Anki imports. Plus includes 2,000 credits per month; Pro includes 5,000. Neither is an unlimited AI plan. Annual subscribers also receive credits monthly." },
+  { q: "what uses credits?", a: "Processing library content uses credits based on source size; chat replies and chat-file processing use credits based on AI work. Voice transcription, AI Memory, recall grading, manual cards, Anki imports, and community-deck cloning or updates currently have no separate credit charge, although some require active Pro access. Storage and rate limits still apply. Check Profile > Credits for your balance and history." },
+  { q: "do unused credits carry over?", a: "Ordinary monthly credits expire at the end of the cycle. One exception: unused trial credits join your first paid cycle if you subscribe before trial access expires, and expire with that paid cycle. Losing Pro access forfeits the remaining balance. Credits are an account-bound usage allowance, not cash, and cannot be transferred or redeemed." },
+  { q: "what happens if a task fails or credits run out?", a: "BIU-side failures are not charged; held content credits are released after final failure, and retries do not double-charge. If an item needs more credits than you have, it can wait for credits and be resumed from the app. Stopping a chat can still charge for work already completed. No automatic credit top-up purchase occurs." },
+  { q: "when does a paid subscription start?", a: "Only when you choose to purchase one. The BIU trial does not automatically become a subscription. If you subscribe during your trial or another BIU access grant, store billing begins under the checkout terms; BIU-granted days do not postpone store charges. Only a store-eligible offer shown at checkout can change that billing." },
+  { q: "can i change or cancel my plan?", a: "Manage changes and cancellation through the app or your store account. On Google Play, an upgrade to Pro is charged and starts immediately; downgrades and monthly/yearly changes are deferred until renewal. Apple shows its effective date and charges at confirmation. A verified tier upgrade adds the allowance difference once without erasing spend; a downgrade does not remove credits already granted in that cycle. Cancelling stops future renewals; store refund policies and applicable law govern refunds." },
+  { q: "what are Explore and decks?", a: "Explore lets you find official and community decks and clone them into your own library. Your study progress is private. Publishing a deck shares a snapshot of its cards, deck details, and publisher display name with other BIU users. Only publish material you have the right to share." },
+  { q: "can a publisher change or remove my cloned deck?", a: "A clone is your own copy. Later publisher edits reach it only when you choose Update with Original; cards you have edited are protected from that update. Unpublishing or deleting the original does not automatically erase existing clones or exports. Content may still be restricted to address valid rights, privacy, or safety complaints." },
+  { q: "can i export or share cards?", a: "Use the app to export flashcards as CSV. Exported files are controlled by you and the receiving app. Community and official decks are for non-commercial study and permitted sharing under the Terms; preserve available attribution and do not claim someone else's work as your own. A flashcard CSV is not a full account-data export." },
+  { q: "where is biu available?", a: "biu is available on iOS and Android. Download it from the App Store or Google Play. Local prices and eligible store offers depend on your region and platform." },
+  { q: "does my progress sync across devices?", a: "Yes. Saved material, review history, and study progress sync through your account. Some preferences and recent Explore searches are device-local. Connectivity is needed for sync, new AI work, store actions, and exports; biu does not promise a complete offline copy of your library." },
+  { q: "how do i delete my account?", a: "Open Profile > Your data to request deletion. There is a 30-day cancellation period; normal use does not cancel your request. Deleting BIU does not cancel Apple or Google subscriptions. Published-deck copies already cloned or exported by others may remain; the Privacy Policy explains retained records and your privacy rights." },
 ] as const satisfies readonly FaqItem[];
 
-export const allFaqItems = [
-  ...homepageFaqItems,
-  ...additionalFaqItems,
-] as const satisfies readonly FaqItem[];
-
-// Kept as an alias for existing imports while the homepage uses the concise set.
-export const faqItems = homepageFaqItems;
+export const allFaqItems = [...coreFaqItems, ...additionalFaqItems] as const satisfies readonly FaqItem[];
+export const faqItems = coreFaqItems;

@@ -49,15 +49,22 @@
 
 .meta {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
+  gap: 12px;
   margin-top: 22px;
 }
 .num {
-  font-weight: 600;
-  font-size: 20px;
-  letter-spacing: -0.03em;
-  color: var(--berry);
+  flex: none;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--berry);
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
 }
 .stepTitle {
   font-weight: 500;
@@ -67,49 +74,13 @@
   color: var(--ink);
 }
 .desc {
-  margin-top: 8px;
+  margin-top: 4px;
+  text-wrap: balance;
   font-size: 16px;
   line-height: 1.45;
   letter-spacing: -0.02em;
   color: var(--muted);
   max-width: 340px;
-}
-
-/* tags */
-.tagsWrap {
-  max-width: 1200px;
-  margin: 72px auto 0;
-  padding: 0 24px;
-  text-align: center;
-}
-.caption {
-  font-size: 16px;
-  letter-spacing: -0.02em;
-  color: var(--muted);
-  margin-bottom: 22px;
-}
-.tags {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--cream-card);
-  border: 1px solid rgba(44, 39, 34, 0.08);
-  padding: 12px 20px;
-  border-radius: 999px;
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-.tagIcon {
-  display: inline-flex;
-  color: var(--berry);
 }
 
 @media (max-width: 860px) {

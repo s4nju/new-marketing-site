@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "biu — learn anything and remember forever";
+export const alt = "biu — study, review, and remember";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -33,7 +33,7 @@ export default function OpenGraphImage() {
         }}
       >
         <span>learn anything.</span>
-        <span>remember forever.</span>
+        <span>build a review habit.</span>
       </div>
       <div style={{ fontSize: 28, marginTop: 36 }}>
         summaries, flashcards, and spaced repetition

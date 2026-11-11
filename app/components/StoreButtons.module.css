@@ -1,0 +1,74 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.button {
+  min-width: 176px;
+  min-height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 24px 8px 20px;
+  border-radius: 999px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.button:hover {
+  transform: translateY(-2px);
+}
+.button:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 4px;
+}
+
+.dark {
+  background: var(--ink);
+  color: var(--cream);
+  box-shadow: 0 10px 24px rgba(44, 39, 34, 0.22);
+}
+.dark:hover {
+  box-shadow: 0 14px 30px rgba(44, 39, 34, 0.28);
+}
+
+.light {
+  background: var(--cream);
+  color: var(--ink);
+}
+.light:focus-visible {
+  outline-color: var(--cream);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.1;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0;
+  opacity: 0.72;
+}
+.name {
+  margin-top: 2px;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 420px) {
+  .row {
+    width: 100%;
+    flex-direction: column;
+  }
+  .button {
+    width: min(100%, 280px);
+    justify-content: center;
+  }
+}

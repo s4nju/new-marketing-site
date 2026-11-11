@@ -1,44 +1,44 @@
 {
   "avif": [
     {
-      "src": "/images/optimized/phone-384.d7bc8f83f992.avif",
+      "src": "/images/optimized/phone-384.79099edb1031.avif",
       "width": 384,
       "height": 835
     },
     {
-      "src": "/images/optimized/phone-640.e985cd1ee51b.avif",
+      "src": "/images/optimized/phone-640.c4da072a3e8b.avif",
       "width": 640,
       "height": 1391
     },
     {
-      "src": "/images/optimized/phone-750.1ffc7f2cb24f.avif",
+      "src": "/images/optimized/phone-750.5d686eb6ade5.avif",
       "width": 750,
       "height": 1631
     },
     {
-      "src": "/images/optimized/phone-1080.3af0ee4604d1.avif",
+      "src": "/images/optimized/phone-1080.f34a3f38cd26.avif",
       "width": 1080,
       "height": 2348
     }
   ],
   "webp": [
     {
-      "src": "/images/optimized/phone-384.8697ebe02d8d.webp",
+      "src": "/images/optimized/phone-384.5056e617e4ec.webp",
       "width": 384,
       "height": 835
     },
     {
-      "src": "/images/optimized/phone-640.cec1fd2372a2.webp",
+      "src": "/images/optimized/phone-640.6ce6d77736b3.webp",
       "width": 640,
       "height": 1391
     },
     {
-      "src": "/images/optimized/phone-750.7ad17984e5b7.webp",
+      "src": "/images/optimized/phone-750.61d62af3ac9c.webp",
       "width": 750,
       "height": 1631
     },
     {
-      "src": "/images/optimized/phone-1080.702266849349.webp",
+      "src": "/images/optimized/phone-1080.4d209ebeeb83.webp",
       "width": 1080,
       "height": 2348
     }

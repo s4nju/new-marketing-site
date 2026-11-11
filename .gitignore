@@ -5,6 +5,9 @@
 *.log
 
 .env
+.env.local
+.env.*.local
+.dev.vars*
 
 .agents/*
 .claude/*
@@ -17,3 +20,6 @@ docs/adr/*
 !docs/glossary.md
 !docs/performance-audit-2026-09-17.md
 .gstack/
+/dist/
+.vinext/
+.cloudflare/

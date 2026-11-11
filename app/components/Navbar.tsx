@@ -19,12 +19,13 @@ export default function Navbar() {
         />
         <div className={styles.links}>
           <a href="/#features">features</a>
+          <a href="/#how-it-works">how it works</a>
           <a href="/#pricing">pricing</a>
           {featureFlags.blogEnabled && <Link href="/blog">blog</Link>}
-          <Link href="/faq">faq</Link>
+          <a href="/#faq">faq</a>
         </div>
         <a href={appAccessHref} className={styles.cta}>
-          get beta
+          get the app
         </a>
       </nav>
     </header>

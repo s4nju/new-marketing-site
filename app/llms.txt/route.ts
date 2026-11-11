@@ -17,9 +17,9 @@ Last updated: ${productData.lastUpdated}.
 - [AI flashcard maker](${siteConfig.url}/ai-flashcard-maker): Supported study inputs, generated summaries and flashcards, review workflow, and AI limitations.
 - [PDF to flashcards](${siteConfig.url}/pdf-to-flashcards): Workflow for converting a PDF into an inspected flashcard deck and scheduled reviews.
 - [Spaced repetition guide](${siteConfig.url}/spaced-repetition): Source-led explanation of spacing, retrieval practice, research limitations, and biu's scheduling behavior.
-- [Planned launch pricing](${siteConfig.url}/#pricing): Human-readable private-beta status, planned trial, monthly and yearly pricing, and included features.
+- [Plus and Pro pricing](${siteConfig.url}/#pricing): Free tier, 7-day signup trial, Plus and Pro US prices, monthly credits, and free access after expiry.
 - [Frequently asked questions](${siteConfig.url}/faq): Detailed answers about supported inputs, flashcard generation, daily quizzes, the AI tutor, access, and pricing.
-- [Machine-readable pricing](${siteConfig.url}/pricing.md): Planned launch pricing, trial terms, private-beta availability, and included features.
+- [Machine-readable pricing](${siteConfig.url}/pricing.md): Current US prices, monthly credit rules, quiz rewards, subscription changes, and trial terms.
 
 ## Policies
 
