@@ -37,6 +37,18 @@ npm run deploy:cloudflare # build and deploy production to the existing Worker
 npm run deploy:vinext     # alias for deploy:cloudflare
 ```
 
+The `biu-marketing-dev` Workers Builds production settings must use:
+
+- Build command: `npm run build:cloudflare`
+- Deploy command: `npm run deploy:cloudflare -- --skip-build`
+- Root directory: `/`; production branch: `main`
+
+Set the production `NEXT_PUBLIC_*` values in Workers Builds variables before
+building; local `.env` files are not committed. The deploy command reuses the
+production build. `npm run build` produces a Next.js build for Vercel, and
+`npx wrangler deploy` attempts automatic OpenNext setup rather than using this
+project's `cloudflare.config.ts` and vinext deployment pipeline.
+
 `cloudflare.config.ts` selects the Cloudflare account, Worker name, custom
 domains, Node compatibility, image optimization, and logs/traces.
 `vite.config.ts` selects production URLs and analytics in production mode.
