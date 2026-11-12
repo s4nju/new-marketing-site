@@ -61,6 +61,18 @@ The third routine gives you two kinds of information:
 
 That is more useful than measuring familiarity alone.
 
+## One topic, three ways to study it
+
+Here is a constructed example using the distinction between an independent variable and a dependent variable.
+
+| Routine | What you do | What it checks |
+| --- | --- | --- |
+| Rereading | Read both definitions with the notes open | Familiarity with the wording |
+| Active recall | Close the notes; name which variable is deliberately changed and which is measured | Whether you can retrieve the distinction now |
+| Spaced active recall | Answer again in a later session, then identify the variables in a new experiment | Whether recall survives a delay and transfers to an example |
+
+If you can recite both definitions but misidentify the variables in a scenario, add scenario practice. Shorter intervals alone will not resolve that application gap. Use the [exam flashcard workflow](/blog/how-to-use-flashcards-for-exams) to connect cards with complete tasks.
+
 ## A simple seven-day routine
 
 There is no perfect schedule for every learner, but this example shows the relationship:
@@ -175,4 +187,4 @@ Do not choose between active recall and spaced repetition.
 
 - [Test-enhanced learning: Taking memory tests improves long-term retention](https://pubmed.ncbi.nlm.nih.gov/16507066/) — Roediger and Karpicke, 2006.
 - [Distributed practice in verbal recall tasks: A review and quantitative synthesis](https://pubmed.ncbi.nlm.nih.gov/16719566/) — Cepeda et al., 2006.
-- [Systematic review of distributed practice and retrieval practice in health professions education](https://pubmed.ncbi.nlm.nih.gov/37615780/) — Versteeg et al., 2023.
+- [Systematic review of distributed practice and retrieval practice in health professions education](https://pubmed.ncbi.nlm.nih.gov/37615780/) — Trumble et al., 2024 (published online in 2023).

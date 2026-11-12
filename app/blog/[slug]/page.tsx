@@ -10,9 +10,10 @@ import FinalCta from "@/app/components/FinalCta";
 import MotionController from "@/app/components/MotionController";
 import Navbar from "@/app/components/Navbar";
 import { siteConfig } from "@/app/site-config";
+import { blogEditor } from "@/lib/blog-editor";
 import {
   formatBlogDate,
-  getAdjacentBlogPosts,
+  getRelatedBlogPosts,
   getBlogPost,
   getPublishedBlogPosts,
 } from "@/lib/blog";
@@ -68,7 +69,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const post = getBlogPost(slug);
   if (!post) notFound();
 
-  const adjacentPosts = getAdjacentBlogPosts(post.slug);
+  const relatedPosts = getRelatedBlogPosts(post);
   const articleUrl = `${siteConfig.url}/blog/${post.slug}`;
   const articleSchema = {
     "@context": "https://schema.org",
@@ -85,12 +86,28 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       "@type": "Organization",
       name: post.author,
     },
+    editor: {
+      "@type": "Person",
+      "@id": `${siteConfig.url}/blog#${blogEditor.anchor}`,
+      name: post.editor,
+      url: `${siteConfig.url}/blog#${blogEditor.anchor}`,
+    },
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
       url: siteConfig.url,
     },
     keywords: post.tags.join(", "),
+    inLanguage: "en",
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${siteConfig.url}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: articleUrl },
+    ],
   };
 
   return (
@@ -98,7 +115,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c"),
+          __html: JSON.stringify([articleSchema, breadcrumbSchema]).replace(/</g, "\\u003c"),
         }}
       />
       <MotionController />
@@ -122,6 +139,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <p className={styles.description}>{post.description}</p>
             <div className={styles.byline}>
               <span>By {post.author}</span>
+              <span aria-hidden="true">·</span>
+              <Link href={`#${blogEditor.anchor}`}>Edited by {post.editor}</Link>
               <span aria-hidden="true">·</span>
               <time dateTime={post.publishedAt}>
                 {formatBlogDate(post.publishedAt)}
@@ -169,34 +188,26 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           >
             {post.content}
           </ReactMarkdown>
+          <aside className={styles.editor} id={blogEditor.anchor} aria-label="Article editor">
+            <Image src={blogEditor.image} alt="" width={56} height={56} />
+            <div>
+              <strong>Edited by {post.editor}</strong>
+              <p>biu blog editor</p>
+            </div>
+          </aside>
         </article>
 
-        <nav className={styles.postNavigation} aria-label="More blog posts">
-          {adjacentPosts.newer ? (
-            <Link
-              href={`/blog/${adjacentPosts.newer.slug}`}
-              className={styles.previous}
-            >
-              <span>newer note</span>
-              <strong>← {adjacentPosts.newer.title}</strong>
+        <nav className={styles.postNavigation} aria-label="Related study guides">
+          {relatedPosts.map((related) => (
+            <Link key={related.slug} href={`/blog/${related.slug}`}>
+              <span>related study guide</span>
+              <strong>{related.title} →</strong>
             </Link>
-          ) : (
-            <span />
-          )}
-          {adjacentPosts.older ? (
-            <Link
-              href={`/blog/${adjacentPosts.older.slug}`}
-              className={styles.next}
-            >
-              <span>older note</span>
-              <strong>{adjacentPosts.older.title} →</strong>
-            </Link>
-          ) : (
-            <Link href="/blog" className={styles.next}>
-              <span>keep exploring</span>
-              <strong>all learning notes →</strong>
-            </Link>
-          )}
+          ))}
+          <Link href="/blog">
+            <span>keep exploring</span>
+            <strong>all study guides →</strong>
+          </Link>
         </nav>
       </main>
       <FinalCta />

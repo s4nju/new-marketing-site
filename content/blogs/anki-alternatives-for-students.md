@@ -1,16 +1,18 @@
-**The best Anki alternative depends on what you want to remove from the workflow.** Choose biu for source-to-review simplicity, Quizlet for familiar class sets and study modes, RemNote for connected notes and flashcards, or Knowt for a broad student study suite. Keep Anki if its control, add-ons and mature scheduling are the features you value.
+**Anki alternatives serve different study workflows: source-to-card drafting, shared class sets, connected notes or a broader study suite.** Compare the task you need help with, then test the same material in a small copied deck before switching. Keep Anki if your current setup already supports your studies.
 
-This comparison uses official product and pricing pages checked on **30 July 2026**. Features and prices change, so verify the linked pages before subscribing.
+**Disclosure:** this guide is published by biu, one of the products discussed. It is a desk-researched workflow comparison, not a hands-on benchmark or an independent ranking. Anki, RemNote and Knowt official pages were checked on **12 November 2026**; Quizlet blocked automated access, so its current feature and plan details remain unverified here. Prices and plan limits are omitted until checked.
+
+This article remains a draft pending first-hand testing of the competitors. The test worksheet below explains what needs to be checked before publication.
 
 ## The shortlist
 
-| Tool | Best for | Main tradeoff |
+| Tool | Workflow to investigate | What to check yourself |
 |---|---|---|
-| biu | Turning your own sources into a low-setup review flow | Newer ecosystem |
-| Quizlet | Familiar class sets, games and multiple study modes | Advanced features may require a paid plan |
-| RemNote | Notes, PDFs and flashcards in one knowledge base | More structure to learn |
-| Knowt | A wide student suite with AI and practice modes | Many features can feel broader than a simple card tool |
-| Anki | Maximum control, add-ons and mature spaced repetition | More setup and configuration |
+| biu | Turning supported sources into summaries, flashcard drafts and daily review | Availability, import fidelity and output quality |
+| Quizlet | Studying with shared flashcard sets | Current study modes, permissions and regional plan limits |
+| RemNote | Keeping notes, PDFs and flashcards together | Whether its organization suits your workflow |
+| Knowt | Using flashcards alongside notes and AI study tools | Current free limits and which modes you actually need |
+| Anki | Configuring cards, add-ons and spaced review | Setup time and dependence on existing customizations |
 
 There is no objective winner. The most effective app is the one that produces a verified deck you will retrieve from consistently.
 
@@ -29,7 +31,7 @@ Those preferences do not make Anki poor. Its official site highlights free deskt
 
 Start by naming the friction you want to solve. Switching apps without changing the workflow can simply move the same oversized, unverified deck elsewhere.
 
-## 1. biu: best for a source-to-review workflow
+## 1. biu: source material and daily review
 
 biu is designed for the path between study material and daily retrieval. You can add a PDF, video, link or photo of notes, generate a summary and flashcard draft, inspect it and review selected cards with spacing.
 
@@ -47,11 +49,11 @@ biu is designed for the path between study material and daily retrieval. You can
 - you want extensive template scripting;
 - you already have a large, carefully tuned Anki collection.
 
-Try the [AI flashcard maker](/ai-flashcard-maker) for generation or read how [active recall and spacing work together](/blog/active-recall-vs-spaced-repetition) before choosing a tool.
+Read about the [AI flashcard maker](/ai-flashcard-maker) for generation or read how [active recall and spacing work together](/blog/active-recall-vs-spaced-repetition) before choosing a tool.
 
-## 2. Quizlet: best for familiar class sets and varied modes
+## 2. Quizlet: shared flashcard study
 
-Quizlet combines flashcard creation with class sharing and multiple study experiences. Its official pages describe flashcards, Learn and Test modes, games, and AI study tools that can generate flashcards and other materials from notes.
+Quizlet is a candidate when classmates already use shared flashcard sets. Its current official feature pages could not be verified during this revision. Before choosing it, check which study modes, sharing options and AI features your account and region actually include.
 
 ### Choose Quizlet if:
 
@@ -69,9 +71,9 @@ Quizlet combines flashcard creation with class sharing and multiple study experi
 
 Verify plan details on Quizlet's official site for your country, since offers and pricing may vary.
 
-## 3. RemNote: best for connected notes and flashcards
+## 3. RemNote: connected notes and flashcards
 
-RemNote integrates notes, flashcards, PDFs and spaced repetition. Its official pricing page listed a free tier with unlimited notes, flashcards and synced devices on the research date, with limits on some features. Paid tiers added capabilities such as PDF annotation and more AI credits.
+RemNote's official site describes notes, flashcards, PDFs, annotations and spaced repetition in one product. Check the current pricing page for access to each feature; this guide does not assume that advertised capabilities are all included in a free account.
 
 ### Choose RemNote if:
 
@@ -88,9 +90,9 @@ RemNote integrates notes, flashcards, PDFs and spaced repetition. Its official p
 
 RemNote is closer to a note system with memory built in than a minimal flashcard replacement.
 
-## 4. Knowt: best for an all-in-one student suite
+## 4. Knowt: a broader study suite
 
-Knowt offers flashcards alongside notes, practice tests, AI tools and other study features. Its official pricing page listed a free Basic tier and paid Ultra plans on 30 July 2026. The displayed prices were $12.49 per month when billed annually at $149.99, or $24.99 monthly; local pricing and promotions can differ.
+Knowt's official site presents flashcards alongside notes, practice tests and AI study tools. Verify the current plan limits and renewal terms directly; this guide does not reproduce old prices or treat promotional claims as measured learning outcomes.
 
 ### Choose Knowt if:
 
@@ -107,7 +109,7 @@ Knowt offers flashcards alongside notes, practice tests, AI tools and other stud
 
 Check the live pricing page before paying.
 
-## 5. Anki: still best for control
+## 5. Anki: customization and existing review history
 
 Anki remains the baseline for students who want control over card templates, scheduling, media and extensions. Desktop versions are free, AnkiWeb sync is free, and the ecosystem has years of community knowledge.
 
@@ -127,6 +129,16 @@ Anki remains the baseline for students who want control over card templates, sch
 - the interface causes consistent avoidance.
 
 The cost of migration should be included in your comparison. A new app must save more effort than moving decks and rebuilding habits consumes.
+
+## How to switch from Anki without risking your original deck
+
+1. Back up your collection in Anki before changing anything.
+2. Export one small deck as `.apkg`, including media if needed. Anki’s [official export guide](https://docs.ankiweb.net/manual/exporting) explains the options.
+3. Confirm that the destination supports that format and your card types. Import support does not guarantee that templates, cloze behavior, media or scheduling will transfer.
+4. Check card counts, front/back fields, images and a sample of answers in the copied deck.
+5. Complete a week of review before migrating the rest. Keep the original backup and check export options in the new tool.
+
+Do not assume that importing card content preserves review history. Record that separately in the test below.
 
 ## Compare the tools using your own material
 
@@ -159,6 +171,20 @@ Find the settings for new cards, due reviews, suspension and deletion. A system 
 ### Test 5: export and ownership
 
 Check whether you can export your content and in what format. Confirm privacy terms before uploading confidential, copyrighted or institution-restricted material.
+
+## A comparison worksheet to complete before deciding
+
+| Check | What to record for each app |
+| --- | --- |
+| Setup | Minutes to first usable review |
+| Output | Cards kept, corrected and rejected from the same source |
+| Import | Card count, media, cloze behavior and review-history transfer |
+| Review | Ability to answer before revealing and edit an unclear prompt |
+| Workload | Controls available for new, overdue and irrelevant cards |
+| Exit | Export format and whether attachments are included |
+| Cost | Current regional price, renewal period and required feature tier |
+
+These are proposed checks, not completed test results. Do not award a product a score until you have recorded the result.
 
 ## Features that matter more than a long checklist
 
@@ -194,7 +220,7 @@ For source-driven study, biu emphasizes a guided path from material to review. Q
 
 ### Is there a free Anki alternative?
 
-Anki's desktop apps and AnkiWeb are already free. RemNote and Knowt advertised free tiers on the research date, and Quizlet offers free access with feature limits. Check current regional terms.
+Anki's desktop apps and AnkiWeb are already free. For alternatives, check the current regional plan pages and confirm that the specific review or import feature you need is included. A free account does not imply unlimited AI generation or every study mode.
 
 ### Which alternative is best for PDFs?
 
@@ -219,6 +245,6 @@ Then judge the winner after a week of actual retrieval—not after comparing fea
 ## Official product sources
 
 - [Anki official site](https://apps.ankiweb.net/)
-- [Quizlet flashcards](https://quizlet.com/us/features/flashcards) and [AI study tools](https://quizlet.com/features/ai-study-tools)
-- [RemNote pricing](https://www.remnote.com/pricing) and [spaced repetition](https://www.remnote.com/feature/spaced-repetition)
-- [Knowt pricing](https://knowt.com/plans)
+- [Quizlet flashcards](https://quizlet.com/us/features/flashcards) — current details not verified during this revision; check directly.
+- [RemNote product overview](https://www.remnote.com/) and [RemNote pricing](https://www.remnote.com/pricing) and [spaced repetition](https://www.remnote.com/feature/spaced-repetition)
+- [Knowt product overview](https://knowt.com/) and [Knowt pricing](https://knowt.com/plans) — verify current prices directly.

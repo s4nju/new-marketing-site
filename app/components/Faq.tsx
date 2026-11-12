@@ -1,9 +1,15 @@
 import Link from "next/link";
-import { homepageFaqItems } from "../content";
+import { homepageFaqItems, type FaqItem } from "../content";
 import FaqAccordion from "./FaqAccordion";
 import styles from "./Faq.module.css";
 
-export default function Faq() {
+export default function Faq({
+  items = homepageFaqItems,
+  idPrefix = "faq-answer",
+}: {
+  items?: readonly FaqItem[];
+  idPrefix?: string;
+}) {
   return (
     <section className={styles.section} id="faq">
       <div className={styles.inner}>
@@ -11,7 +17,7 @@ export default function Faq() {
           <h2 className={styles.title}>questions, answered</h2>
         </div>
 
-        <FaqAccordion items={homepageFaqItems} className={styles.homeList} />
+        <FaqAccordion items={items} idPrefix={idPrefix} className={styles.homeList} />
 
         <Link href="/faq" className={styles.allQuestions}>
           view all questions

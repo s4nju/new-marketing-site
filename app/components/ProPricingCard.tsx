@@ -4,15 +4,8 @@ import { useState } from "react";
 import { appAccessHref } from "../site-config";
 import { productData } from "../product-data";
 import { Check } from "./icons";
+import { BookOpenIcon, PlantIcon, LightningIcon } from "@/app/ui/ph-icon";
 import styles from "./Pricing.module.css";
-
-const aiFeatures = [
-  "AI summaries and study decks from videos, PDFs, links, and notes",
-  "AI assistant with all your learning knowledge",
-  "Quick feedback on your active-recall quiz answer",
-  "bring your own cards or look into community decks",
-  "a tutor that adapts your learning preferences",
-] as const;
 
 const credits = (n: number) => n.toLocaleString("en-US");
 
@@ -36,22 +29,26 @@ const plans = [
     listLabel: "everything in free, and:",
     features: [
       `${credits(productData.plus.creditsPerMonth)} AI credits every month`,
-      ...aiFeatures,
+      ...productData.plus.features,
     ],
   },
   {
     id: "pro",
     name: "pro",
-    tagline: "to push the boundaries.",
+    tagline: "for a little more room to explore",
     listLabel: "everything in free, and:",
     features: [
       `${credits(productData.pro.creditsPerMonth)} AI credits every month`,
-      ...aiFeatures,
+      ...productData.pro.features,
     ],
   },
 ] as const;
 
-export default function PricingPlans() {
+export default function PricingPlans({
+  accessHref = appAccessHref,
+}: {
+  accessHref?: string;
+}) {
   const [annual, setAnnual] = useState(false);
 
   return (
@@ -72,7 +69,7 @@ export default function PricingPlans() {
           type="button"
         >
           yearly
-          <span className={styles.billingSave}>2 months free</span>
+          <span className={styles.billingSave}>(savings plan)</span>
         </button>
       </div>
 
@@ -92,12 +89,21 @@ export default function PricingPlans() {
             : "0";
           const note = paid
             ? annual
-              ? `$${(Number(paid.yearlyAmount) / 12).toFixed(2)}/mo, billed yearly. cancel anytime.`
-              : "billed monthly. cancel anytime."
-            : "no card needed.";
+              ? `$${(Number(paid.yearlyAmount) / 12).toFixed(2)}/mo, billed yearly. cancel auto-renewal anytime.`
+              : "billed monthly. cancel auto-renewal anytime."
+            : "no subscription needed.";
 
+          const PlanIcon =
+            plan.id === "free"
+              ? BookOpenIcon
+              : plan.id === "plus"
+                ? PlantIcon
+                : LightningIcon;
           return (
             <div key={plan.id} className={`${styles.card} ${tone}`}>
+              <span className={styles.planIcon}>
+                <PlanIcon size={25} weight="duotone" aria-hidden="true" />
+              </span>
               <h3 className={styles.cardTitle}>{plan.name}</h3>
               <p className={styles.cardDesc}>{plan.tagline}</p>
               <div className={styles.price}>
@@ -110,10 +116,10 @@ export default function PricingPlans() {
               </div>
               <p className={styles.billingNote}>{note}</p>
               <a
-                href={appAccessHref}
+                href={accessHref}
                 className={`${styles.cta} ${plan.id === "pro" ? styles.ctaBerry : plan.id === "plus" ? styles.ctaDark : styles.ctaOutline}`}
               >
-                {paid ? `choose ${plan.name}` : "get the app"}
+                {paid ? `get ${plan.name} in the app` : "get the app"}
               </a>
               <div className={styles.divider} />
               <p className={styles.label}>{plan.listLabel}</p>

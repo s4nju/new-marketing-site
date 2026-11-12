@@ -68,6 +68,9 @@ records on November 11, 2026. API, email, and verification records were preserve
 The Cloudflare Single Redirect rule `biu_apex_to_www` in the zone ruleset
 `biu canonical hostname redirect` performs the canonical redirect with
 `preserve_query_string` enabled. Keep this rule when changing zone settings.
+Cloudflare's zone setting **Always Use HTTPS** is enabled as of November 12,
+2026. Keep it enabled: it redirects HTTP requests on www to HTTPS with a 301,
+preserving paths and query strings. The apex redirect continues to return 308.
 
 ## Production URLs
 

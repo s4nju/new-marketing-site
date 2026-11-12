@@ -108,6 +108,17 @@ Use the result diagnostically:
 
 Delete duplicates, suspend low-yield facts and rewrite cards you repeatedly misunderstand. A smaller, relevant deck is easier to maintain.
 
+## Worked example: turn one practice mistake into a card
+
+Suppose an exam question asks whether a study can establish causation, and you answer “yes” because its variables are correlated. This is a constructed revision example.
+
+- **Diagnose:** you recalled an association but missed the study-design limitation.
+- **Create a cue:** “Does correlation alone establish that one variable causes the other?” Answer: “No.”
+- **Add explanation practice:** describe a possible confounder or reverse causal relationship using the course's examples.
+- **Retest transfer:** attempt a different full question without the card or notes visible.
+
+If you get the card right but still miss the new question, work on interpreting studies rather than adding more repetitions of the same definition. The practice result decides whether the repair worked.
+
 ## A four-week example plan
 
 Adapt this to the volume and difficulty of your course.
@@ -239,4 +250,4 @@ Map the exam, understand the content, make focused cards, retrieve them over tim
 
 - [Test-enhanced learning: Taking memory tests improves long-term retention](https://pubmed.ncbi.nlm.nih.gov/16507066/) — Roediger and Karpicke, 2006.
 - [Distributed practice in verbal recall tasks](https://pubmed.ncbi.nlm.nih.gov/16719566/) — Cepeda et al., 2006.
-- [Systematic review of distributed practice and retrieval practice in health professions education](https://pubmed.ncbi.nlm.nih.gov/37615780/) — Versteeg et al., 2023.
+- [Systematic review of distributed practice and retrieval practice in health professions education](https://pubmed.ncbi.nlm.nih.gov/37615780/) — Trumble et al., 2024 (published online in 2023).

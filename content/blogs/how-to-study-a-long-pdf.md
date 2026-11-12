@@ -122,6 +122,19 @@ For each chapter or topic:
 
 See the full [PDF-to-flashcards workflow](/pdf-to-flashcards) before relying on generated output.
 
+## Worked example: turn a PDF section into a study task
+
+Suppose your assigned section explains experimental design. This is a constructed worksheet, not a claim about a particular textbook or AI output.
+
+| Source element | Study question | Check or practice |
+| --- | --- | --- |
+| Definition of independent variable | Which variable does the researcher deliberately change? | Find the exact definition in the assigned section |
+| Definition of dependent variable | Which variable is measured as the outcome? | Explain the difference without notes |
+| Worked experiment | Identify both variables in this experiment | Apply the distinction to a different scenario |
+| Limitations paragraph | What prevents the stated causal conclusion? | Reconstruct the reasoning in a short answer |
+
+Record the actual page reference beside each prompt. The first two items can become flashcards; the last two need application and explanation as well. This produces a usable study plan rather than a card for every sentence.
+
 ## Step 7: protect against common PDF failures
 
 ### Scanned or image-only pages

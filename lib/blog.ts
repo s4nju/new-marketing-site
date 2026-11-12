@@ -1,9 +1,10 @@
 import "server-only";
 
 import { featureFlags } from "@/app/feature-flags";
+import { blogEditor } from "./blog-editor";
 
-import { readFileSync, readdirSync, statSync } from "node:fs";
-import path from "node:path";
+import rawMetadata from "@/content/blog.json";
+import bundledContent from "@/content/blog-content.generated.json";
 
 export type BlogPostMetadata = {
   slug: string;
@@ -12,6 +13,7 @@ export type BlogPostMetadata = {
   publishedAt: string;
   updatedAt?: string;
   author: string;
+  editor: string;
   coverImage: string;
   tags: string[];
   draft: boolean;
@@ -22,9 +24,7 @@ export type BlogPost = BlogPostMetadata & {
   readingMinutes: number;
 };
 
-const contentDirectory = path.join(process.cwd(), "content");
-const postsDirectory = path.join(contentDirectory, "blogs");
-const metadataPath = path.join(contentDirectory, "blog.json");
+const markdownContent: Record<string, string> = bundledContent;
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -56,27 +56,6 @@ function validateDate(value: string, field: string, slug: string) {
   }
 }
 
-function validateLocalImage(imagePath: string, slug: string) {
-  if (!imagePath.startsWith("/")) return;
-
-  const publicDirectory = path.join(process.cwd(), "public");
-  const absolutePath = path.resolve(publicDirectory, `.${imagePath}`);
-  if (
-    !absolutePath.startsWith(`${publicDirectory}${path.sep}`) ||
-    !statExists(absolutePath)
-  ) {
-    fail(`"${slug}" references a missing cover image: ${imagePath}`);
-  }
-}
-
-function statExists(filePath: string) {
-  try {
-    return statSync(filePath).isFile();
-  } catch {
-    return false;
-  }
-}
-
 function parsePublishedEntry(
   entry: Record<string, unknown>,
   index: number,
@@ -93,6 +72,10 @@ function parsePublishedEntry(
   const description = requiredString(entry, "description", slug);
   const publishedAt = requiredString(entry, "publishedAt", slug);
   const author = requiredString(entry, "author", slug);
+  const editor = requiredString(entry, "editor", slug);
+  if (editor !== blogEditor.name) {
+    fail(`"${slug}" references an editor without a configured profile.`);
+  }
   const coverImage = requiredString(entry, "coverImage", slug);
 
   if (!Array.isArray(entry.tags) || entry.tags.length === 0) {
@@ -111,7 +94,7 @@ function parsePublishedEntry(
   }
 
   validateDate(publishedAt, "publishedAt", slug);
-  validateLocalImage(coverImage, slug);
+  // Local image existence is checked by generate-blog-content.mjs before build.
 
   let updatedAt: string | undefined;
   if (entry.updatedAt !== undefined) {
@@ -129,6 +112,7 @@ function parsePublishedEntry(
     publishedAt,
     updatedAt,
     author,
+    editor,
     coverImage,
     tags,
     draft: entry.draft,
@@ -168,6 +152,7 @@ function parseDraftEntry(
       typeof entry.author === "string" && entry.author.trim()
         ? entry.author.trim()
         : "biu team",
+    editor: typeof entry.editor === "string" ? entry.editor.trim() : blogEditor.name,
     coverImage:
       typeof entry.coverImage === "string" ? entry.coverImage.trim() : "",
     tags: Array.isArray(entry.tags)
@@ -194,17 +179,6 @@ function estimateReadingMinutes(markdown: string) {
 function loadCatalog(): BlogPost[] {
   if (catalogCache) return catalogCache;
 
-  let rawMetadata: unknown;
-  try {
-    rawMetadata = JSON.parse(readFileSync(metadataPath, "utf8"));
-  } catch (error) {
-    fail(
-      `Could not read content/blog.json: ${
-        error instanceof Error ? error.message : String(error)
-      }`,
-    );
-  }
-
   if (!Array.isArray(rawMetadata)) {
     fail("content/blog.json must contain a JSON array.");
   }
@@ -225,12 +199,11 @@ function loadCatalog(): BlogPost[] {
     }
     seenSlugs.add(metadata.slug);
 
-    const markdownPath = path.join(postsDirectory, `${metadata.slug}.md`);
-    if (!statExists(markdownPath)) {
+    if (!Object.hasOwn(markdownContent, metadata.slug)) {
       fail(`"${metadata.slug}" is missing content/blogs/${metadata.slug}.md.`);
     }
 
-    const content = readFileSync(markdownPath, "utf8").trim();
+    const content = markdownContent[metadata.slug];
     if (!isDraft && content === "") {
       fail(`Published post "${metadata.slug}" has an empty Markdown file.`);
     }
@@ -242,9 +215,7 @@ function loadCatalog(): BlogPost[] {
     };
   });
 
-  const markdownSlugs = readdirSync(postsDirectory)
-    .filter((fileName) => fileName.endsWith(".md"))
-    .map((fileName) => fileName.slice(0, -3));
+  const markdownSlugs = Object.keys(markdownContent);
   const orphanedMarkdown = markdownSlugs.filter((slug) => !seenSlugs.has(slug));
   if (orphanedMarkdown.length > 0) {
     fail(
@@ -277,6 +248,19 @@ export function getAdjacentBlogPosts(slug: string) {
     newer: index > 0 ? posts[index - 1] : undefined,
     older: index >= 0 && index < posts.length - 1 ? posts[index + 1] : undefined,
   };
+}
+
+/** Related reading follows subject overlap rather than arbitrary release order. */
+export function getRelatedBlogPosts(post: BlogPost, limit = 3) {
+  return getPublishedBlogPosts()
+    .filter((candidate) => candidate.slug !== post.slug)
+    .map((candidate) => ({
+      post: candidate,
+      overlap: candidate.tags.filter((tag) => post.tags.includes(tag)).length,
+    }))
+    .sort((a, b) => b.overlap - a.overlap || a.post.slug.localeCompare(b.post.slug))
+    .slice(0, limit)
+    .map(({ post: related }) => related);
 }
 
 export function formatBlogDate(value: string) {

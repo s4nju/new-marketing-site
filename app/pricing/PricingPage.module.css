@@ -1,0 +1,412 @@
+.page {
+  padding-top: 150px;
+}
+.hero,
+.trial,
+.included {
+  width: min(100% - 48px, 1152px);
+  margin-inline: auto;
+}
+.credits {
+  width: min(100% - 48px, 1152px);
+  margin-inline: auto;
+  margin-bottom: 100px;
+}
+.billingDetails {
+  width: min(100% - 48px, 1152px);
+  margin-inline: auto;
+  display: flex;
+  align-items: self-start;
+  justify-content: space-around;
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 30px 20px 64px;
+}
+.back {
+  display: inline-flex;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.back span {
+  opacity: 0.5;
+}
+.hero h1 {
+  font-size: clamp(48px, 5.5vw, 78px);
+  line-height: 1.04;
+  letter-spacing: -0.065em;
+  font-weight: 500;
+}
+.hero h1 em {
+  color: var(--berry);
+  font-style: normal;
+}
+.heroCopy > p {
+  max-width: 410px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.7;
+  margin-top: 24px;
+  letter-spacing: -0.025em;
+}
+.heroLink,
+.textLink {
+  display: inline-flex;
+  gap: 14px;
+  align-items: center;
+  color: var(--berry);
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 24px;
+}
+.illustration svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.plans {
+  padding: 44px 0 0;
+  scroll-margin-top: 110px;
+}
+.sectionHead {
+  text-align: center;
+  margin: 0 24px 32px;
+}
+.eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--berry);
+  margin-bottom: 14px;
+}
+.sectionHead h2,
+.included h2,
+.creditIntro h2 {
+  font-weight: 500;
+  font-size: clamp(32px, 3.6vw, 48px);
+  line-height: 1.12;
+  letter-spacing: -0.05em;
+}
+.sectionHead p {
+  color: var(--muted);
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+.priceNote {
+  max-width: 730px;
+  margin: 28px auto 0;
+  padding: 0 24px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.trial {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 44px;
+  align-items: center;
+  padding: 40px 56px;
+  background: #eee3cc;
+  border-radius: 28px;
+  margin-top: 64px;
+}
+.trialArt {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--berry);
+  display: grid;
+  place-items: center;
+  margin: auto;
+}
+.trialArt > span {
+  position: absolute;
+  right: -12px;
+  bottom: 12px;
+  padding: 9px 14px;
+  border-radius: 99px;
+  background: var(--berry);
+  color: white;
+  font-size: 19px;
+  transform: rotate(-10deg);
+}
+.trial h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+}
+.trial p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+  max-width: 680px;
+  margin-top: 12px;
+}
+.included {
+  padding-block: 100px;
+}
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+.featureIcon {
+  color: var(--berry);
+  width: 56px;
+  height: 56px;
+  background: #eee3d1;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 22px;
+}
+.featureGrid h3 {
+  font-size: 17px;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.featureGrid p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-top: 12px;
+}
+.credits {
+  padding: 56px;
+  border-radius: 32px;
+  background: var(--ink);
+  color: var(--cream);
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 76px;
+}
+.credits .eyebrow {
+  color: #e8b89e;
+}
+.creditIntro > p {
+  color: #d0c4b1;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-top: 20px;
+}
+.creditMeter {
+  margin-top: 32px;
+  border-top: 1px solid #5a5044;
+  padding-top: 24px;
+}
+.creditMeter > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #e8b89e;
+}
+.creditMeter p {
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  margin: 18px 0 8px;
+}
+.creditMeter strong {
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.meterTrack {
+  background: #51463e;
+  height: 9px;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.meterTrack span {
+  display: block;
+  height: 100%;
+  background: #e7b899;
+  border-radius: inherit;
+}
+.creditMeter small {
+  display: block;
+  margin-top: 17px;
+  color: #d0c4b1;
+  font-size: 11px;
+}
+.creditRules {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.creditRules article {
+  display: flex;
+  gap: 16px;
+}
+.creditRules article > svg {
+  flex: none;
+  color: #e8b89e;
+  margin-top: 2px;
+}
+.creditRules h3 {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.creditRules p {
+  color: #d0c4b1;
+  font-size: 13px;
+  line-height: 1.85;
+  margin-top: 8px;
+}
+.billingDetails {
+  padding-block: 72px;
+}
+.billingHeading {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 26px;
+}
+.billingHeading svg {
+  color: var(--berry);
+  flex: none;
+}
+.billingHeading h2 {
+  font-size: 25px;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+}
+
+.disclosures details {
+  padding: 20px 0;
+  border-top: 1px solid #d8cdb9;
+  max-width: 400px;
+  width: 400px;
+}
+.disclosures summary {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  padding-right: 12px;
+  line-height: 1.5;
+}
+.disclosures p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--muted);
+  padding-top: 16px;
+}
+.legal {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  text-align: center;
+  margin: 0 24px 64px;
+}
+.legal a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.page a:focus-visible,
+.page summary:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+@media (max-width: 960px) {
+  .featureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .credits {
+    gap: 40px;
+    padding: 36px;
+  }
+  .trial {
+    padding: 32px;
+    grid-template-columns: 150px 1fr;
+    gap: 28px;
+  }
+}
+@media (max-width: 650px) {
+  .page {
+    padding-top: 112px;
+  }
+  .hero,
+  .trial,
+  .included,
+  .credits,
+  .billingDetails {
+    width: calc(100% - 40px);
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 12px 0 24px;
+    gap: 12px;
+  }
+  .hero h1 {
+    font-size: clamp(46px, 10vw, 64px);
+  }
+  .heroCopy > p {
+    font-size: 16px;
+  }
+  .illustration {
+    width: min(100%, 390px);
+    margin: auto;
+  }
+  .back {
+    margin-bottom: 20px;
+  }
+  .plans {
+    padding-top: 26px;
+  }
+  .trial {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .trialArt {
+    width: 110px;
+    height: 110px;
+    margin: 0;
+  }
+  .trialArt > svg {
+    width: 48px;
+  }
+  .trialArt > span {
+    font-size: 15px;
+  }
+  .included {
+    padding-block: 64px;
+  }
+  .featureGrid {
+    gap: 32px 20px;
+  }
+  .featureGrid h3 {
+    font-size: 15px;
+  }
+  .featureGrid p {
+    font-size: 13px;
+  }
+  .credits {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+    gap: 36px;
+    border-radius: 24px;
+  }
+  .billingDetails {
+    padding-block: 48px;
+  }
+  .billingHeading h2 {
+    font-size: 22px;
+  }
+}

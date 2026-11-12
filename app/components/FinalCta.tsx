@@ -9,6 +9,7 @@ import {
   RedditLogoIcon,
   XLogoIcon,
   YoutubeLogoIcon,
+  ArrowUpRightIcon,
 } from "@/app/ui/ph-icon";
 import { siteConfig } from "../site-config";
 import StoreButtons from "./StoreButtons";
@@ -35,7 +36,7 @@ const columns = [
     links: [
       { label: "features", href: "/#features" },
       { label: "how it works", href: "/#how-it-works" },
-      { label: "pricing", href: "/#pricing" },
+      { label: "pricing", href: "/pricing" },
       { label: "faq", href: "/faq" },
     ],
   },
@@ -59,17 +60,24 @@ const columns = [
 ] as const;
 
 export default function FinalCta() {
+  const navigationColumns = columns.filter(({ title }) => title !== "legal");
+  const legalLinks = columns.find(({ title }) => title === "legal")!.links;
+
   return (
     <footer className={styles.footerBackground}>
       <div className={styles.cta} id="get-biu">
         <div className={styles.ctaInner}>
-          <h2 className={styles.title}>
-            start remembering
-            <br />
-            what you learn.
-          </h2>
-          <p className={styles.sub}>a few minutes a day is enough.</p>
-          <StoreButtons className={styles.stores} />
+          <div className={styles.ctaCopy}>
+            <p className={styles.eyebrow}>a little every day. a lot that stays.</p>
+            <h2 className={styles.title}>
+              start remembering<br />{" "}what you learn.
+            </h2>
+            <p className={styles.sub}>a few minutes a day is enough.</p>
+          </div>
+          <div className={styles.download}>
+            <StoreButtons tone="light" className={styles.stores} />
+            <p>free to start. yours to keep.</p>
+          </div>
         </div>
       </div>
 
@@ -80,14 +88,24 @@ export default function FinalCta() {
               <Image src={logo} alt="biu logo" width={100} height={50} />
             </Link>
             <p className={styles.tagline}>remember what matters.</p>
+            <p className={styles.brandDescription}>your notes. your daily quiz.<br />a little more remembered.</p>
+            {socialLinks.length > 0 ? (
+              <div className={styles.socials}>
+                {socialLinks.map(({ label, href, Icon }) => (
+                  <a key={label} href={href} aria-label={label}>
+                    <Icon weight="regular" aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            ) : null}
           </div>
 
-          {columns.map(({ title, links }) => (
+          {navigationColumns.map(({ title, links }) => (
             <nav key={title} className={styles.column} aria-label={title}>
               <h3>{title}</h3>
               {links.map(({ label, href }) => (
                 <Link key={label} href={href}>
-                  {label}
+                  <span>{label}</span><ArrowUpRightIcon size={15} aria-hidden="true" />
                 </Link>
               ))}
             </nav>
@@ -96,15 +114,9 @@ export default function FinalCta() {
 
         <div className={styles.bottom}>
           <p>© {new Date().getFullYear()} biu</p>
-          {socialLinks.length > 0 ? (
-            <div className={styles.socials}>
-              {socialLinks.map(({ label, href, Icon }) => (
-                <a key={label} href={href} aria-label={label}>
-                  <Icon weight="regular" />
-                </a>
-              ))}
-            </div>
-          ) : null}
+          <nav className={styles.legal} aria-label="legal">
+            {legalLinks.map(({ label, href }) => <Link key={href} href={href}>{label}</Link>)}
+          </nav>
         </div>
       </div>
     </footer>

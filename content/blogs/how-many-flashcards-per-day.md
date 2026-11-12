@@ -1,20 +1,20 @@
-**There is no ideal number of flashcards for everyone. Set a review-time limit first, complete due cards before adding new ones, and choose a new-card rate your future schedule can absorb.** For many students, 10–30 new cards and 50–150 total reviews can be a reasonable starting range—but the right number is the one you can answer carefully without displacing more realistic practice.
+**There is no ideal number of flashcards for everyone. Set a review-time limit first, complete due cards before adding new ones, and choose a new-card rate your future schedule can absorb.** There is no evidence-based universal daily quota. Use your own measured review speed and leave time for understanding, checking cards and exam practice.
 
 Card count is a poor goal by itself. One difficult mechanism card can take longer than ten simple vocabulary cards. Measure time, quality and retention alongside the number.
 
-## A sensible starting point
+## How to estimate your daily review capacity
 
 If you are new to flashcards:
 
-| Available review time | New cards to try | Total daily reviews to expect |
+| Time available | At 1 review/minute | At 3 reviews/minute |
 |---|---:|---:|
-| 10 minutes | 5–10 | 20–50 |
-| 20 minutes | 10–20 | 40–100 |
-| 30 minutes | 15–30 | 60–150 |
+| 10 minutes | 10 reviews | 30 reviews |
+| 20 minutes | 20 reviews | 60 reviews |
+| 30 minutes | 30 reviews | 90 reviews |
 
-These are starting estimates, not targets or scientific limits. Your reading speed, subject, answer format and scheduler will change the result.
+These are arithmetic examples, not typical speeds or workload forecasts. They exclude time for making, checking and repairing cards. Repeated attempts at the same card count as separate reviews; they are not new cards.
 
-Begin at the low end for one week. Increase only when:
+Measure your own rate, then begin below that estimated capacity for one week. Increase only when:
 
 - due reviews are being completed;
 - you are attempting answers before revealing them;
@@ -123,7 +123,7 @@ Two decks with 100 cards can create very different workloads.
 
 A focused card asks:
 
-> Under what condition does a competitive inhibitor change apparent Km?
+> In an experiment, what is the variable deliberately changed by the researcher called?
 
 An overloaded card asks:
 
@@ -145,6 +145,14 @@ Instead:
 6. leave time for sleep and logistics.
 
 The [exam flashcard workflow](/blog/how-to-use-flashcards-for-exams) explains how cards fit into a complete preparation plan.
+
+## A one-week workload log
+
+Record these fields after each session: minutes spent, reviews completed, overdue cards remaining, new cards introduced and cards needing repair.
+
+For example, suppose your review budget is 20 minutes and you complete 45 reviews, but 30 due cards remain on three consecutive days. Your current workload already exceeds the budget. Pause new cards and use the [backlog recovery plan](/blog/spaced-repetition-backlog), rather than treating 45 as a reason to increase your quota.
+
+This example describes a decision rule, not an observed student result. The trend across days matters more than one unusually easy session.
 
 ## Signs your daily limit is too high
 
@@ -188,7 +196,7 @@ Completing due reviews is useful, but health, sleep and important obligations co
 
 ### How many flashcards should I make for one lecture?
 
-As few as can cover the important retrieval targets. A focused lecture might need 10–25; a problem-based lecture might need only several concept cards plus worked practice. Do not target a number before mapping the content.
+As few as can cover the important retrieval targets. A terminology lecture may justify more cards than a problem-based lecture, which may need only a few concept prompts plus worked practice. Do not target a number before mapping the content.
 
 ### Should I add new cards when I have overdue reviews?
 
@@ -203,4 +211,4 @@ Start low, review due cards first, observe one week of real workload and adjust 
 ## Sources
 
 - [Distributed practice in verbal recall tasks: A review and quantitative synthesis](https://pubmed.ncbi.nlm.nih.gov/16719566/) — Cepeda et al., 2006.
-- [Systematic review of distributed practice and retrieval practice in health professions education](https://pubmed.ncbi.nlm.nih.gov/37615780/) — Versteeg et al., 2023.
+- [Systematic review of distributed practice and retrieval practice in health professions education](https://pubmed.ncbi.nlm.nih.gov/37615780/) — Trumble et al., 2024 (published online in 2023).

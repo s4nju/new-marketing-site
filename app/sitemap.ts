@@ -16,9 +16,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: siteConfig.url,
-      lastModified: new Date("2026-09-17"),
+      lastModified: new Date("2026-11-12"),
       changeFrequency: "weekly",
       priority: 1,
+    },
+    {
+      url: `${siteConfig.url}/pricing`,
+      lastModified: new Date("2026-11-12"),
     },
     {
       url: `${siteConfig.url}/faq`,
@@ -29,7 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...(featureFlags.blogEnabled
       ? [{
           url: `${siteConfig.url}/blog`,
-          lastModified: new Date("2026-07-26"),
+          lastModified: new Date("2026-11-12"),
           changeFrequency: "weekly" as const,
           priority: 0.8,
         }]

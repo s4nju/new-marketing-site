@@ -112,6 +112,20 @@ Use a small table:
 
 This makes the audit repeatable rather than intuitive.
 
+## Worked example: catching a missing qualifier
+
+The following source and cards are deliberately constructed to demonstrate the audit. They are not results from testing biu or another generator.
+
+**Source:** “In this course, assignments submitted up to 24 hours late lose 5 percentage points unless an extension has been approved.”
+
+| Candidate card | Audit finding | Repair |
+| --- | --- | --- |
+| What happens to all late assignments? → They lose 5 percentage points. | Loses both the time limit and the extension exception | Ask about assignments up to 24 hours late without an approved extension |
+| What is the penalty for an assignment submitted 12 hours late without an approved extension? → 5 percentage points. | Supported by this source | Keep the course context in the question |
+| Are assignments submitted over 24 hours late rejected? → Yes. | The source does not state this | Remove; consult the complete policy |
+
+The unsupported card might sound plausible. The source cannot justify it. This is why checking whether an answer sounds right is weaker than tracing the answer to an exact passage.
+
 ## How to calculate an accuracy rate responsibly
 
 If you are comparing workflows, define the metric before looking at the results.
@@ -232,11 +246,11 @@ No. Students misread sources and oversimplify too. Manual creation makes the aut
 
 ## The practical takeaway
 
-AI flashcards are reliable enough to be useful as drafts and variable enough to require inspection.
+Treat AI flashcards as candidate questions until you have checked their source support, correctness and usefulness.
 
 With [biu's AI flashcard workflow](/ai-flashcard-maker), start with a focused source, generate a limited batch and keep only cards you can trace, understand and justify reviewing. The strongest trust signal is not a universal percentage—it is a visible path back to the source.
 
 ## Sources
 
-- [The generation effect: A meta-analytic review](https://pubmed.ncbi.nlm.nih.gov/32671573/) — McCurdy et al., 2020.
+- [Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile](https://doi.org/10.6028/NIST.AI.600-1) — NIST, 2024. General risk guidance, not a flashcard accuracy benchmark.
 - [Twenty rules of formulating knowledge](https://www.supermemo.com/en/blog/twenty-rules-of-formulating-knowledge) — SuperMemo.

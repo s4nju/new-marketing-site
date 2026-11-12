@@ -8,19 +8,20 @@ import MotionController from "../components/MotionController";
 import Navbar from "../components/Navbar";
 import { formatBlogDate, getPublishedBlogPosts } from "@/lib/blog";
 import { siteConfig } from "../site-config";
+import { blogEditor } from "@/lib/blog-editor";
 import styles from "./BlogPage.module.css";
 
 export const metadata: Metadata = featureFlags.blogEnabled ? {
-  title: `Learning notes | ${siteConfig.name}`,
+  title: `Flashcard & Study Guides: Active Recall and AI | ${siteConfig.name}`,
   description:
-    "Practical notes from biu about learning, memory, flashcards, and building a study practice that lasts.",
+    "Learn to make better flashcards, study PDFs and lecture slides, check AI-generated cards, and build an active recall routine with practical biu guides.",
   alternates: {
     canonical: "/blog",
   },
   openGraph: {
     type: "website",
     url: "/blog",
-    title: `Learning notes | ${siteConfig.name}`,
+    title: `Flashcard & Study Guides | ${siteConfig.name}`,
     description:
       "Practical notes about learning, memory, flashcards, and building a study practice that lasts.",
   },
@@ -37,7 +38,7 @@ export default function BlogPage() {
     "@type": "CollectionPage",
     "@id": `${siteConfig.url}/blog#collection`,
     url: `${siteConfig.url}/blog`,
-    name: `Learning notes | ${siteConfig.name}`,
+    name: `Flashcard & Study Guides | ${siteConfig.name}`,
     description:
       "Practical notes from biu about learning, memory, flashcards, and study practice.",
     hasPart: posts.map((post) => ({
@@ -63,12 +64,16 @@ export default function BlogPage() {
           <div className={styles.heroInner}>
             <div>
               <p className={styles.eyebrow}>biu learning notes</p>
-              <h1>Ideas worth remembering.</h1>
+              <h1>Flashcard and study guides.</h1>
             </div>
             <p className={styles.intro}>
               Clear, practical notes about learning, memory, and turning what
               you read into knowledge you can actually use.
             </p>
+          </div>
+          <div id={blogEditor.anchor} className={styles.editorCredit}>
+            <Image src={blogEditor.image} alt="" width={40} height={40} />
+            <p>Edited by {blogEditor.name}. Practical guides with sources and worked examples.</p>
           </div>
         </section>
 

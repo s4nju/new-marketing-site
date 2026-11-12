@@ -9,20 +9,20 @@ export default function Navbar() {
   return (
     <header className={styles.wrap}>
       <nav className={styles.pill} style={{ backdropFilter: "blur(6px)" }}>
-        <Image
-          src={logo}
-          alt="biu logo"
-          preload={true}
-          loading="eager"
-          width={60}
-          height={30}
-        />
+        <Link href="/" aria-label="biu home">
+          <Image
+            src={logo}
+            alt="biu logo"
+            preload={true}
+            loading="eager"
+            width={60}
+            height={30}
+          />
+        </Link>
         <div className={styles.links}>
-          <a href="/#features">features</a>
-          <a href="/#how-it-works">how it works</a>
-          <a href="/#pricing">pricing</a>
+          <a href="/pricing">pricing</a>
           {featureFlags.blogEnabled && <Link href="/blog">blog</Link>}
-          <a href="/#faq">faq</a>
+          <a href="/faq">faq</a>
         </div>
         <a href={appAccessHref} className={styles.cta}>
           get the app

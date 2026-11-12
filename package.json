@@ -17,7 +17,15 @@
     "typecheck:vinext": "tsc --project tsconfig.cloudflare.json --noEmit",
     "start:vinext": "vite preview --mode staging",
     "deploy:vinext": "npm run deploy:cloudflare",
-    "deploy:cloudflare": "vinext-cloudflare deploy --env production"
+    "deploy:cloudflare": "vinext-cloudflare deploy --env production",
+    "predev": "node scripts/generate-blog-content.mjs",
+    "predev:vinext": "node scripts/generate-blog-content.mjs",
+    "prebuild": "node scripts/generate-blog-content.mjs",
+    "prebuild:vinext": "node scripts/generate-blog-content.mjs",
+    "prebuild:cloudflare": "node scripts/generate-blog-content.mjs",
+    "pretypecheck:vinext": "node scripts/generate-blog-content.mjs",
+    "predeploy:cloudflare": "node scripts/generate-blog-content.mjs",
+    "check:blog": "node scripts/check-blog-release.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

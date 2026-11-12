@@ -29,11 +29,11 @@ export const productData = {
     features: paidFeatures,
   },
   pro: {
-    name: "biu Pro", monthlyPrice: "$15/month", yearlyPrice: "$149/year",
-    monthlyAmount: "15", yearlyAmount: "149", creditsPerMonth: 5000,
+    name: "biu Pro", monthlyPrice: "$14.90/month", yearlyPrice: "$149/year",
+    monthlyAmount: "14.90", yearlyAmount: "149", creditsPerMonth: 5000,
     availability: "In-app subscription", cancellation: "Cancel store auto-renewal anytime",
     features: paidFeatures,
   },
   platforms: ["iOS", "Android"],
-  lastUpdated: "2026-11-11",
+  lastUpdated: "2026-11-12",
 } as const;

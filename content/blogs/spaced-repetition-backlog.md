@@ -51,11 +51,19 @@ Write down:
 
 Estimate:
 
-> recovery sessions ≈ overdue cards ÷ cards completed per session
+> minimum sessions, ignoring returning work ≈ overdue cards ÷ cards completed per session
 
 If 600 cards are overdue and you can carefully review 60 in 20 minutes, the naïve estimate is 10 sessions. Some cards will return sooner after failure, so allow extra time.
 
 The calculation is not a promise. It turns a frightening number into a plan.
+
+## Include returning reviews in your recovery estimate
+
+The simple division above can underestimate the work because it treats every completed review as a permanent reduction in the queue.
+
+In a constructed planning example, you have 600 overdue cards and capacity for 60 reviews daily. If 40 of those daily review slots are needed for other due or returning cards, only about 20 slots remain for the original backlog. At a constant net reduction of 20 per day, 600 overdue cards would take about 30 days, not 10.
+
+Real schedules vary, so use the observed change in overdue count over several days. If the count stays flat, reduce low-priority work or repair cards before extending your sessions. This arithmetic example is not a prediction of any particular scheduler.
 
 ## Triage before you review
 

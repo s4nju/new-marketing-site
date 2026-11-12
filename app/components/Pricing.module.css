@@ -270,3 +270,24 @@
     padding: 72px 0;
   }
 }
+
+/* A short overview on the homepage; all terms live on /pricing. */
+.head > :global(.eyebrow) { margin-bottom: 18px; color: var(--berry); }
+.summaryGrid { width: min(100% - 48px, 960px); margin: 40px auto 0; display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid rgba(44,39,34,.14); }
+.summaryPlan { padding: 28px 24px; text-align: center; }
+.summaryPlan + .summaryPlan { border-left: 1px solid rgba(44,39,34,.14); }
+.summaryPlan h3 { font-size: 19px; font-weight: 500; }
+.summaryPlan > p:last-child { font-size: 14px; color: var(--muted); margin-top: 12px; }
+.summaryPrice { font-size: clamp(32px, 4vw, 44px); letter-spacing: -.05em; margin-top: 10px; font-weight: 500; }
+.summaryPrice span { font-size: 14px; letter-spacing: -.02em; font-weight: 400; margin-left: 4px; }
+.summaryFooter { margin: 28px 24px 0; text-align: center; }
+.summaryFooter > p { margin-top: 14px; font-size: 12px; color: var(--muted); }
+.planIcon { width: 44px; height: 44px; border-radius: 14px; background: rgba(138,59,67,.08); display: grid; place-items: center; margin-bottom: 22px; color: var(--berry); }
+.cardDark .planIcon { background: rgba(250,242,223,.1); color: #efca9d; }
+@media (max-width: 600px) {
+  .summaryGrid { grid-template-columns: 1fr; }
+  .summaryPlan { text-align: left; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 22px 4px; align-items: baseline; }
+  .summaryPlan + .summaryPlan { border-left: 0; border-top: 1px solid rgba(44,39,34,.14); }
+  .summaryPrice { font-size: 30px; margin-top: 0; }
+  .summaryPlan > p:last-child { grid-column: 1 / -1; margin-top: 0; }
+}

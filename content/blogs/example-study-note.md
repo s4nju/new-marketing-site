@@ -1,4 +1,4 @@
-# Start with one useful idea
+## Start with one useful idea
 
 This draft demonstrates the Markdown supported by the biu blog. Replace its metadata and body when you are ready to publish a real article.
 
@@ -14,7 +14,7 @@ Good study systems make the next action clear:
 
 ### Use rich Markdown when it helps
 
-Links to [biu](https://getbiu.app), **bold text**, *emphasis*, and inline `code` all work.
+Links to [biu](https://www.getbiu.app), **bold text**, *emphasis*, and inline `code` all work.
 
 | Review stage | Purpose |
 | --- | --- |
@@ -28,6 +28,7 @@ const nextReview = currentMemoryStrength < 0.7 ? "today" : "later";
 
 - [x] Write the first draft
 - [ ] Replace the example metadata
-- [ ] Set `draft` to `false`
+- [ ] Check sources, editor credit, internal links and publication date
+- [ ] Obtain publication approval before setting `draft` to `false`
 
 ![An abstract stack of study notes](/images/blog/example-study-note.svg)

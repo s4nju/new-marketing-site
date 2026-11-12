@@ -1,4 +1,4 @@
-**AI flashcards are faster to create; manual flashcards force you to make more decisions. Neither advantage guarantees learning.** For most students, the best workflow is hybrid: use AI to create a source-grounded first draft, then verify, simplify and select the cards yourself before you review them.
+**AI can reduce flashcard drafting time; manual creation gives you direct control over each question. Neither workflow guarantees learning.** A practical option is a hybrid: use AI to create a source-grounded first draft, then verify, simplify and select the cards yourself before you review them.
 
 The useful question is not “Which tool does all the work?” It is:
 
@@ -8,7 +8,7 @@ The useful question is not “Which tool does all the work?” It is:
 
 | Factor | AI-generated flashcards | Manually written flashcards |
 |---|---|---|
-| Creation speed | Fast, especially for long sources | Slow |
+| Creation speed | Can draft many cards quickly; verification still takes time | Depends on source length and card complexity |
 | Effort during creation | Lower by default | Higher |
 | Source coverage | Broad, but may overproduce | Selective, depending on your judgment |
 | Accuracy | Requires verification | Also requires verification |
@@ -99,7 +99,7 @@ That does not mean every word must be typed manually. You can preserve useful ge
 - adding a personal example;
 - reconstructing a process or diagram unaided.
 
-The most important generation happens when you retrieve. Clicking “generate” is not learning, but neither is copying a paragraph into a card.
+Retrieval is a separate learning activity; generation-effect research does not establish that one card-creation workflow is best for every learner. Clicking “generate” is not learning, but neither is copying a paragraph into a card.
 
 ## Why accurate cards still do not guarantee learning
 
@@ -153,6 +153,21 @@ Say, type, draw or calculate the answer first. Then grade the quality of your re
 
 Flashcards are components, not simulations. Add full problems, timed essays, case analysis, lab interpretation or oral explanation where the course demands them.
 
+## Compare total effort with a small worksheet
+
+Use the same permitted source section and learning goal for both workflows. Record actual minutes rather than assuming generated cards save time.
+
+| Work to measure | Manual workflow | AI-assisted workflow |
+| --- | --- | --- |
+| Understand the source | Record minutes | Record minutes |
+| Draft candidate cards | Record minutes | Record minutes |
+| Check every answer | Record minutes | Record minutes |
+| Edit and remove cards | Record minutes | Record minutes |
+| Complete the first review | Record minutes | Record minutes |
+| Usable cards remaining | Record count | Record count |
+
+Divide total minutes by usable cards to compare preparation effort. Then check your recall in a later session. This is a personal workflow test, not a controlled learning study; a lower preparation time does not prove better retention.
+
 ## Which method should you choose?
 
 ### Use mostly AI-assisted cards when:
@@ -182,7 +197,7 @@ Flashcards are components, not simulations. Add full problems, timed essays, cas
 
 ### Are AI flashcards better than handmade flashcards?
 
-They are better at speed and initial coverage. Handmade cards offer more control during creation. A verified hybrid deck often captures both advantages.
+AI may reduce drafting time, but coverage and accuracy depend on the source and tool. Handmade cards give you direct control during creation. Compare total time, including checking and editing, before choosing a workflow.
 
 ### Is using AI for flashcards cheating?
 

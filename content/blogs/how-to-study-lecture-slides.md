@@ -149,6 +149,16 @@ Then use the slides to check what you missed. This makes the source feedback rat
 
 Retrieval practice has been found to support delayed retention more than repeated study in educational materials ([Roediger and Karpicke, 2006](https://pubmed.ncbi.nlm.nih.gov/16507066/)). That does not mean every retrieval task is equally good; the cue and feedback still matter.
 
+## Worked example: a slide becomes three study actions
+
+Consider an illustrative slide titled “Correlation and causation,” with a scatterplot and the bullet “Association does not establish causation.” The following prompts are teaching examples, not generated product output.
+
+1. **Concept card:** Does an observed association alone establish causation? Answer: no.
+2. **Explanation prompt:** Give one reason an association might occur without a direct causal relationship. Check your explanation against the lecture's treatment of confounding or reverse causation.
+3. **Application task:** Describe what the scatterplot shows, then state which causal claim cannot be concluded from the chart alone.
+
+Keep the chart with the application task. A text-only card cannot preserve information that depends on the axes or plotted values. If the slide omits the explanation, consult your notes or lecturer before inventing an answer.
+
 ## A 30-minute after-lecture workflow
 
 | Minutes | Action |

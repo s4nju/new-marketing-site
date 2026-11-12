@@ -23,3 +23,5 @@ docs/adr/*
 /dist/
 .vinext/
 .cloudflare/
+!docs/seo-strategy.md
+/content/blog-content.generated.json

@@ -213,6 +213,21 @@ There is evidence for a **generation effect**—information people generate them
 
 [biu's AI flashcard maker](/ai-flashcard-maker) is designed around the source-to-review loop: add your study material, inspect the generated summary and cards, and then practise due cards over time. If your source is a document, follow the focused [PDF-to-flashcards workflow](/pdf-to-flashcards). Treat generated material as a draft and keep the original source authoritative.
 
+## A reusable flashcard template
+
+Use this template when you write a card or edit a generated one:
+
+| Field | What to write | Example |
+| --- | --- | --- |
+| Question | One target with enough context | In a simple experiment, which variable does the researcher deliberately change? |
+| Answer | The minimum answer needed to grade recall | The independent variable. |
+| Explanation | Optional context, separate from the graded answer | The dependent variable is the measured outcome. |
+| Source | A page, slide or section you can revisit | Your course's experimental-design section. |
+
+This is a constructed teaching example, not output from a product test. Replace the source label with your actual reference. Then hide the answer and try the question: if two reasonable answers fit, revise the prompt before adding it to review.
+
+For a full checking process, use the [seven-step AI flashcard audit](/blog/are-ai-flashcards-accurate).
+
 ## A 30-second flashcard checklist
 
 Before keeping a card, ask:
