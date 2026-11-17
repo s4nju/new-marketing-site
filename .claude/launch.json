@@ -1,6 +1,7 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "biu-dev", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev"], "port": 3000 }
+    { "name": "biu-dev", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev"], "port": 3000 },
+    { "name": "biu-dev-mockchat", "runtimeExecutable": "env", "runtimeArgs": ["NEXT_PUBLIC_BIU_API_URL=http://localhost:4545", "npm", "run", "dev", "--", "-p", "3007"], "port": 3007 }
   ]
 }

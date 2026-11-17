@@ -2,7 +2,7 @@ const paidFeatures = [
   "AI summaries and flashcards from supported study material",
   "AI tutor, chat attachments, voice input, and recall feedback",
   "Optional AI Memory with separate consent",
-  "Manual flashcards and Anki imports",
+  "AI-generated multiple-choice options for your own and imported cards",
 ] as const;
 
 export const productData = {

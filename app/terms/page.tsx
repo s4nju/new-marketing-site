@@ -172,9 +172,11 @@ export default function TermsPage() {
                     explicit action and active Pro access. After Pro access
                     expires, saved content and chats, existing summaries and
                     cards, library organization, non-AI quizzes, streaks,
-                    progress, and community decks remain available. New AI work,
-                    manual-card creation, and Anki imports require active Pro
-                    access. Existing AI recall questions can be presented as
+                    progress, and community decks remain available. Manual and
+                    cloze card creation and Anki and paste imports are free.
+                    Cards without answer choices use Self Review. AI-generated
+                    multiple-choice options and other new AI work require
+                    active Pro access. Existing AI recall questions can be presented as
                     multiple-choice questions instead. Storage and rate limits
                     apply.
                   </p>
@@ -268,10 +270,12 @@ export default function TermsPage() {
                     </li>
                     <li>
                       <strong>Other features:</strong> voice transcription, AI
-                      Memory, recall grading, manual-card creation, Anki
-                      imports, and community-deck cloning or updates currently
-                      have no separate credit charge. Some still require active
-                      Pro access and are subject to technical and abuse limits.
+                      Memory, recall grading, and AI-generated multiple-choice
+                      options require active Pro access but currently have no
+                      separate credit charge. Manual and cloze card creation,
+                      Anki and paste imports, Self Review, and community-deck
+                      cloning or updates are free and use no credits. Storage,
+                      technical, and abuse limits apply.
                     </li>
                     <li>
                       <strong>Monthly cycle:</strong> both monthly and annual

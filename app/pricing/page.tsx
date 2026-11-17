@@ -53,8 +53,8 @@ const sharedFeatures = [
   },
   {
     Icon: BookOpenIcon,
-    title: "bring your own knowledge",
-    text: "Make your own cards or bring your Anki decks along.",
+    title: "add AI-made answer choices",
+    text: "Turn your own and imported cards into multiple-choice questions with AI-generated options.",
   },
   {
     Icon: SparkleIcon,
@@ -265,9 +265,9 @@ export default function PricingPage() {
               <div>
                 <h3>keep the everyday habit free</h3>
                 <p>
-                  your daily learning activity does not require any credits.
+                  Manual and cloze cards, Anki and paste imports, and daily quizzes stay free.
                   <br />
-                  that's on us.
+                  Cards without answer choices use Self Review.
                 </p>
               </div>
             </article>

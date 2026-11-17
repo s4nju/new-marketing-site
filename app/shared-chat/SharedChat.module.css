@@ -32,51 +32,90 @@
 
 .conversation {
   display: grid;
-  gap: 36px;
-}
-
-.header {
-  display: grid;
   gap: 16px;
-  padding: 32px;
-  border-radius: var(--radius-lg);
-  background: var(--dark-bg);
-  color: var(--cream);
 }
 
-.eyebrow {
-  color: rgb(250 242 223 / 62%);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+/* The chat "window": header, scrolling thread, and a read-only composer. */
+.thread {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: #fffcf5;
+  border: 1px solid rgb(44 39 34 / 8%);
+  box-shadow:
+    0 1px 2px rgb(44 39 34 / 4%),
+    0 24px 60px -28px rgb(44 39 34 / 22%);
+}
+
+.threadHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 24px;
+  border-bottom: 1px solid rgb(44 39 34 / 7%);
+  background: rgb(250 242 223 / 55%);
+}
+
+.threadHeading {
+  flex: 1;
+  min-width: 0;
 }
 
 .title {
-  font-size: clamp(30px, 4.6vw, 44px);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -0.045em;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.03em;
   overflow-wrap: anywhere;
 }
 
-.disclaimer {
-  color: rgb(250 242 223 / 70%);
-  font-size: 14px;
-  line-height: 1.55;
-  letter-spacing: -0.01em;
+.threadMeta {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
 }
 
-.reportLink {
-  color: var(--cream);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.readOnly {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--cream-card);
+  border: 1px solid rgb(44 39 34 / 8%);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
   white-space: nowrap;
+}
+
+.threadBody {
+  display: grid;
+  gap: 24px;
+  padding: 24px 28px 32px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgb(44 39 34 / 8%);
 }
 
 .messages {
   display: grid;
-  gap: 28px;
+  gap: 20px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -85,67 +124,176 @@
 .userRow,
 .assistantRow {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: flex-start;
+  gap: 12px;
   min-width: 0;
 }
 
 .userRow {
+  flex-direction: row-reverse;
+}
+
+.messageStack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  max-width: min(82%, 600px);
+}
+
+.userRow .messageStack {
   align-items: flex-end;
 }
 
-.assistantRow {
+.assistantRow .messageStack {
   align-items: flex-start;
 }
 
+.biuAvatar,
+.userAvatar {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+}
+
+.biuAvatar {
+  background: var(--white);
+  border: 1px solid rgb(138 59 67 / 18%);
+}
+
+.biuAvatar img {
+  width: 26px;
+  height: auto;
+}
+
+.userAvatar {
+  background: var(--cream-soft);
+  color: var(--muted);
+}
+
+/* Avatars sit beside the bubble, nudged down past the role label. */
+.messages .biuAvatar,
+.messages .userAvatar {
+  margin-top: 22px;
+}
+
 .role {
-  padding: 0 4px;
+  padding: 0 6px;
   color: var(--muted);
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+}
+
+.userBubble,
+.assistantBubble {
+  min-width: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 
 .userBubble {
-  max-width: 88%;
-  padding: 12px 18px;
-  border-radius: 22px 22px 6px 22px;
+  padding: 11px 18px;
+  border-radius: 22px 6px 22px 22px;
   background: var(--ink);
   color: var(--cream);
-  font-size: 16px;
-  line-height: 1.55;
   white-space: pre-wrap;
-  overflow-wrap: anywhere;
+}
+
+.assistantBubble {
+  max-width: 100%;
+  padding: 14px 20px;
+  border-radius: 6px 22px 22px 22px;
+  background: var(--cream-card);
+  border: 1px solid rgb(44 39 34 / 5%);
 }
 
 .empty {
   color: var(--muted);
   font-size: 16px;
+  text-align: center;
+}
+
+/* Read-only composer: looks like the app's input, links to the app. */
+.composer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-top: 1px solid rgb(44 39 34 / 7%);
+  background: rgb(250 242 223 / 55%);
+}
+
+.composerField {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--white);
+  border: 1px solid rgb(44 39 34 / 10%);
+  color: rgb(112 101 84 / 80%);
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: not-allowed;
+}
+
+.composerButton {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 18px 0 20px;
+  border-radius: 999px;
+  background: var(--berry);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  transition: transform 0.2s ease;
+}
+
+.composerButton:hover {
+  transform: translateY(-1px);
+}
+
+.disclaimer {
+  padding: 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.reportLink {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
 }
 
 /* ---- assistant markdown ---- */
 
 .markdown {
-  width: 100%;
-  min-width: 0;
-  padding: 0 4px;
   color: var(--ink);
-  font-size: 16px;
-  line-height: 1.65;
   letter-spacing: -0.01em;
-  overflow-wrap: anywhere;
 }
 
 .markdown > * + * {
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 .markdown h1,
 .markdown h2,
 .markdown h3,
 .markdown h4 {
-  margin-top: 24px;
+  margin-top: 20px;
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.03em;
@@ -195,7 +343,7 @@
 .markdown code {
   padding: 2px 6px;
   border-radius: 6px;
-  background: var(--cream-card);
+  background: rgb(255 255 255 / 70%);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.88em;
 }
@@ -203,8 +351,9 @@
 .markdown pre {
   overflow-x: auto;
   padding: 16px 18px;
-  border-radius: var(--radius-sm);
-  background: var(--cream-card);
+  border-radius: 12px;
+  background: var(--white);
+  border: 1px solid rgb(44 39 34 / 6%);
   line-height: 1.5;
 }
 
@@ -236,7 +385,7 @@
 }
 
 .markdown th {
-  background: var(--cream-card);
+  background: rgb(255 255 255 / 60%);
   font-weight: 600;
 }
 
@@ -307,6 +456,7 @@
 .primaryButton:focus-visible,
 .secondaryButton:focus-visible,
 .reportLink:focus-visible,
+.composerButton:focus-visible,
 .markdown a:focus-visible {
   outline: 2px solid var(--berry);
   outline-offset: 3px;
@@ -343,6 +493,7 @@
 .loading {
   display: grid;
   gap: 16px;
+  padding: 28px;
 }
 
 .loading > span:not(.srOnly) {
@@ -401,7 +552,8 @@
   }
 
   .primaryButton,
-  .secondaryButton {
+  .secondaryButton,
+  .composerButton {
     transition: none;
   }
 }
@@ -411,13 +563,70 @@
     padding: 120px 16px 72px;
   }
 
-  .header {
-    padding: 24px 20px;
+  .thread {
     border-radius: var(--radius-md);
   }
 
-  .userBubble {
-    max-width: 94%;
+  .threadHeader {
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .title {
+    font-size: 17px;
+  }
+
+  .threadBody {
+    gap: 20px;
+    padding: 20px 14px 24px;
+  }
+
+  .messages {
+    gap: 16px;
+  }
+
+  .messageStack {
+    max-width: 88%;
+  }
+
+  .userRow .messageStack {
+    max-width: 92%;
+  }
+
+  /* The bubble side already says who spoke; keep width for text. */
+  .messages .userAvatar {
+    display: none;
+  }
+
+  .messages .biuAvatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .messages .biuAvatar img {
+    width: 20px;
+  }
+
+  .userRow,
+  .assistantRow {
+    gap: 8px;
+  }
+
+  .assistantBubble {
+    padding: 12px 16px;
+  }
+
+  .composer {
+    padding: 12px;
+  }
+
+  .composerField {
+    padding: 11px 14px;
+    font-size: 14px;
+  }
+
+  .composerButton {
+    padding: 0 16px;
   }
 
   .cta {

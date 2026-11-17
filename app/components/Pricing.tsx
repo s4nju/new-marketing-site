@@ -9,10 +9,10 @@ export default function Pricing() {
       <div className={styles.head}>
         <span className="eyebrow">a little more room to learn</span>
         <h2 className="h2" id="pricing-title">start free. grow from there.</h2>
-        <p className={styles.sub}>{productData.trial.duration} of Pro, no card needed. Keep your daily quiz and saved library free afterward.</p>
+        <p className={styles.sub}>{productData.trial.duration} of Pro, no card needed. Keep your daily quiz, saved library, manual and cloze cards, and imports free afterward.</p>
       </div>
       <div className={styles.summaryGrid}>
-        <div className={styles.summaryPlan}><h3>free</h3><p className={styles.summaryPrice}>$0</p><p>your saved library & daily quiz</p></div>
+        <div className={styles.summaryPlan}><h3>free</h3><p className={styles.summaryPrice}>$0</p><p>your library, daily quiz, manual & cloze cards, and imports</p></div>
         {(["plus", "pro"] as const).map((id) => (
           <div className={styles.summaryPlan} key={id}><h3>{id}</h3><p className={styles.summaryPrice}>${productData[id].monthlyAmount}<span>/month</span></p><p>{productData[id].creditsPerMonth.toLocaleString("en-US")} AI credits each month</p></div>
         ))}

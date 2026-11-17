@@ -26,11 +26,16 @@ Availability: ${productData.availability.status}. [Get the app](${appAccessUrl})
 - Existing historical access grants retain their recorded expiry.
 
 ${plans}
+## Free
+
+- Manual and cloze card creation, Anki and paste imports, saved material, non-AI quizzes, and community decks remain free. Cards without answer choices use Self Review.
+- AI-generated multiple-choice options for your own and imported cards require active Pro access, included in a trial, Plus, or Pro plan.
+
 ## Credit rules
 
 - Both plans unlock the same features; neither offers unlimited AI usage.
 - New library content is charged by source size. Chat replies and chat-file processing are charged by AI work. Check available estimates before processing and your final usage, balance, and history in the app. Library processing has a minimum charge of one credit.
-- Voice transcription, AI Memory, recall grading, manual cards, Anki imports, and community-deck cloning or updates currently carry no separate credit charge. Some still require active Pro access.
+- Manual and cloze card creation, Anki and paste imports, Self Review, and community-deck cloning or updates are free and use no credits. Voice transcription, AI Memory, recall grading, and AI-generated multiple-choice options require active Pro access but currently carry no separate credit charge.
 - Credits refresh monthly on the account's cycle date, not each calendar month. Annual payments do not provide the full year's credits upfront.
 - Unused monthly credits expire. Unused trial credits join the first paid cycle only when the purchase occurs before trial access expires; they expire with that cycle.
 - A verified tier upgrade adds the allowance difference once in the current cycle, without resetting spend. A downgrade does not remove credits already granted; its lower allowance applies from the next cycle after it takes effect.
@@ -43,7 +48,7 @@ ${plans}
 - Subscriptions renew automatically unless cancelled through Apple or Google. Annual plans charge the displayed annual total once per year.
 - BIU trial or granted access does not postpone charges for a subscription you choose to buy. The signup trial does not automatically convert to a paid plan.
 - Google Play upgrades are charged and immediate; downgrades and duration changes are deferred. Apple determines its effective dates and charges. A scheduled change is not yet an active plan.
-- Saved material, non-AI quizzes, streaks, progress, organization, and community decks remain available without a paid plan. New AI work, manual-card creation, and Anki imports require active Pro access. Storage and rate limits apply.
+- Saved material, non-AI quizzes, streaks, progress, organization, and community decks remain available without a paid plan. Manual and cloze card creation and Anki and paste imports are free. AI-generated multiple-choice options and other new AI work require active Pro access. Storage and rate limits apply.
 - Privacy policy: ${siteConfig.url}/privacy-policy
 - Terms: ${siteConfig.url}/terms
 `;

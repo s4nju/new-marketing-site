@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { appIdentity, sharedChatPathPrefix } from "../app-links";
 import { appAccessHref, siteConfig } from "../site-config";
 import { parseSharedChat, type SharedChat } from "./share-token";
+import logo from "../../public/images/biu-logo.png";
 import styles from "./SharedChat.module.css";
 
 const apiBaseUrl = (process.env.NEXT_PUBLIC_BIU_API_URL ?? "").trim().replace(/\/$/, "");
@@ -168,7 +170,9 @@ export default function SharedChatView({ token }: { token: string | null }) {
             action={{ label: "try again", onClick: retry }}
           />
         )}
-        {state.status === "ready" && <Conversation chat={state.chat} />}
+        {state.status === "ready" && (
+          <Conversation chat={state.chat} token={token} platform={platform} />
+        )}
 
         <AppCta token={token} platform={platform} />
       </div>
@@ -176,48 +180,133 @@ export default function SharedChatView({ token }: { token: string | null }) {
   );
 }
 
-function Conversation({ chat }: { chat: SharedChat }) {
+function continueHref(token: string | null, platform: Platform | null): string {
+  if (platform === "android" && token) return androidIntentHref(token);
+  return platform ? getAppHref(platform) : appAccessHref;
+}
+
+function Conversation({
+  chat,
+  token,
+  platform,
+}: {
+  chat: SharedChat;
+  token: string | null;
+  platform: Platform | null;
+}) {
   const [reportLink, setReportLink] = useState("mailto:admin@getbiu.app");
   useEffect(() => setReportLink(reportHref()), []);
+  const count = chat.messages.length;
 
   return (
     <article className={styles.conversation}>
-      <header className={styles.header}>
-        <span className={styles.eyebrow}>shared chat · read only</span>
-        <h1 className={styles.title}>{chat.title}</h1>
-        <p className={styles.disclaimer}>
-          Shared by a biu user. biu has not reviewed this conversation, and AI
-          replies can be wrong.{" "}
-          <a href={reportLink} className={styles.reportLink}>
-            Report this chat
-          </a>
-        </p>
-      </header>
+      <div className={styles.thread}>
+        <header className={styles.threadHeader}>
+          <BiuAvatar />
+          <div className={styles.threadHeading}>
+            <h1 className={styles.title}>{chat.title}</h1>
+            <p className={styles.threadMeta}>
+              chat with biu · {count} {count === 1 ? "message" : "messages"}
+            </p>
+          </div>
+          <span className={styles.readOnly}>
+            <LockIcon />
+            read only
+          </span>
+        </header>
 
-      {chat.messages.length === 0 ? (
-        <p className={styles.empty}>This shared chat has no messages.</p>
-      ) : (
-        <ol className={styles.messages}>
-          {chat.messages.map((message, index) => (
-            <li
-              key={`${message.role}-${index}`}
-              className={message.role === "user" ? styles.userRow : styles.assistantRow}
-            >
-              <span className={styles.role}>{message.role === "user" ? "user" : "biu"}</span>
-              {message.role === "user" ? (
-                <p className={styles.userBubble}>{message.content}</p>
-              ) : (
-                <div className={styles.markdown}>
-                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-                    {message.content}
-                  </ReactMarkdown>
-                </div>
-              )}
-            </li>
-          ))}
-        </ol>
-      )}
+        <div className={styles.threadBody}>
+          <p className={styles.divider}>
+            <span>shared from the biu app</span>
+          </p>
+
+          {count === 0 ? (
+            <p className={styles.empty}>This shared chat has no messages.</p>
+          ) : (
+            <ol className={styles.messages}>
+              {chat.messages.map((message, index) => {
+                const isUser = message.role === "user";
+                return (
+                  <li
+                    key={`${message.role}-${index}`}
+                    className={isUser ? styles.userRow : styles.assistantRow}
+                  >
+                    {isUser ? <UserAvatar /> : <BiuAvatar />}
+                    <div className={styles.messageStack}>
+                      <span className={styles.role}>{isUser ? "user" : "biu"}</span>
+                      {isUser ? (
+                        <p className={styles.userBubble}>{message.content}</p>
+                      ) : (
+                        <div className={`${styles.assistantBubble} ${styles.markdown}`}>
+                          <ReactMarkdown
+                            remarkPlugins={[remarkGfm]}
+                            components={markdownComponents}
+                          >
+                            {message.content}
+                          </ReactMarkdown>
+                        </div>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          )}
+        </div>
+
+        <footer className={styles.composer}>
+          <span className={styles.composerField}>Replies are off in shared chats</span>
+          <a href={continueHref(token, platform)} className={styles.composerButton} rel="noreferrer">
+            continue in biu
+            <SendIcon />
+          </a>
+        </footer>
+      </div>
+
+      <p className={styles.disclaimer}>
+        Shared by a biu user. biu has not reviewed this conversation, and AI replies
+        can be wrong.{" "}
+        <a href={reportLink} className={styles.reportLink}>
+          Report this chat
+        </a>
+      </p>
     </article>
+  );
+}
+
+function BiuAvatar() {
+  return (
+    <span className={styles.biuAvatar} aria-hidden="true">
+      <Image src={logo} alt="" width={26} height={13} />
+    </span>
+  );
+}
+
+function UserAvatar() {
+  return (
+    <span className={styles.userAvatar} aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M4 20.5c0-4.2 3.6-7 8-7s8 2.8 8 7" />
+      </svg>
+    </span>
+  );
+}
+
+function LockIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+      <rect x="5" y="11" width="14" height="10" rx="2.5" />
+      <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+    </svg>
+  );
+}
+
+function SendIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
   );
 }
 
@@ -255,7 +344,7 @@ function AppCta({ token, platform }: { token: string | null; platform: Platform 
 
 function LoadingState() {
   return (
-    <div className={styles.loading} role="status" aria-live="polite">
+    <div className={`${styles.thread} ${styles.loading}`} role="status" aria-live="polite">
       <span className={styles.skeletonEyebrow} />
       <span className={styles.skeletonTitle} />
       <span className={styles.skeletonLine} />

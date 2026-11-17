@@ -11,6 +11,9 @@ import nextConfig, { sharedChatHeaders } from "./next.config.mjs";
 export default defineConfig(({ command, mode }) => {
   const isProduction = mode === "production";
   const publicEnv = loadEnv(mode, process.cwd(), "NEXT_PUBLIC_");
+  if (command === "build" && !publicEnv.NEXT_PUBLIC_BIU_API_URL?.trim()) {
+    throw new Error("NEXT_PUBLIC_BIU_API_URL is required to build shared chat pages.");
+  }
   return {
     plugins: [
       patchCssModules({ exportMode: "default" }),
